@@ -5,11 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
     </LinearLayout>
 </layout>
 <!--ctrl+alt+L:: code reformating>
