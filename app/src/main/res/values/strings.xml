@@ -9,4 +9,5 @@
     <string name="correct_answers">correct answers</string>
     <string name="review">Review Quiz</string>
     <string name="close">Close</string>
+    <string name="quiz_question_text">Are you sure you want \nto submit the Quiz?</string>
 </resources>
