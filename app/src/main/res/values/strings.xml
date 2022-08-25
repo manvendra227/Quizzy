@@ -3,4 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello World!</string>
+    <string name="failed">You didin\'t get passing score</string>
+    <string name="score">You scored 20%</string>
+    <string name="marks">4/20</string>
+    <string name="correct_answers">correct answers</string>
+    <string name="review">Review Quiz</string>
+    <string name="close">Close</string>
 </resources>
