@@ -11,6 +11,7 @@
     <dimen name="dimen_28">28dp</dimen>
     <dimen name="dimen_32">32dp</dimen>
     <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_44">44dp</dimen>
     <dimen name="dimen_48">48dp</dimen>
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="dimen_56">56dp</dimen>
@@ -30,4 +31,7 @@
     <dimen name="dimen_text_28">28sp</dimen>
     <dimen name="dimen_text_32">32sp</dimen>
     <dimen name="dimen_text_40">40sp</dimen>
+
+    <dimen name="login_edittext_width">44dp</dimen>
+    <dimen name="dimen_36">36dp</dimen>
 </resources>

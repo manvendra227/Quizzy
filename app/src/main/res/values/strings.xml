@@ -29,4 +29,16 @@
     <string name="details3">\u25CF Best Score on Quiz -132 by Rahul Singh</string>
     <string name="details4">\u25CF Personal best score : 0</string>
     <string name="details5">\u25CF Last attempt: No attempts yet</string>
+    <!--@SignUpActivity-->
+    <string name="must_be_aplhanumeric">Must be aplhanumeric</string>
+    <string name="must_be_alphanumeric">Must be alphanumeric</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="name">Name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="xyz_gmail_com">xyz@gmail.com</string>
+    <string name="enter_password">Enter password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="date_of_birth">Date-of-birth</string>
+    <string name="_12_07_2000">12/07/2000</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
 </resources>
