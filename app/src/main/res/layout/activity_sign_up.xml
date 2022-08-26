@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginTop="@dimen/dimen_48"
-                        android:layout_toRightOf="@id/profile_pic"
+                        android:layout_toEndOf="@id/profile_pic"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -117,10 +117,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dimen_16"
-                            android:layout_marginLeft="@dimen/dimen_16"
                             android:layout_marginTop="@dimen/dimen_16"
                             android:fontFamily="@font/sen_bold"
-                            android:text="Name"
+                            android:text="@string/name"
                             android:textColor="@color/title_black"
                             android:textSize="@dimen/dimen_text_14" />
 
@@ -167,7 +166,7 @@
                             android:layout_marginStart="@dimen/dimen_16"
                             android:layout_marginTop="@dimen/dimen_8"
                             android:fontFamily="@font/sen_bold"
-                            android:text="E-mail"
+                            android:text="@string/e_mail"
                             android:textColor="@color/title_black"
                             android:textSize="@dimen/dimen_text_14" />
 
@@ -193,7 +192,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@null"
                                 android:fontFamily="@font/sen_reg"
-                                android:hint="xyz@gmail.com"
+                                android:hint="@string/xyz_gmail_com"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:minHeight="@dimen/dimen_44"
@@ -216,7 +215,7 @@
                             android:layout_marginStart="@dimen/dimen_16"
                             android:layout_marginTop="@dimen/dimen_8"
                             android:fontFamily="@font/sen_bold"
-                            android:text="Enter password"
+                            android:text="@string/enter_password"
                             android:textColor="@color/title_black"
                             android:textSize="@dimen/dimen_text_14" />
 
@@ -266,7 +265,7 @@
                             android:layout_marginStart="@dimen/dimen_16"
                             android:layout_marginTop="@dimen/dimen_8"
                             android:fontFamily="@font/sen_bold"
-                            android:text="Confirm password"
+                            android:text="@string/confirm_password"
                             android:textColor="@color/title_black"
                             android:textSize="@dimen/dimen_text_14" />
 
@@ -327,7 +326,7 @@
                                     android:layout_marginStart="@dimen/dimen_16"
                                     android:layout_marginTop="@dimen/dimen_8"
                                     android:fontFamily="@font/sen_bold"
-                                    android:text="Date-of-birth"
+                                    android:text="@string/date_of_birth"
                                     android:textColor="@color/title_black"
                                     android:textSize="@dimen/dimen_text_14" />
 
@@ -350,7 +349,8 @@
                                     <RelativeLayout
                                         android:id="@+id/date_picker"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout">
 
                                         <ImageView
                                             android:id="@+id/calender_icon"
@@ -358,16 +358,17 @@
                                             android:layout_height="24dp"
                                             android:layout_centerVertical="true"
                                             android:layout_marginStart="@dimen/dimen_12"
+                                            android:contentDescription="TODO"
                                             android:src="@drawable/ic_calender" />
 
                                         <TextView
                                             android:id="@+id/date"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:layout_toRightOf="@id/calender_icon"
+                                            android:layout_toEndOf="@id/calender_icon"
                                             android:fontFamily="@font/sen_regular"
                                             android:gravity="center"
-                                            android:text="12/07/2000"
+                                            android:text="@string/_12_07_2000"
                                             android:textSize="@dimen/dimen_text_16" />
 
                                     </RelativeLayout>
@@ -402,7 +403,7 @@
                                         android:layout_marginTop="22dp"
                                         android:layout_marginEnd="4dp"
                                         android:fontFamily="@font/sen_bold"
-                                        android:text="Create Profile"
+                                        android:text="@string/create_profile"
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
                                         android:textSize="12sp"
