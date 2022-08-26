@@ -27,11 +27,14 @@
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_female.xml" value="0.121" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/won_emoji.xml" value="0.121" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_login.xml" value="0.11041666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/item_quiz.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/list_item_question.xml" value="0.264" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_import_rules.xml" value="0.264" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_result.xml" value="0.25" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_won.xml" value="0.2" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_rating.xml" value="0.264" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_submit_quiz.xml" value="0.264" />
       </map>
     </option>

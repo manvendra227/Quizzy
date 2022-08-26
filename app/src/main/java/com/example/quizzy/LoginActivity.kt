@@ -6,6 +6,6 @@ import android.os.Bundle
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.popup_import_rules)
+        setContentView(R.layout.list_item_question)
     }
 }
