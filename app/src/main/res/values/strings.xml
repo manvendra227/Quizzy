@@ -22,4 +22,11 @@
     <string name="quest1"><small>What is the Nmber of primitive datatypes?</small></string>
     <string name="optionA">A</string>
     <string name="optionB">B</string>
+    <string name="quiz_discreption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum orci augue, molestie et pellentesque ut, posuere tincidunt quam. In hac habitasse platea dictumst. Pellentesque faucibus bibendum congue. Vestibulum tincidunt a nisi non convallis. Pellentesque id interdum erat. Duis vulputate, felis eget accumsan pulvinar,</string>
+    <!--activity_quiz_detail-->
+    <string name="details1">\u25CF Uploaded by steven_smith on 12th May 2022</string>
+    <string name="details2">\u25CF Number of times quiz played till date-1124</string>
+    <string name="details3">\u25CF Best Score on Quiz -132 by Rahul Singh</string>
+    <string name="details4">\u25CF Personal best score : 0</string>
+    <string name="details5">\u25CF Last attempt: No attempts yet</string>
 </resources>

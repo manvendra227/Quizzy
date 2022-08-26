@@ -37,19 +37,7 @@
         app:cardBackgroundColor="@color/back2"
         app:cardCornerRadius="@dimen/dimen_12"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
-
-    <com.google.android.material.card.MaterialCardView
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/back_button"
-        android:layout_marginStart="@dimen/dimen_28"
-        android:layout_marginTop="@dimen/dimen_32"
-        android:layout_marginEnd="@dimen/dimen_20"
-        app:cardCornerRadius="@dimen/dimen_12"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp">
+        app:strokeWidth="1dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,6 +76,20 @@
 
             </LinearLayout>
         </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/back_button"
+        android:layout_marginStart="@dimen/dimen_28"
+        android:layout_marginTop="@dimen/dimen_32"
+        android:layout_marginEnd="@dimen/dimen_20"
+        app:cardCornerRadius="@dimen/dimen_12"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp">
+
     </com.google.android.material.card.MaterialCardView>
 
 

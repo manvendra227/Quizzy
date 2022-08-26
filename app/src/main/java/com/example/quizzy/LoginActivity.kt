@@ -6,6 +6,6 @@ import android.os.Bundle
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.list_item_question)
+        setContentView(R.layout.activity_quiz_detail)
     }
 }
