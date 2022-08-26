@@ -9,4 +9,8 @@
     <string name="correct_answers">correct answers</string>
     <string name="review">Review Quiz</string>
     <string name="close">Close</string>
+    <!--@SignUpActivity-->
+    <string name="must_be_aplhanumeric">Must be aplhanumeric</string>
+    <string name="must_be_alphanumeric">Must be alphanumeric</string>
+    <string name="create_profile">Create Profile</string>
 </resources>
