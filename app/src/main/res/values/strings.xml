@@ -9,6 +9,26 @@
     <string name="correct_answers">correct answers</string>
     <string name="review">Review Quiz</string>
     <string name="close">Close</string>
+    <!--Import Rules Strings-->
+    <string name="quiz_question_text">Are you sure you want \nto submit the Quiz?</string>
+    <string name="MCQ">\u25CF <b>Rules for MCQ </b>\n\t\t\u2022 <small>First column should be of questions</small>\n\t\t\u2022 <small>Second column should be the options</small>\n\t\t\u2022 <small>Third column should be the answer</small>\n\t\t\u2022 <small>Fourth column should be the explanation</small></string>
+    <string name="trueflase">\u25CF <b>Rules for True and False</b> \n\t\t\u2022 <small>First column should be of questions</small>\n\t\t\u2022 <small>Second column should be the answer</small>\n\t\t\u2022 <small>Third column should be the explanation</small></string>
+    <string name="rules_for_excel_import">Rules for Excel import</string>
+    <!--Ratings Strings-->
+    <string name="rating">Rate the quality of questions</string>
+    <string name="timer">01:58</string>
+    <!--activity_quiz strings-->
+    <string name="questnumber"><b>11</b>\u2022</string>
+    <string name="quest1"><small>What is the Nmber of primitive datatypes?</small></string>
+    <string name="optionA">A</string>
+    <string name="optionB">B</string>
+    <string name="quiz_discreption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum orci augue, molestie et pellentesque ut, posuere tincidunt quam. In hac habitasse platea dictumst. Pellentesque faucibus bibendum congue. Vestibulum tincidunt a nisi non convallis. Pellentesque id interdum erat. Duis vulputate, felis eget accumsan pulvinar,</string>
+    <!--activity_quiz_detail-->
+    <string name="details1">\u25CF Uploaded by steven_smith on 12th May 2022</string>
+    <string name="details2">\u25CF Number of times quiz played till date-1124</string>
+    <string name="details3">\u25CF Best Score on Quiz -132 by Rahul Singh</string>
+    <string name="details4">\u25CF Personal best score : 0</string>
+    <string name="details5">\u25CF Last attempt: No attempts yet</string>
     <!--@SignUpActivity-->
     <string name="must_be_aplhanumeric">Must be aplhanumeric</string>
     <string name="must_be_alphanumeric">Must be alphanumeric</string>

@@ -18,6 +18,10 @@
     <color name="hard">#EE5873</color>
     <color name="back2">#D9D9D9</color>
     <color name="blue">#212EA5</color>
+    <color name="brown">#675858</color>
+    <color name="light_grey">#424242</color>
+    <color name="poppy_red">#F11616</color>
+    <color name="violet">#212EA5</color>
     <color name="edittext">#ECF4EA</color>
     <color name="edittext_fill">#f1f1b5</color>
     <color name="edittext_wrong">#FFEAE9</color>
