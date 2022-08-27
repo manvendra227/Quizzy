@@ -5,6 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginBottom="4dp"
     app:strokeColor="@color/black"
     app:strokeWidth="1dp">
     <TextView

@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.ProfileFragment">
+    tools:context=".SignUpActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/dimen_16"
+        android:layout_height="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:src="@drawable/ic_arrow_left" />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:layout_toEndOf="@id/back_button"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/create_profile"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_text_18" />
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="24dp"
+        android:src="@drawable/edit_clip"
+        android:layout_marginEnd="@dimen/dimen_12"
+        android:layout_marginTop="14dp" />
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/head"
+        android:layout_marginEnd=""
+        />
 
-</FrameLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
+

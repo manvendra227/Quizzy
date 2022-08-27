@@ -25,5 +25,5 @@
     <color name="edittext">#ECF4EA</color>
     <color name="edittext_fill">#f1f1b5</color>
     <color name="edittext_wrong">#FFEAE9</color>
-    <color name="gray">#B7363535</color>
+    <color name="gray">#DCDCDC</color>
 </resources>
