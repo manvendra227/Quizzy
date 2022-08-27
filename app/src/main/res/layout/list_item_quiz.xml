@@ -83,7 +83,6 @@
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:foreground="@drawable/switch_wishlist"
-            android:src="@drawable/wishlist_null"
             android:textOff=""
             android:textOn="" />
     </RelativeLayout>
