@@ -1,6 +1,7 @@
 package com.example.quizzy
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Build
@@ -27,6 +28,8 @@ class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         datePicker()
+
+        auth_button.setOnClickListener { startActivity(Intent(this,HomeActivity::class.java)) }
     }
 
     private fun pickDate() {

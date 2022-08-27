@@ -76,13 +76,16 @@
         android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="16dp"
         android:id="@+id/recycler_quiz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/temp_text"
-
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        tools:listitem="@layout/list_item_quiz" />
+        tools:listitem="@layout/list_item_quiz"
+        tools:orientation="vertical"
+        tools:scrollbars="vertical"
+        app:spanCount="2"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 </RelativeLayout>

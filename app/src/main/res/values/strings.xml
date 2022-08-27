@@ -41,4 +41,5 @@
     <string name="date_of_birth">Date-of-birth</string>
     <string name="_12_07_2000">12/07/2000</string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="username_01"><u>username_01</u></string>
 </resources>

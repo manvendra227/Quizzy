@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginBottom="28dp">
+
+    <RelativeLayout
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_12">
+
+        <RelativeLayout
+            android:layout_width="46dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/transparent_background">
+
+            <TextView
+                android:id="@+id/no_of_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26sp"
+                android:fontFamily="@font/sen_regular"
+                android:text="1219"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/sen_regular"
+                android:text="Reviews"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/review_bg"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sen_bold"
+                android:text="4.3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_20" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/rating"
+                android:src="@drawable/ic_star" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/difficulty"
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="84dp"
+            android:src="@drawable/diff_easy" />
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_below="@id/difficulty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:foreground="@drawable/switch_wishlist"
+            android:src="@drawable/wishlist_null"
+            android:textOff=""
+            android:textOn="" />
+    </RelativeLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_toRightOf="@id/temp"
+        app:cardBackgroundColor="@color/back2"
+        app:cardCornerRadius="18dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@id/temp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="18dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                app:cardCornerRadius="13dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@id/profile"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:fontFamily="@font/sen_bold"
+                android:maxWidth="200dp"
+                android:maxLines="1"
+                android:text="@string/username_01"
+                android:textColor="@color/title_black"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/share"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:src="@drawable/ic_share" />
+
+            <View
+                android:id="@+id/temp_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dimen_40"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/quiz_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temp_line"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sen_bold"
+                android:maxLines="1"
+                android:text="Quiz on CyberSecurity "
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/quiz_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quiz_title"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/sen_regular"
+                android:maxLines="3"
+                android:text="Includes 25 mcq based questions on cyber security and networking. Includes 25 mcq based questions on cyber security and networking. Includes 25 mcq based questions on cyber security and networking. Includes 25 mcq based questions on cyber security and networking. Includes 25 mcq based questions on cyber security and networking"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:id="@+id/start_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_8">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/sen_bold"
+                        android:text="Re-Attempt"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/button_blue"
+                        app:cornerRadius="9dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="139dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/transparent_background" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>
