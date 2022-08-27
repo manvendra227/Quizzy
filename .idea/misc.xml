@@ -3,20 +3,51 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/circular_ripple.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/custom_button.xml" value="0.128" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dashed.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dashed_dotted_lines.xml" value="0.264" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/group_134.xml" value="0.1395" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_group_134__1_.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/review_bg.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_easy.xml" value="0.136" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_gender.xml" value="0.1395" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_hard.xml" value="0.176" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_med.xml" value="0.136" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_status.xml" value="0.1395" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_wishlist.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/test.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/thumb.xml" value="0.1395" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/track.xml" value="0.1395" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/transparent_background.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/type_switch_mcq.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/type_switch_mixed.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/type_switch_numerical.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/type_switch_pictorial.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/font/font.xml" value="0.19375" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout-land/fragment_home.xml" value="0.25480974775545107" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout-night/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout-sw600dp/fragment_home.xml" value="0.176" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_login.xml" value="0.20599409033347404" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz_detail.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_add_quiz.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_home.xml" value="0.536" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/item_quiz.xml" value="0.26510416666666664" />
-        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_import_rules.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/layout_create_quiz.xml" value="0.264" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/list_item_question.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/list_item_quiz.xml" value="0.264" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_import_rules.xml" value="0.4" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_lost.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_result.xml" value="0.6" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_won.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_rating.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_submit_quiz.xml" value="0.22826086956521738" />
+<<<<<<< HEAD
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.121" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/blue_button.xml" value="0.12" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dotted_line.xml" value="0.176" />
@@ -50,6 +81,9 @@
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_rating.xml" value="0.264" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_submit_quiz.xml" value="0.264" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Quizzy/app/src/main/res/layout/tag.xml" value="0.72" />
+=======
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/tag.xml" value="0.25416666666666665" />
+>>>>>>> 5f67d1367ec386a6d5311d6fa6726f00aa27a3c4
       </map>
     </option>
   </component>

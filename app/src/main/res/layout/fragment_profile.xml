@@ -35,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@+id/head"
-        android:layout_marginEnd=""
         />
 
 
@@ -43,8 +42,4 @@
 
     </RelativeLayout>
 
-
-
-
-</RelativeLayout>
 

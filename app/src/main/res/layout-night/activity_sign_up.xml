@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:scaleType="matrix"
+        android:scaleX="-1.1"
+        android:scaleY="-1"
+        android:src="@drawable/ic_backround" />
+    <!--TODO->Landscape layout background, Problem-background not static-->
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/dimen_16"
+        android:layout_height="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_16"
+        android:src="@drawable/ic_arrow_left"
+        app:tint="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:layout_toEndOf="@id/back_button"
+        android:fontFamily="@font/sen_bold"
+        android:text="@string/create_profile"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_text_18" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/back_button">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dimen_16">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="590dp"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_marginEnd="@dimen/dimen_28"
+                android:layout_marginBottom="@dimen/dimen_24"
+                app:cardBackgroundColor="@color/back2"
+                app:cardCornerRadius="@dimen/dimen_12"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="590dp"
+                android:layout_marginStart="@dimen/dimen_28"
+                android:layout_marginTop="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_20"
+                android:layout_marginBottom="@dimen/dimen_16"
+                app:cardCornerRadius="@dimen/dimen_12"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/profile_pic"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="@dimen/dimen_24"
+                        android:layout_marginTop="@dimen/dimen_48"
+                        android:src="@drawable/profile" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="@dimen/dimen_48"
+                        android:layout_toEndOf="@id/profile_pic"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatToggleButton
+                            android:layout_width="54dp"
+                            android:layout_height="29dp"
+                            android:background="@drawable/switch_gender"
+                            android:textOff=""
+                            android:textOn="" />
+
+                        <androidx.appcompat.widget.AppCompatToggleButton
+                            android:layout_width="120dp"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            android:background="@drawable/switch_status"
+                            android:textOff=""
+                            android:textOn="" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/profile_pic"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="@string/name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_text_14" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/name_box"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginLeft="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_4"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginRight="@dimen/dimen_16"
+                            android:minHeight="@dimen/dimen_40"
+                            app:cardCornerRadius="@dimen/dimen_8"
+                            app:cardElevation="@null"
+                            app:strokeColor="@color/white"
+                            app:strokeWidth="1dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/name"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/sen_reg"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:minHeight="@dimen/dimen_44"
+                                android:padding="@dimen/dimen_12"
+                                android:textSize="@dimen/dimen_text_14" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:src="@drawable/dashed"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="@string/e_mail"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_text_14" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/email_box"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginLeft="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_4"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginRight="@dimen/dimen_16"
+                            android:minHeight="@dimen/dimen_40"
+                            app:cardCornerRadius="@dimen/dimen_8"
+                            app:cardElevation="@null"
+                            app:strokeColor="@color/white"
+                            app:strokeWidth="1dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/email"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/sen_reg"
+                                android:hint="@string/xyz_gmail_com"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:minHeight="@dimen/dimen_44"
+                                android:padding="@dimen/dimen_12"
+                                android:textSize="@dimen/dimen_text_14" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:src="@drawable/dashed"
+                            app:tint="@color/white" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="@string/enter_password"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_text_14" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/password_box"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginLeft="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_4"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginRight="@dimen/dimen_16"
+                            android:minHeight="@dimen/dimen_40"
+                            app:cardCornerRadius="@dimen/dimen_8"
+                            app:cardElevation="@null"
+                            app:strokeColor="@color/white"
+                            app:strokeWidth="1dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/password"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/sen_reg"
+                                android:hint="@string/must_be_alphanumeric"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:minHeight="@dimen/dimen_44"
+                                android:padding="@dimen/dimen_12"
+                                android:textSize="@dimen/dimen_text_14" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:contentDescription="TODO"
+                            android:src="@drawable/dashed"
+                            app:tint="@color/white" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="@string/confirm_password"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_text_14" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/password_confirm_box"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginLeft="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_4"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginRight="@dimen/dimen_16"
+                            android:minHeight="@dimen/dimen_40"
+                            app:cardCornerRadius="@dimen/dimen_8"
+                            app:cardElevation="@null"
+                            app:strokeColor="@color/white"
+                            app:strokeWidth="1dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/password_confirm"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/sen_reg"
+                                android:hint="@string/must_be_aplhanumeric"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:minHeight="@dimen/dimen_44"
+                                android:padding="@dimen/dimen_12"
+                                android:textSize="@dimen/dimen_text_14" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:contentDescription="TODO"
+                            android:src="@drawable/dashed"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="7">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:layout_marginTop="@dimen/dimen_8"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="@string/date_of_birth"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/dimen_text_14" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:id="@+id/date_box"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="44dp"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:layout_marginLeft="@dimen/dimen_16"
+                                    android:layout_marginTop="@dimen/dimen_4"
+                                    android:layout_marginEnd="@dimen/dimen_16"
+                                    android:layout_marginRight="@dimen/dimen_16"
+                                    android:minHeight="@dimen/dimen_40"
+                                    app:cardCornerRadius="@dimen/dimen_8"
+                                    app:cardElevation="@null"
+                                    app:strokeColor="@color/white"
+                                    app:strokeWidth="1dp">
+
+                                    <RelativeLayout
+                                        android:id="@+id/date_picker"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout">
+
+                                        <ImageView
+                                            android:id="@+id/calender_icon"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="@dimen/dimen_12"
+                                            android:contentDescription="TODO"
+                                            android:src="@drawable/ic_calender"
+                                            app:tint="@color/white" />
+
+                                        <TextView
+                                            android:id="@+id/date"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_toEndOf="@id/calender_icon"
+                                            android:fontFamily="@font/sen_regular"
+                                            android:gravity="center"
+                                            android:text="@string/_12_07_2000"
+                                            android:textSize="@dimen/dimen_text_16" />
+
+                                    </RelativeLayout>
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="5dp"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginEnd="@dimen/dimen_16"
+                                    android:src="@drawable/dashed"
+                                    app:tint="@color/white" />
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="@dimen/dimen_0"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:layout_weight="3">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent">
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/auth_button"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="72dp"
+                                        android:layout_marginStart="@dimen/dimen_8"
+                                        android:layout_marginTop="22dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="@string/create_profile"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"
+                                        app:backgroundTint="@color/button_blue"
+                                        app:cornerRadius="@dimen/dimen_12" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="48dp"
+                                    android:layout_marginStart="@dimen/dimen_12"
+                                    android:layout_marginTop="24dp"
+                                    android:background="@drawable/transparent_background" />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
