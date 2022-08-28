@@ -106,7 +106,7 @@
                         android:layout_marginStart="@dimen/dimen_16"
                         android:layout_marginTop="2dp"
                         android:layout_marginEnd="@dimen/dimen_16"
-                        android:src="@drawable/dashed" />
+                        android:src="@drawable/dash_lines" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -153,22 +153,21 @@
                         android:layout_marginStart="@dimen/dimen_16"
                         android:layout_marginTop="2dp"
                         android:layout_marginEnd="@dimen/dimen_16"
-                        android:src="@drawable/dashed" />
+                        android:src="@drawable/dash_lines" />
 
                     <LinearLayout
                         android:id="@+id/selected_diff"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
                         <androidx.appcompat.widget.AppCompatToggleButton
                             android:id="@+id/diff_easy"
-                            android:layout_marginEnd="12dp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -191,17 +190,456 @@
 
                         <androidx.appcompat.widget.AppCompatToggleButton
                             android:id="@+id/diff_hard"
-                            android:layout_marginStart="12dp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/switch_hard"
                             android:clickable="true"
-                            android:textOff=""
                             android:scaleX=".57"
+                            android:textOff=""
                             android:textOn="" />
                     </LinearLayout>
-                    <
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/dashed_dotted_lines"
+                        android:orientation="horizontal"
+                        android:paddingStart="4dp"
+                        android:weightSum="5">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:background="@drawable/type_switch_true_false"
+                                android:textOff=""
+                                android:textOn="" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/sen_regular"
+                                android:maxLines="1"
+                                android:text="TrueFalse"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:background="@drawable/type_switch_mcq"
+                                android:textOff=""
+                                android:textOn="" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/sen_regular"
+                                android:maxLines="1"
+                                android:text="MCQs"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:background="@drawable/type_switch_numerical"
+                                android:textOff=""
+                                android:textOn="" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/sen_regular"
+                                android:maxLines="1"
+                                android:text="Numerical"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:background="@drawable/type_switch_pictorial"
+                                android:textOff=""
+                                android:textOn="" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/sen_regular"
+                                android:maxLines="1"
+                                android:text="Pictorial"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:background="@drawable/type_switch_mixed"
+                                android:textOff=""
+                                android:textOn="" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/sen_regular"
+                                android:maxLines="1"
+                                android:text="Mixed"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="6">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="78dp"
+                                android:layout_height="wrap_content">
+
+
+                                <RelativeLayout
+                                    android:id="@+id/counter1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:background="@drawable/transparent_background2" />
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:layout_toEndOf="@id/increment1">
+
+                                    <EditText
+                                        android:id="@+id/onCorrect"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@android:color/transparent"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:gravity="center"
+                                        android:inputType="number"
+                                        android:maxLength="3"
+                                        android:maxLines="1"
+                                        android:text="10"
+                                        android:textSize="20sp" />
+                                </RelativeLayout>
+
+
+                                <RelativeLayout
+                                    android:id="@+id/increment1"
+                                    android:layout_width="25dp"
+                                    android:layout_height="21dp"
+                                    android:background="@drawable/counter_button_part"
+                                    android:backgroundTint="@color/primary_green"
+                                    android:foreground="@drawable/counter_part">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ripple_counter"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="6.5dp"
+                                        android:src="@drawable/ic_arrow" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/decrement1"
+                                    android:layout_width="25dp"
+                                    android:layout_height="21dp"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/counter_button_part"
+                                    android:scaleY="-1">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ripple_counter"
+                                        android:clickable="true"
+                                        android:focusable="true"
+                                        android:rotationY="180"
+                                        android:scaleX="-1" />
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="6.5dp"
+                                        android:src="@drawable/ic_arrow" />
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/counter1"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="3dp"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="OnCorrect"
+                                    android:textColor="@color/title_black"
+                                    android:textSize="12sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="78dp"
+                                android:layout_height="wrap_content">
+
+
+                                <RelativeLayout
+                                    android:id="@+id/counter2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:background="@drawable/transparent_background2" />
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:layout_toRightOf="@id/increment2">
+
+                                    <EditText
+                                        android:id="@+id/onWrong"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerInParent="true"
+                                        android:background="@android:color/transparent"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:gravity="center"
+                                        android:inputType="number"
+                                        android:maxLength="3"
+                                        android:maxLines="1"
+                                        android:text="4"
+                                        android:textSize="20sp" />
+                                </RelativeLayout>
+
+
+                                <RelativeLayout
+                                    android:id="@+id/increment2"
+                                    android:layout_width="25dp"
+                                    android:layout_height="21dp"
+                                    android:background="@drawable/counter_button_part"
+                                    android:backgroundTint="@color/hard"
+                                    android:foreground="@drawable/counter_part">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ripple_counter"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="6.5dp"
+                                        android:src="@drawable/ic_arrow" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/decrement"
+                                    android:layout_width="25dp"
+                                    android:layout_height="21dp"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/counter_button_part"
+                                    android:backgroundTint="@color/hard"
+                                    android:foreground="@drawable/counter_part"
+                                    android:scaleY="-1">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ripple_counter"
+                                        android:clickable="true"
+                                        android:focusable="true"
+                                        android:rotationY="180"
+                                        android:scaleX="-1" />
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="6.5dp"
+                                        android:src="@drawable/ic_arrow" />
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/counter2"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="3dp"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="OnWrong"
+                                    android:textColor="@color/title_black"
+                                    android:textSize="12sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="78dp"
+                                android:layout_height="wrap_content">
+
+
+                                <RelativeLayout
+                                    android:id="@+id/counter3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:background="@drawable/transparent_background2"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:layout_toRightOf="@id/increment3">
+
+                                    <EditText
+                                        android:id="@+id/passing"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerInParent="true"
+                                        android:background="@android:color/transparent"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:gravity="center"
+                                        android:inputType="numberDecimal"
+                                        android:maxLength="5"
+                                        android:maxLines="1"
+                                        android:text="30"
+                                        android:textSize="20sp" />
+                                </RelativeLayout>
+
+
+                                <RelativeLayout
+                                    android:id="@+id/increment3"
+                                    android:layout_width="25dp"
+                                    android:layout_height="21dp"
+                                    android:backgroundTint="@color/medium"
+                                    android:foreground="@drawable/counter_part"
+                                    android:background="@drawable/counter_button_part">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ripple_counter"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="6.5dp"
+                                        android:src="@drawable/ic_arrow" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/decrement3"
+                                    android:layout_width="25dp"
+                                    android:layout_height="21dp"
+                                    android:layout_marginTop="20dp"
+                                    android:backgroundTint="@color/medium"
+                                    android:foreground="@drawable/counter_part"
+                                    android:background="@drawable/counter_button_part"
+                                    android:scaleY="-1">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ripple_counter"
+                                        android:clickable="true"
+                                        android:focusable="true"
+                                        android:rotationY="180"
+                                        android:scaleX="-1" />
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="6.5dp"
+                                        android:src="@drawable/ic_arrow"/>
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/counter3"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="3dp"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="Passing %"
+                                    android:textColor="@color/title_black"
+                                    android:textSize="12sp" />
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
