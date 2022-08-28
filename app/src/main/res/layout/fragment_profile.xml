@@ -13,6 +13,7 @@
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_16"
         android:src="@drawable/ic_arrow_left" />
+
     <TextView
         android:id="@+id/head"
         android:layout_width="wrap_content"
@@ -24,22 +25,72 @@
         android:text="@string/create_profile"
         android:textColor="@color/black"
         android:textSize="@dimen/dimen_text_18" />
+
     <ImageView
         android:layout_width="24dp"
-        android:layout_alignParentEnd="true"
         android:layout_height="24dp"
-        android:src="@drawable/edit_clip"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="@dimen/dimen_12"
-        android:layout_marginTop="14dp" />
-    <com.google.android.material.card.MaterialCardView
+        android:src="@drawable/edit_clip" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/head"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bg_box"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_below="@+id/head"
-        />
+            android:layout_height="184dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="100dp"
+            app:cardBackgroundColor="@color/light_lime_green"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/dashed_dotted_lines" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sec_box"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="18dp"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp">
 
 
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/pic_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignStart="@+id/sec_box"
+            android:layout_alignTop="@+id/sec_box"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="50dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/profile" />
+        </com.google.android.material.card.MaterialCardView>
 
     </RelativeLayout>
+</RelativeLayout>
 
 
