@@ -539,7 +539,6 @@
                             </RelativeLayout>
                         </RelativeLayout>
 
-
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -555,7 +554,7 @@
                                     android:id="@+id/counter3"
                                     android:layout_width="match_parent"
                                     android:layout_height="41dp"
-                                    android:background="@drawable/transparent_background2"/>
+                                    android:background="@drawable/transparent_background2" />
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
@@ -582,9 +581,9 @@
                                     android:id="@+id/increment3"
                                     android:layout_width="25dp"
                                     android:layout_height="21dp"
+                                    android:background="@drawable/counter_button_part"
                                     android:backgroundTint="@color/medium"
-                                    android:foreground="@drawable/counter_part"
-                                    android:background="@drawable/counter_button_part">
+                                    android:foreground="@drawable/counter_part">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -605,9 +604,9 @@
                                     android:layout_width="25dp"
                                     android:layout_height="21dp"
                                     android:layout_marginTop="20dp"
+                                    android:background="@drawable/counter_button_part"
                                     android:backgroundTint="@color/medium"
                                     android:foreground="@drawable/counter_part"
-                                    android:background="@drawable/counter_button_part"
                                     android:scaleY="-1">
 
                                     <RelativeLayout
@@ -618,11 +617,12 @@
                                         android:focusable="true"
                                         android:rotationY="180"
                                         android:scaleX="-1" />
+
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow"/>
+                                        android:src="@drawable/ic_arrow" />
                                 </RelativeLayout>
 
                                 <TextView
@@ -638,7 +638,115 @@
 
                             </RelativeLayout>
                         </RelativeLayout>
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginTop="24dp"
+                                android:fontFamily="@font/sen_bold"
+                                android:text="Timer"
+                                android:textColor="@color/title_black"
+                                android:textSize="@dimen/dimen_text_14" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginLeft="@dimen/dimen_16"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:layout_marginRight="@dimen/dimen_16"
+                                android:minHeight="@dimen/dimen_40"
+                                app:cardBackgroundColor="@color/edittext"
+                                app:cardCornerRadius="@dimen/dimen_8"
+                                app:cardElevation="@null"
+                                app:strokeColor="@color/black"
+                                app:strokeWidth="1dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@null"
+                                    android:fontFamily="@font/sen_reg"
+                                    android:inputType="textMultiLine"
+                                    android:minHeight="@dimen/dimen_44"
+                                    android:padding="@dimen/dimen_12"
+                                    android:textSize="@dimen/dimen_text_14" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:src="@drawable/dash_lines" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginTop="24dp"
+                                android:fontFamily="@font/sen_bold"
+                                android:text="Input type"
+                                android:textColor="@color/title_black"
+                                android:textSize="@dimen/dimen_text_14" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginLeft="@dimen/dimen_16"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:layout_marginRight="@dimen/dimen_16"
+                                android:minHeight="@dimen/dimen_40"
+                                app:cardBackgroundColor="@color/edittext"
+                                app:cardCornerRadius="@dimen/dimen_8"
+                                app:cardElevation="@null"
+                                app:strokeColor="@color/black"
+                                app:strokeWidth="1dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@null"
+                                    android:fontFamily="@font/sen_reg"
+                                    android:inputType="textMultiLine"
+                                    android:minHeight="@dimen/dimen_44"
+                                    android:padding="@dimen/dimen_12"
+                                    android:textSize="@dimen/dimen_text_14" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:src="@drawable/dash_lines" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
