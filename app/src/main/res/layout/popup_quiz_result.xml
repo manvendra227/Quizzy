@@ -6,7 +6,7 @@
     android:layout_centerInParent="true"
     android:layout_margin="20dp"
     app:cardCornerRadius="24dp"
-    app:strokeColor="@color/black"
+    app:strokeColor="?android:textColorHighlight"
     app:strokeWidth="3dp">
 
     <RelativeLayout
@@ -40,7 +40,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/sen_regular"
             android:text="@string/failed"
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/sen_regular"
             android:text="@string/score"
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textSize="14sp"
 
             />
@@ -66,7 +66,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/sen_regular"
             android:text="@string/marks"
-            android:textColor="@color/blue"
+            android:textColor="?android:textColorPrimary"
             android:textSize="28sp"
 
             />
@@ -81,7 +81,7 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/sen_regular"
             android:text="@string/review"
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textSize="14sp"
 
 

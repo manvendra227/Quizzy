@@ -55,16 +55,16 @@
 
         <!--TODO Create a progress bar -->
         <com.google.android.material.card.MaterialCardView
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                app:strokeColor="@color/black"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                app:strokeWidth="1dp"
-                android:layout_below="@+id/basicshead"
-                android:layout_marginTop="80dp"
-                app:cardCornerRadius="12dp"/>
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_below="@+id/basicshead"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listQuestion"
