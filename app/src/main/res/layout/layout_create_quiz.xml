@@ -12,7 +12,8 @@
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_16"
         android:layout_marginBottom="@dimen/dimen_16"
-        android:src="@drawable/ic_arrow_left" />
+        android:src="@drawable/ic_arrow_left"
+        app:tint="?android:textColorPrimary" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
         android:layout_toEndOf="@id/back_button"
         android:fontFamily="@font/sen_bold"
         android:text="Create Quiz"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/dimen_text_18" />
 
     <ScrollView
@@ -30,750 +31,41 @@
         android:layout_height="match_parent"
         android:layout_below="@id/back_button">
 
-        <RelativeLayout
+        <com.skydoves.elasticviews.ElasticLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layout_duration="200"
+            app:layout_scale="0.98">
 
-            <com.google.android.material.card.MaterialCardView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignTop="@id/white_bg"
-                android:layout_alignBottom="@id/white_bg"
-                android:layout_marginStart="@dimen/dimen_20"
-                android:layout_marginTop="-6dp"
-                android:layout_marginEnd="@dimen/dimen_28"
-                android:layout_marginBottom="6dp"
-                app:cardBackgroundColor="@color/back2"
-                app:cardCornerRadius="@dimen/dimen_12"
-                app:strokeColor="@color/black"
-                app:strokeWidth="1dp" />
+                android:layout_height="match_parent">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/white_bg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="@dimen/dimen_32"
-                android:layout_marginEnd="@dimen/dimen_20"
-                android:layout_marginBottom="@dimen/dimen_16"
-                app:cardCornerRadius="@dimen/dimen_12"
-                app:strokeColor="@color/black"
-                app:strokeWidth="1dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@id/white_bg"
+                    android:layout_alignBottom="@id/white_bg"
+                    android:layout_marginStart="@dimen/dimen_20"
+                    android:layout_marginTop="-6dp"
+                    android:layout_marginEnd="@dimen/dimen_28"
+                    android:layout_marginBottom="6dp"
+                    app:cardBackgroundColor="@color/back2"
+                    app:cardCornerRadius="@dimen/dimen_12"
+                    app:strokeColor="?android:textColorHighlight"
+                    app:strokeWidth="1dp" />
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/white_bg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_16"
-                        android:layout_marginTop="24dp"
-                        android:fontFamily="@font/sen_bold"
-                        android:text="Title for Quiz"
-                        android:textColor="@color/title_black"
-                        android:textSize="@dimen/dimen_text_14" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_16"
-                        android:layout_marginLeft="@dimen/dimen_16"
-                        android:layout_marginTop="@dimen/dimen_4"
-                        android:layout_marginEnd="@dimen/dimen_16"
-                        android:layout_marginRight="@dimen/dimen_16"
-                        android:minHeight="@dimen/dimen_40"
-                        app:cardBackgroundColor="@color/edittext"
-                        app:cardCornerRadius="@dimen/dimen_8"
-                        app:cardElevation="@null"
-                        app:strokeColor="@color/black"
-                        app:strokeWidth="1dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:fontFamily="@font/sen_reg"
-                            android:hint="eg-CyberSecurity quiz part-2"
-                            android:inputType="textMultiLine"
-                            android:minHeight="@dimen/dimen_44"
-                            android:padding="@dimen/dimen_12"
-                            android:textSize="@dimen/dimen_text_14" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        android:layout_marginStart="@dimen/dimen_16"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="@dimen/dimen_16"
-                        android:src="@drawable/dash_lines" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_16"
-                        android:layout_marginTop="@dimen/dimen_16"
-                        android:fontFamily="@font/sen_bold"
-                        android:text="Description"
-                        android:textColor="@color/title_black"
-                        android:textSize="@dimen/dimen_text_14" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/name_box"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_16"
-                        android:layout_marginLeft="@dimen/dimen_16"
-                        android:layout_marginTop="@dimen/dimen_4"
-                        android:layout_marginEnd="@dimen/dimen_16"
-                        android:layout_marginRight="@dimen/dimen_16"
-                        android:minHeight="@dimen/dimen_40"
-                        app:cardBackgroundColor="@color/edittext"
-                        app:cardCornerRadius="@dimen/dimen_8"
-                        app:cardElevation="@null"
-                        app:strokeColor="@color/black"
-                        app:strokeWidth="1dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@null"
-                            android:fontFamily="@font/sen_reg"
-                            android:gravity="start"
-                            android:hint="@string/example"
-                            android:inputType="textMultiLine"
-                            android:minHeight="80dp"
-                            android:padding="@dimen/dimen_12"
-                            android:scrollbars="vertical"
-                            android:textSize="@dimen/dimen_text_14" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        android:layout_marginStart="@dimen/dimen_16"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="@dimen/dimen_16"
-                        android:src="@drawable/dash_lines" />
-
-                    <LinearLayout
-                        android:id="@+id/selected_diff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="12dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
-
-                        <androidx.appcompat.widget.AppCompatToggleButton
-                            android:id="@+id/diff_easy"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/switch_easy"
-                            android:clickable="true"
-                            android:scaleX=".57"
-                            android:textOff=""
-                            android:textOn="" />
-
-                        <androidx.appcompat.widget.AppCompatToggleButton
-                            android:id="@+id/diff_med"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/switch_med"
-                            android:clickable="true"
-                            android:scaleX=".57"
-                            android:textOff=""
-                            android:textOn="" />
-
-                        <androidx.appcompat.widget.AppCompatToggleButton
-                            android:id="@+id/diff_hard"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/switch_hard"
-                            android:clickable="true"
-                            android:scaleX=".57"
-                            android:textOff=""
-                            android:textOn="" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="76dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/dashed_dotted_lines"
-                        android:orientation="horizontal"
-                        android:paddingStart="4dp"
-                        android:weightSum="5">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatToggleButton
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:background="@drawable/type_switch_true_false"
-                                android:textOff=""
-                                android:textOn="" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/sen_regular"
-                                android:maxLines="1"
-                                android:text="TrueFalse"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatToggleButton
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:background="@drawable/type_switch_mcq"
-                                android:textOff=""
-                                android:textOn="" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/sen_regular"
-                                android:maxLines="1"
-                                android:text="MCQs"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatToggleButton
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:background="@drawable/type_switch_numerical"
-                                android:textOff=""
-                                android:textOn="" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/sen_regular"
-                                android:maxLines="1"
-                                android:text="Numerical"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatToggleButton
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:background="@drawable/type_switch_pictorial"
-                                android:textOff=""
-                                android:textOn="" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/sen_regular"
-                                android:maxLines="1"
-                                android:text="Pictorial"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatToggleButton
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:background="@drawable/type_switch_mixed"
-                                android:textOff=""
-                                android:textOn="" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/sen_regular"
-                                android:maxLines="1"
-                                android:text="Mixed"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="horizontal"
-                        android:weightSum="6">
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="center_horizontal">
-
-                            <RelativeLayout
-                                android:layout_width="78dp"
-                                android:layout_height="wrap_content">
-
-
-                                <RelativeLayout
-                                    android:id="@+id/counter1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="41dp"
-                                    android:background="@drawable/transparent_background2" />
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="41dp"
-                                    android:layout_toEndOf="@id/increment1">
-
-                                    <EditText
-                                        android:id="@+id/onCorrect"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@android:color/transparent"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:gravity="center"
-                                        android:inputType="number"
-                                        android:maxLength="3"
-                                        android:maxLines="1"
-                                        android:text="10"
-                                        android:textSize="20sp" />
-                                </RelativeLayout>
-
-
-                                <RelativeLayout
-                                    android:id="@+id/increment1"
-                                    android:layout_width="25dp"
-                                    android:layout_height="21dp"
-                                    android:background="@drawable/counter_button_part"
-                                    android:backgroundTint="@color/primary_green"
-                                    android:foreground="@drawable/counter_part">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/ripple_counter"
-                                        android:clickable="true"
-                                        android:focusable="true" />
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:id="@+id/decrement1"
-                                    android:layout_width="25dp"
-                                    android:layout_height="21dp"
-                                    android:layout_marginTop="20dp"
-                                    android:background="@drawable/counter_button_part"
-                                    android:scaleY="-1">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/ripple_counter"
-                                        android:clickable="true"
-                                        android:focusable="true"
-                                        android:rotationY="180"
-                                        android:scaleX="-1" />
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow" />
-                                </RelativeLayout>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/counter1"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="OnCorrect"
-                                    android:textColor="@color/title_black"
-                                    android:textSize="12sp" />
-
-                            </RelativeLayout>
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="center_horizontal">
-
-                            <RelativeLayout
-                                android:layout_width="78dp"
-                                android:layout_height="wrap_content">
-
-
-                                <RelativeLayout
-                                    android:id="@+id/counter2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="41dp"
-                                    android:background="@drawable/transparent_background2" />
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="41dp"
-                                    android:layout_toRightOf="@id/increment2">
-
-                                    <EditText
-                                        android:id="@+id/onWrong"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_centerInParent="true"
-                                        android:background="@android:color/transparent"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:gravity="center"
-                                        android:inputType="number"
-                                        android:maxLength="3"
-                                        android:maxLines="1"
-                                        android:text="4"
-                                        android:textSize="20sp" />
-                                </RelativeLayout>
-
-
-                                <RelativeLayout
-                                    android:id="@+id/increment2"
-                                    android:layout_width="25dp"
-                                    android:layout_height="21dp"
-                                    android:background="@drawable/counter_button_part"
-                                    android:backgroundTint="@color/hard"
-                                    android:foreground="@drawable/counter_part">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/ripple_counter"
-                                        android:clickable="true"
-                                        android:focusable="true" />
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:id="@+id/decrement"
-                                    android:layout_width="25dp"
-                                    android:layout_height="21dp"
-                                    android:layout_marginTop="20dp"
-                                    android:background="@drawable/counter_button_part"
-                                    android:backgroundTint="@color/hard"
-                                    android:foreground="@drawable/counter_part"
-                                    android:scaleY="-1">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/ripple_counter"
-                                        android:clickable="true"
-                                        android:focusable="true"
-                                        android:rotationY="180"
-                                        android:scaleX="-1" />
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow" />
-                                </RelativeLayout>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/counter2"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="OnWrong"
-                                    android:textColor="@color/title_black"
-                                    android:textSize="12sp" />
-
-                            </RelativeLayout>
-                        </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="center_horizontal">
-
-                            <RelativeLayout
-                                android:layout_width="78dp"
-                                android:layout_height="wrap_content">
-
-
-                                <RelativeLayout
-                                    android:id="@+id/counter3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="41dp"
-                                    android:background="@drawable/transparent_background2" />
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="41dp"
-                                    android:layout_toRightOf="@id/increment3">
-
-                                    <EditText
-                                        android:id="@+id/passing"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_centerInParent="true"
-                                        android:background="@android:color/transparent"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:gravity="center"
-                                        android:inputType="numberDecimal"
-                                        android:maxLength="5"
-                                        android:maxLines="1"
-                                        android:text="30"
-                                        android:textSize="20sp" />
-                                </RelativeLayout>
-
-
-                                <RelativeLayout
-                                    android:id="@+id/increment3"
-                                    android:layout_width="25dp"
-                                    android:layout_height="21dp"
-                                    android:background="@drawable/counter_button_part"
-                                    android:backgroundTint="@color/medium"
-                                    android:foreground="@drawable/counter_part">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/ripple_counter"
-                                        android:clickable="true"
-                                        android:focusable="true" />
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:id="@+id/decrement3"
-                                    android:layout_width="25dp"
-                                    android:layout_height="21dp"
-                                    android:layout_marginTop="20dp"
-                                    android:background="@drawable/counter_button_part"
-                                    android:backgroundTint="@color/medium"
-                                    android:foreground="@drawable/counter_part"
-                                    android:scaleY="-1">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/ripple_counter"
-                                        android:clickable="true"
-                                        android:focusable="true"
-                                        android:rotationY="180"
-                                        android:scaleX="-1" />
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="6.5dp"
-                                        android:src="@drawable/ic_arrow" />
-                                </RelativeLayout>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/counter3"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="Passing %"
-                                    android:textColor="@color/title_black"
-                                    android:textSize="12sp" />
-
-                            </RelativeLayout>
-                        </RelativeLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal"
-                        android:weightSum="8">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3.5"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dimen_16"
-                                android:fontFamily="@font/sen_bold"
-                                android:text="Timer in mins"
-                                android:textColor="@color/title_black"
-                                android:textSize="@dimen/dimen_text_14" />
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dimen_16"
-                                android:layout_marginTop="@dimen/dimen_4"
-                                android:layout_marginEnd="@dimen/dimen_8"
-                                android:minHeight="@dimen/dimen_40"
-                                app:cardBackgroundColor="@color/edittext"
-                                app:cardCornerRadius="@dimen/dimen_8"
-                                app:cardElevation="@null"
-                                app:strokeColor="@color/black"
-                                app:strokeWidth="1dp">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/time"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="40dp"
-                                    android:background="@null"
-                                    android:fontFamily="@font/sen_reg"
-                                    android:inputType="numberDecimal"
-                                    android:maxLength="6"
-                                    android:maxLines="1"
-                                    android:minHeight="@dimen/dimen_44"
-                                    android:padding="@dimen/dimen_12"
-                                    android:textSize="@dimen/dimen_text_14" />
-
-                                <androidx.appcompat.widget.AppCompatToggleButton
-                                    android:id="@+id/toggle_timer"
-                                    android:layout_width="22dp"
-                                    android:layout_height="22dp"
-                                    android:layout_gravity="center_vertical|end"
-                                    android:layout_marginEnd="12dp"
-                                    android:background="@drawable/switch_checkbox"
-                                    android:textOff=""
-                                    android:textOn="" />
-
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"
-                                android:layout_marginStart="@dimen/dimen_16"
-                                android:layout_marginTop="2dp"
-                                android:layout_marginEnd="@dimen/dimen_8"
-                                android:src="@drawable/dash_lines" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4.5"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dimen_16"
-                                android:fontFamily="@font/sen_bold"
-                                android:text="Input type"
-                                android:textColor="@color/title_black"
-                                android:textSize="@dimen/dimen_text_14" />
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:layout_width="match_parent"
-                                android:layout_height="44dp"
-                                android:layout_marginStart="@dimen/dimen_8"
-                                android:layout_marginTop="@dimen/dimen_4"
-                                android:layout_marginEnd="@dimen/dimen_16"
-                                android:minHeight="@dimen/dimen_40"
-                                app:cardBackgroundColor="@color/edittext"
-                                app:cardCornerRadius="@dimen/dimen_8"
-                                app:cardElevation="@null"
-                                app:strokeColor="@color/black"
-                                app:strokeWidth="1dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="12dp"
-                                    android:fontFamily="@font/sen_reg"
-                                    android:text="Excel Import" />
-
-                                <androidx.appcompat.widget.AppCompatToggleButton
-                                    android:id="@+id/toggle_import"
-                                    android:layout_width="22dp"
-                                    android:layout_height="22dp"
-                                    android:layout_gravity="center_vertical|end"
-                                    android:layout_marginEnd="12dp"
-                                    android:background="@drawable/switch_checkbox"
-                                    android:textOff=""
-                                    android:textOn="" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"
-                                android:layout_marginStart="@dimen/dimen_8"
-                                android:layout_marginTop="2dp"
-                                android:layout_marginEnd="@dimen/dimen_16"
-                                android:src="@drawable/dash_lines" />
-
-                        </LinearLayout>
-                    </LinearLayout>
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:layout_marginEnd="@dimen/dimen_20"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    app:cardCornerRadius="@dimen/dimen_12"
+                    app:strokeColor="?android:textColorHighlight"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -784,10 +76,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dimen_16"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="24dp"
                             android:fontFamily="@font/sen_bold"
-                            android:text="Tags"
-                            android:textColor="@color/title_black"
+                            android:text="Title for Quiz"
+                            android:textColor="?android:textColorPrimary"
                             android:textSize="@dimen/dimen_text_14" />
 
                         <com.google.android.material.card.MaterialCardView
@@ -799,19 +91,19 @@
                             android:layout_marginEnd="@dimen/dimen_16"
                             android:layout_marginRight="@dimen/dimen_16"
                             android:minHeight="@dimen/dimen_40"
-                            app:cardBackgroundColor="@color/edittext"
+                            app:cardBackgroundColor="?android:itemBackground"
                             app:cardCornerRadius="@dimen/dimen_8"
                             app:cardElevation="@null"
-                            app:strokeColor="@color/black"
+                            app:strokeColor="?android:textColorHighlight"
                             app:strokeWidth="1dp">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/tags"
+                                android:id="@+id/title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:fontFamily="@font/sen_reg"
-                                android:hint="Enter tags separated by comma..."
+                                android:hint="eg-CyberSecurity quiz part-2"
                                 android:inputType="textMultiLine"
                                 android:minHeight="@dimen/dimen_44"
                                 android:padding="@dimen/dimen_12"
@@ -825,46 +117,763 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginEnd="@dimen/dimen_16"
                             android:src="@drawable/dash_lines" />
-                    </LinearLayout>
 
-                    <RelativeLayout
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="24dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="Description"
+                            android:textColor="?android:textColorPrimary"
+                            android:textSize="@dimen/dimen_text_14" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/name_box"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginLeft="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/dimen_4"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:layout_marginRight="@dimen/dimen_16"
+                            android:minHeight="@dimen/dimen_40"
+                            app:cardBackgroundColor="?android:itemBackground"
+                            app:cardCornerRadius="@dimen/dimen_8"
+                            app:cardElevation="@null"
+                            app:strokeColor="?android:textColorHighlight"
+                            app:strokeWidth="1dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/sen_reg"
+                                android:gravity="start"
+                                android:hint="@string/example"
+                                android:inputType="textMultiLine"
+                                android:minHeight="80dp"
+                                android:padding="@dimen/dimen_12"
+                                android:scrollbars="vertical"
+                                android:textSize="@dimen/dimen_text_14" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:src="@drawable/dash_lines" />
+
+                        <LinearLayout
+                            android:id="@+id/selected_diff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:id="@+id/diff_easy"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/switch_easy"
+                                android:clickable="true"
+                                android:scaleX=".57"
+                                android:textOff=""
+                                android:textOn=""/>
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:id="@+id/diff_med"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/switch_med"
+                                android:clickable="true"
+                                android:scaleX=".57"
+                                android:textOff=""
+                                android:textOn="" />
+
+                            <androidx.appcompat.widget.AppCompatToggleButton
+                                android:id="@+id/diff_hard"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/switch_hard"
+                                android:clickable="true"
+                                android:scaleX=".57"
+                                android:textOff=""
+                                android:textOn="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="76dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/dashed_dotted_lines"
+                            android:orientation="horizontal"
+                            android:paddingStart="4dp"
+                            android:weightSum="5">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatToggleButton
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:background="@drawable/type_switch_true_false"
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:maxLines="1"
+                                    android:text="TrueFalse"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatToggleButton
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:background="@drawable/type_switch_mcq"
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:maxLines="1"
+                                    android:text="MCQs"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatToggleButton
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:background="@drawable/type_switch_numerical"
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:maxLines="1"
+                                    android:text="Numerical"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatToggleButton
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:background="@drawable/type_switch_pictorial"
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:maxLines="1"
+                                    android:text="Pictorial"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatToggleButton
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:background="@drawable/type_switch_mixed"
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:maxLines="1"
+                                    android:text="Mixed"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal">
+
+                                <RelativeLayout
+                                    android:layout_width="78dp"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/counter1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="41dp"
+                                        android:background="@drawable/transparent_background2" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="41dp"
+                                        android:layout_toEndOf="@id/increment1">
+
+                                        <EditText
+                                            android:id="@+id/onCorrect"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:gravity="center"
+                                            android:inputType="number"
+                                            android:maxLength="3"
+                                            android:maxLines="1"
+                                            android:text="10"
+                                            android:textSize="20sp" />
+                                    </RelativeLayout>
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/increment1"
+                                        android:layout_width="25dp"
+                                        android:layout_height="21dp"
+                                        android:background="@drawable/counter_button_part"
+                                        android:backgroundTint="@color/primary_green"
+                                        android:foreground="@drawable/counter_part">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/ripple_counter"
+                                            android:clickable="true"
+                                            android:focusable="true" />
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="6.5dp"
+                                            android:src="@drawable/ic_arrow" />
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:id="@+id/decrement1"
+                                        android:layout_width="25dp"
+                                        android:layout_height="21dp"
+                                        android:layout_marginTop="20dp"
+                                        android:background="@drawable/counter_button_part"
+                                        android:scaleY="-1">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/ripple_counter"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:rotationY="180"
+                                            android:scaleX="-1" />
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="6.5dp"
+                                            android:src="@drawable/ic_arrow" />
+                                    </RelativeLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/counter1"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="OnCorrect"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="12sp" />
+
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal">
+
+                                <RelativeLayout
+                                    android:layout_width="78dp"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/counter2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="41dp"
+                                        android:background="@drawable/transparent_background2" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="41dp"
+                                        android:layout_toRightOf="@id/increment2">
+
+                                        <EditText
+                                            android:id="@+id/onWrong"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerInParent="true"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:gravity="center"
+                                            android:inputType="number"
+                                            android:maxLength="3"
+                                            android:maxLines="1"
+                                            android:text="4"
+                                            android:textSize="20sp" />
+                                    </RelativeLayout>
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/increment2"
+                                        android:layout_width="25dp"
+                                        android:layout_height="21dp"
+                                        android:background="@drawable/counter_button_part"
+                                        android:backgroundTint="@color/hard"
+                                        android:foreground="@drawable/counter_part">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/ripple_counter"
+                                            android:clickable="true"
+                                            android:focusable="true" />
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="6.5dp"
+                                            android:src="@drawable/ic_arrow" />
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:id="@+id/decrement"
+                                        android:layout_width="25dp"
+                                        android:layout_height="21dp"
+                                        android:layout_marginTop="20dp"
+                                        android:background="@drawable/counter_button_part"
+                                        android:backgroundTint="@color/hard"
+                                        android:foreground="@drawable/counter_part"
+                                        android:scaleY="-1">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/ripple_counter"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:rotationY="180"
+                                            android:scaleX="-1" />
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="6.5dp"
+                                            android:src="@drawable/ic_arrow" />
+                                    </RelativeLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/counter2"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="OnWrong"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="12sp" />
+
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal">
+
+                                <RelativeLayout
+                                    android:layout_width="78dp"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/counter3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="41dp"
+                                        android:background="@drawable/transparent_background2" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="41dp"
+                                        android:layout_toRightOf="@id/increment3">
+
+                                        <EditText
+                                            android:id="@+id/passing"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerInParent="true"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:gravity="center"
+                                            android:inputType="numberDecimal"
+                                            android:maxLength="5"
+                                            android:maxLines="1"
+                                            android:text="30"
+                                            android:textSize="20sp" />
+                                    </RelativeLayout>
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/increment3"
+                                        android:layout_width="25dp"
+                                        android:layout_height="21dp"
+                                        android:background="@drawable/counter_button_part"
+                                        android:backgroundTint="@color/medium"
+                                        android:foreground="@drawable/counter_part">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/ripple_counter"
+                                            android:clickable="true"
+                                            android:focusable="true" />
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="6.5dp"
+                                            android:src="@drawable/ic_arrow" />
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:id="@+id/decrement3"
+                                        android:layout_width="25dp"
+                                        android:layout_height="21dp"
+                                        android:layout_marginTop="20dp"
+                                        android:background="@drawable/counter_button_part"
+                                        android:backgroundTint="@color/medium"
+                                        android:foreground="@drawable/counter_part"
+                                        android:scaleY="-1">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/ripple_counter"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:rotationY="180"
+                                            android:scaleX="-1" />
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="6.5dp"
+                                            android:src="@drawable/ic_arrow" />
+                                    </RelativeLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/counter3"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="Passing %"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="12sp" />
+
+                                </RelativeLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            android:weightSum="8">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="Timer in mins"
+                                    android:textColor="?android:textColorPrimary"
+                                    android:textSize="@dimen/dimen_text_14" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:layout_marginTop="@dimen/dimen_4"
+                                    android:layout_marginEnd="@dimen/dimen_8"
+                                    android:minHeight="@dimen/dimen_40"
+                                    app:cardBackgroundColor="?android:itemBackground"
+                                    app:cardCornerRadius="@dimen/dimen_8"
+                                    app:cardElevation="@null"
+                                    app:strokeColor="?android:textColorHighlight"
+                                    app:strokeWidth="1dp">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/time"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="40dp"
+                                        android:background="@null"
+                                        android:fontFamily="@font/sen_reg"
+                                        android:inputType="numberDecimal"
+                                        android:maxLength="6"
+                                        android:maxLines="1"
+                                        android:hint="60 mins"
+                                        android:minHeight="@dimen/dimen_44"
+                                        android:padding="@dimen/dimen_12"
+                                        android:textSize="@dimen/dimen_text_14" />
+
+                                    <androidx.appcompat.widget.AppCompatToggleButton
+                                        android:id="@+id/toggle_timer"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_marginEnd="12dp"
+                                        android:background="@drawable/switch_checkbox"
+                                        android:textOff=""
+                                        android:textOn="" />
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="5dp"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginEnd="@dimen/dimen_8"
+                                    android:src="@drawable/dash_lines" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4.5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_16"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="Input type"
+                                    android:textColor="?android:textColorPrimary"
+                                    android:textSize="@dimen/dimen_text_14" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="44dp"
+                                    android:layout_marginStart="@dimen/dimen_8"
+                                    android:layout_marginTop="@dimen/dimen_4"
+                                    android:layout_marginEnd="@dimen/dimen_16"
+                                    android:minHeight="@dimen/dimen_40"
+                                    app:cardBackgroundColor="?android:itemBackground"
+                                    app:cardCornerRadius="@dimen/dimen_8"
+                                    app:cardElevation="@null"
+                                    app:strokeColor="?android:textColorHighlight"
+                                    app:strokeWidth="1dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="12dp"
+                                        android:fontFamily="@font/sen_reg"
+                                        android:text="Excel Import" />
+
+                                    <androidx.appcompat.widget.AppCompatToggleButton
+                                        android:id="@+id/toggle_import"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_marginEnd="12dp"
+                                        android:background="@drawable/switch_checkbox"
+                                        android:textOff=""
+                                        android:textOn="" />
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="5dp"
+                                    android:layout_marginStart="@dimen/dimen_8"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginEnd="@dimen/dimen_16"
+                                    android:src="@drawable/dash_lines" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/sen_bold"
+                                android:text="Tags"
+                                android:textColor="?android:textColorPrimary"
+                                android:textSize="@dimen/dimen_text_14" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginLeft="@dimen/dimen_16"
+                                android:layout_marginTop="@dimen/dimen_4"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:layout_marginRight="@dimen/dimen_16"
+                                android:minHeight="@dimen/dimen_40"
+                                app:cardBackgroundColor="?android:itemBackground"
+                                app:cardCornerRadius="@dimen/dimen_8"
+                                app:cardElevation="@null"
+                                app:strokeColor="?android:textColorHighlight"
+                                app:strokeWidth="1dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tags"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@null"
+                                    android:fontFamily="@font/sen_reg"
+                                    android:hint="Enter tags separated by comma..."
+                                    android:inputType="textMultiLine"
+                                    android:minHeight="@dimen/dimen_44"
+                                    android:padding="@dimen/dimen_12"
+                                    android:textSize="@dimen/dimen_text_14" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_marginStart="@dimen/dimen_16"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginEnd="@dimen/dimen_16"
+                                android:src="@drawable/dash_lines" />
+                        </LinearLayout>
 
                         <RelativeLayout
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent">
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="24dp">
 
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/login_button"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dimen_56"
-                                android:layout_marginStart="@dimen/dimen_8"
-                                android:layout_marginTop="22dp"
-                                android:layout_marginEnd="4dp"
-                                android:fontFamily="@font/sen_bold"
-                                android:text="Login"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="16sp"
-                                app:backgroundTint="@color/button_blue"
-                                app:cornerRadius="@dimen/dimen_12" />
+                            <RelativeLayout
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent">
 
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/login_button"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dimen_56"
+                                    android:layout_marginStart="@dimen/dimen_8"
+                                    android:layout_marginTop="22dp"
+                                    android:layout_marginEnd="4dp"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="Login"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp"
+                                    app:backgroundTint="@color/button_blue"
+                                    app:cornerRadius="@dimen/dimen_12" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="190dp"
+                                android:layout_height="46dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="24dp"
+                                android:background="@drawable/transparent_background" />
                         </RelativeLayout>
 
-                        <RelativeLayout
-                            android:layout_width="190dp"
-                            android:layout_height="46dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="24dp"
-                            android:background="@drawable/transparent_background" />
-                    </RelativeLayout>
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </RelativeLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </com.skydoves.elasticviews.ElasticLayout>
     </ScrollView>
 </RelativeLayout>
