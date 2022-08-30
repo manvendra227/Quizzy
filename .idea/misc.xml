@@ -50,8 +50,10 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/diff_med_disabled.xml" value="0.1475" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/diff_med_enabled.xml" value="0.1475" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dotted_line.xml" value="0.1385" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/gen_male.xml" value="0.122" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/group_134.xml" value="0.1395" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_arrow.xml" value="0.1475" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_calender.xml" value="0.122" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_checkbox_check.xml" value="0.1475" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_checkbox_check_enabled.xml" value="0.1475" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_group_134__1_.xml" value="0.1475" />
@@ -69,8 +71,10 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_check_box.xml" value="0.1475" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_checkbox.xml" value="0.1475" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_easy.xml" value="0.136" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_female.xml" value="0.122" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_gender.xml" value="0.1395" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_hard.xml" value="0.176" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_male.xml" value="0.122" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_med.xml" value="0.136" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_status.xml" value="0.1395" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_wishlist.xml" value="0.1475" />
@@ -94,7 +98,7 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz_detail.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_add_quiz.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_home.xml" value="0.536" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
