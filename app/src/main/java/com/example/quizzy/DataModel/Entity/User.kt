@@ -1,14 +1,14 @@
-package com.example.quizzy.Model
+package com.example.quizzy.DataModel.Entity
 
-import java.sql.Timestamp
-import java.util.*
+import com.example.quizzy.DataModel.Enums.Gender
+import com.example.quizzy.DataModel.Model.UserPersonal
 
 data class User(
     var userId:String?="",
     var name:String?="",
     var emailID:String?="",
     var password:String?="",
-    var gender: Gender=Gender.MALE,
+    var gender: Gender = Gender.MALE,
 //    var date_of_birth:Date,
 //    var isVerified:Boolean=false,
 //    var timestamp: Timestamp,
