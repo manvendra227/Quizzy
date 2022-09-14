@@ -5,7 +5,6 @@ import android.icu.util.Calendar
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi

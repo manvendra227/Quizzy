@@ -12,6 +12,7 @@
         android:layout_height="@dimen/dimen_16"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_16"
+        app:tint="?android:textColorPrimary"
         android:src="@drawable/ic_arrow_left" />
 
     <TextView
@@ -23,7 +24,7 @@
         android:layout_toRightOf="@id/back_button"
         android:fontFamily="@font/sen_bold"
         android:text="Quiz Details"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/dimen_text_14" />
 
     <RelativeLayout
@@ -38,9 +39,9 @@
             android:layout_marginStart="@dimen/dimen_20"
             android:layout_marginTop="@dimen/dimen_24"
             android:layout_marginEnd="@dimen/dimen_28"
-            app:cardBackgroundColor="@color/back2"
+            app:cardBackgroundColor="?android:windowBackground"
+            app:strokeColor="?android:textColorHighlight"
             app:cardCornerRadius="@dimen/dimen_12"
-            app:strokeColor="@color/black"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.card.MaterialCardView
@@ -49,9 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_28"
             android:layout_marginTop="@dimen/dimen_32"
+            app:strokeColor="?android:textColorHighlight"
             android:layout_marginEnd="@dimen/dimen_20"
             app:cardCornerRadius="@dimen/dimen_12"
-            app:strokeColor="@color/black"
             app:strokeWidth="1dp">
 
             <RelativeLayout
@@ -66,7 +67,7 @@
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="Basics of java"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/dimen_text_18" />
 
                 <TextView
@@ -99,7 +100,7 @@
                     android:layout_marginEnd="12dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/quiz_discreption"
-                    android:textColor="@color/light_grey"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -111,7 +112,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="Rules"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -304,7 +305,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="Details"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
 
                 <TextView
@@ -316,7 +317,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/details1"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -328,7 +329,7 @@
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/details2"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -340,7 +341,7 @@
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/details3"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -352,7 +353,7 @@
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/details4"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -364,7 +365,7 @@
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/details5"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -376,7 +377,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/sen_bold"
                     android:text="Tags"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -398,7 +399,7 @@
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/sen_regular"
                     android:text="@string/response"
-                    android:textColor="@color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="12sp" />
 
                 <RelativeLayout

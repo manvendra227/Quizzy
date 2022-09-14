@@ -54,9 +54,9 @@
                 android:layout_marginTop="@dimen/dimen_24"
                 android:layout_marginEnd="@dimen/dimen_28"
                 android:layout_marginBottom="@dimen/dimen_24"
-                app:cardBackgroundColor="@color/back2"
+                app:cardBackgroundColor="?android:panelBackground"
                 app:cardCornerRadius="@dimen/dimen_12"
-                app:strokeColor="@color/black"
+                app:strokeColor="?android:textColorHighlight"
                 app:strokeWidth="1dp" />
 
             <com.google.android.material.card.MaterialCardView
@@ -68,7 +68,7 @@
                 android:layout_marginEnd="@dimen/dimen_20"
                 android:layout_marginBottom="@dimen/dimen_16"
                 app:cardCornerRadius="@dimen/dimen_12"
-                app:strokeColor="@color/black"
+                app:strokeColor="?android:textColorHighlight"
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
