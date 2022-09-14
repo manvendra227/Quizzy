@@ -1,7 +1,7 @@
-package com.example.quizzy.Model
+package com.example.quizzy.DataModel.Model
 
-import com.example.quizzy.Model.Enums.Gender
-import com.example.quizzy.Model.Enums.Status
+import com.example.quizzy.DataModel.Enums.Gender
+import com.example.quizzy.DataModel.Enums.Status
 import java.util.*
 
 data class UserModel(

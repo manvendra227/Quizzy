@@ -1,4 +1,4 @@
-package com.example.quizzy.Model
+package com.example.quizzy.DataModel.Model
 
 class AttemptModelQuiz (
     private val userId: String,

@@ -1,6 +1,6 @@
-package com.example.quizzy.Model
+package com.example.quizzy.DataModel.Model
 
-import com.example.quizzy.Model.Enums.Difficulty
+import com.example.quizzy.DataModel.Enums.Difficulty
 import java.util.*
 
 data class QuizShortModel (

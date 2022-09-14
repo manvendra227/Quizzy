@@ -1,6 +1,7 @@
-package com.example.quizzy.Model
+package com.example.quizzy.DataModel.Entity
 
-import com.example.quizzy.Model.Enums.Gender
+import com.example.quizzy.DataModel.Enums.Gender
+import com.example.quizzy.DataModel.Model.UserPersonal
 
 data class User(
     var userId:String?="",
