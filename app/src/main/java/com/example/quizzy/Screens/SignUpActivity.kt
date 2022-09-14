@@ -1,4 +1,4 @@
-package com.example.quizzy
+package com.example.quizzy.Screens
 
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.quizzy.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {

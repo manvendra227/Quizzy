@@ -16,16 +16,13 @@
         android:theme="@style/Theme.Quizzy"
         tools:targetApi="31">
         <activity
-            android:name=".temp3"
+            android:name=".AddQuizActivity"
             android:exported="false" />
         <activity
-            android:name=".temp2"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".temp1"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".Screens.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,16 +31,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuizActivity"
+            android:name=".Screens.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizDetailActivity"
+            android:name=".Screens.QuizDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Screens.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Screens.HomeActivity"
             android:exported="false" />
     </application>
 
