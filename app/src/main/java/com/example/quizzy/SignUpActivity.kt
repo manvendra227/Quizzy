@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.view.View
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -28,8 +29,6 @@ class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         datePicker()
-
-        auth_button.setOnClickListener { startActivity(Intent(this,HomeActivity::class.java)) }
     }
 
     private fun pickDate() {

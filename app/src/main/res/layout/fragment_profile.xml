@@ -26,13 +26,23 @@
         android:textColor="@color/black"
         android:textSize="@dimen/dimen_text_18" />
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+<!--    <ImageView-->
+<!--        android:id="@+id/edit"-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="24dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginTop="14dp"-->
+<!--        android:layout_marginEnd="@dimen/dimen_12"-->
+<!--        android:src="@drawable/edit_clip" />-->
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_more_vert"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="@dimen/dimen_12"
-        android:src="@drawable/edit_clip" />
+        android:backgroundTint="@android:color/transparent"
+        android:onClick="showPopup"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
