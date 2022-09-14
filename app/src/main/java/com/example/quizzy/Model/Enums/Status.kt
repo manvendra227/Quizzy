@@ -1,4 +1,4 @@
-package com.example.quizzy.Model
+package com.example.quizzy.Model.Enums
 
 enum class Status {
     STUDENT,WORKING

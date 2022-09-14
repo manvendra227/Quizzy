@@ -9,15 +9,7 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import com.example.quizzy.Model.Gender
-import com.example.quizzy.Model.User
-import com.example.quizzy.Model.UserPersonal
-import com.example.quizzy.Service.UserService
-import com.example.quizzy.Service.RetrofitBuilder
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     var day = 0
