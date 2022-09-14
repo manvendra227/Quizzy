@@ -1,18 +1,24 @@
 package com.example.quizzy
 
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.CalendarContract
+import android.util.Log
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import com.example.quizzy.Model.Gender
+import com.example.quizzy.Model.User
+import com.example.quizzy.Model.UserPersonal
+import com.example.quizzy.Service.UserService
+import com.example.quizzy.Service.RetrofitBuilder
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     var day = 0
@@ -28,8 +34,6 @@ class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         datePicker()
-
-        auth_button.setOnClickListener { startActivity(Intent(this,HomeActivity::class.java)) }
     }
 
     private fun pickDate() {
@@ -41,7 +45,6 @@ class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         } else {
             Toast.makeText(this, "HELLO", Toast.LENGTH_LONG).show()
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
