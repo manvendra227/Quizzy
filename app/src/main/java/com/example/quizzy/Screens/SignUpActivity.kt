@@ -9,50 +9,40 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.example.quizzy.R
+import com.example.quizzy.databinding.ActivitySignUpBinding
+import com.example.quizzy.utilities.MyToast
+import com.example.quizzy.viewModels.LoginViewModel
+import com.example.quizzy.viewModels.SignUpViewModel
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
-class SignUpActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
-    var day = 0
-    var mon = 0
-    var year = 0
-    var mDay = 0
-    var mMon = 0
-    var mYear = 0
+class SignUpActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivitySignUpBinding
+    private lateinit var viewModel:SignUpViewModel
+    private var toast=MyToast(this)
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-        datePicker()
-    }
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
 
-    private fun pickDate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            val calendar = Calendar.getInstance()
-            day = calendar.get(Calendar.DAY_OF_MONTH)
-            mon = calendar.get(Calendar.MONTH)
-            year = calendar.get(Calendar.YEAR)
-        } else {
-            Toast.makeText(this, "HELLO", Toast.LENGTH_LONG).show()
+        viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
+        binding.signUpModel = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.errorMessageName.observe(this){name.error=viewModel.errorMessageName.value}
+        viewModel.errorMessageEmail.observe(this){email.error=viewModel.errorMessageEmail.value}
+        viewModel.errorMessagePassword.observe(this){password.error=viewModel.errorMessagePassword.value}
+        viewModel.errorMessageMPassword.observe(this){password_confirm.error=viewModel.errorMessageMPassword.value}
+        viewModel.userCreated.observe(this){userCreated ->
+            if (userCreated)
+                toast.showLong("Mail has been sent, verify to login")
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun datePicker() {
-        date_picker.setOnClickListener {
-            pickDate()
-            val dp=DatePickerDialog(this,this, year, mon, day)
-            dp.show()
-        }
-    }
 
-    override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-        mDay = p3
-        mMon = p2
-        mYear = p1
-        date.text = "$p3/$p2/$p1"
-        date_box.setBackgroundColor(ContextCompat.getColor(this, R.color.edittext_fill));
-    }
 }

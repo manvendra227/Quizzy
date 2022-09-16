@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.example.quizzy.dataModel.model.LoginModel
 import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.Service.userService
+import com.example.quizzy.utilities.LoginStateSharedPrefrence
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +29,7 @@ class LoginViewModel : ViewModel() {
     private val _loginStatus = MutableLiveData<Boolean>()
     val loginStatus: LiveData<Boolean> get() = _loginStatus
 
+
     private val service = RetrofitBuilder.buildService(userService::class.java)
 
     fun onLoginClick() {
@@ -41,9 +43,9 @@ class LoginViewModel : ViewModel() {
                             "message",
                             "Response received successfully ${errorMessageEmail.value}"
                         )
-                        if (response.body().toString()
-                                .equals("Login Success", true)
-                        ) _loginStatus.value = true
+                        if (response.body().toString().equals("Login Success", true)){
+                            _loginStatus.value = true
+                        }
                         else {
                             if (response.body().toString().substring(0, 1).equals("p", true))
                                 _errorMessagePassword.value = response.body().toString()
@@ -65,5 +67,4 @@ class LoginViewModel : ViewModel() {
                _errorMessagePassword.value="Password cannot be null"}
     }
 
-    fun onSignUpClick() {}
 }
