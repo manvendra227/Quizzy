@@ -4,16 +4,21 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
+import retrofit2.converter.scalars.ScalarsConverterFactory
+
 
 object RetrofitBuilder {
 
-    private const val baseURL = "https://99c7-43-230-39-38.in.ngrok.io/"
+    private const val baseURL = "https://577c-103-72-6-20.in.ngrok.io/"
 
     private val okHttp = OkHttpClient.Builder()
 
+    private var gson = GsonBuilder()
+        .setLenient()
+        .create()
     private val builder = Retrofit.Builder().baseUrl(baseURL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .client(okHttp.build())
 
     private val retrofit = builder.build()
