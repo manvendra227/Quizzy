@@ -2,15 +2,13 @@ package com.example.quizzy.Screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.quizzy.R
 import com.example.quizzy.databinding.ActivityQuizDetailBinding
 import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.viewModels.QuizDetailViewModel
-import com.example.quizzy.viewModels.QuizDetailsViewModelFactory
-import com.example.quizzy.viewModels.QuizViewModel
+import com.example.quizzy.viewModels.ViewModelFactory.QuizDetailsViewModelFactory
 
 class QuizDetailActivity : AppCompatActivity() {
 

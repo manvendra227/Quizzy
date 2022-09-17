@@ -39,10 +39,7 @@ class LoginViewModel : ViewModel() {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
 
                     if (response.isSuccessful) {
-                        Log.i(
-                            "message",
-                            "Response received successfully ${errorMessageEmail.value}"
-                        )
+
                         if (response.body().toString().equals("Login Success", true)){
                             _loginStatus.value = true
                         }

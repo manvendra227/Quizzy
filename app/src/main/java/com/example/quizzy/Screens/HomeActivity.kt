@@ -10,10 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizzy.Adapter.HomePageAdapter
+import com.example.quizzy.Adapter.SearchTagAdapter
 import com.example.quizzy.R
 import com.example.quizzy.databinding.ActivityHomeBinding
 import com.example.quizzy.utilities.MyToast
+import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.HomeViewModel
+import com.example.quizzy.viewModels.QuizDetailViewModel
+import com.example.quizzy.viewModels.ViewModelFactory.HomeViewModelFactory
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_create_quiz.*
 
@@ -21,39 +25,65 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModelFactory: HomeViewModelFactory
     private lateinit var homePageAdapter: HomePageAdapter
-    private var toast=MyToast(this)
+    private lateinit var searchTagAdapter: SearchTagAdapter
+    private val emailSP = UserDetailsSharedPrefrence()
+    private var toast = MyToast(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        initRecyclerView()
+        initRecyclerViewMain()
+        initRecyclerViewTags()
         initViewModel()
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerViewMain() {
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            recycler_quiz.layoutManager=GridLayoutManager(this,2)
+            recycler_quiz.layoutManager = GridLayoutManager(this, 2)
         } else {
-            recycler_quiz.layoutManager=LinearLayoutManager(this)
+            recycler_quiz.layoutManager = LinearLayoutManager(this)
         }
-        homePageAdapter= HomePageAdapter(this)
-        recycler_quiz.adapter=homePageAdapter
+        homePageAdapter = HomePageAdapter(this)
+        recycler_quiz.adapter = homePageAdapter
     }
 
+    private fun initRecyclerViewTags() {
+        recycler_tags.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        searchTagAdapter = SearchTagAdapter(this)
+        recycler_tags.adapter = searchTagAdapter
+    }
+
+
     @SuppressLint("NotifyDataSetChanged")
-    private fun initViewModel(){
-        viewModel=ViewModelProvider(this).get(HomeViewModel::class.java)
-        viewModel.getLiveDataObserver().observe(this, Observer {
-            if (it !=null) {
+    private fun initViewModel() {
+        viewModelFactory = HomeViewModelFactory(emailSP.getEmailID(this).toString())
+        viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+        binding.homeModel=viewModel
+
+        viewModel.getMainList().observe(this, Observer {
+            if (it != null) {
                 homePageAdapter.setQuizList(it)
                 homePageAdapter.notifyDataSetChanged()
-            }else{
+            } else {
                 toast.showLong("Error")
             }
         })
-        viewModel.getData()
+        viewModel.getQuizData()
+
+
+        viewModel.getTagsList().observe(this, Observer{
+            if (it !=null){
+                searchTagAdapter.setTagList(it)
+                searchTagAdapter.notifyDataSetChanged()
+            }else{
+                toast.showLong("No tags found error")
+            }
+        })
+        viewModel.getTagsData()
     }
 }
