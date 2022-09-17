@@ -1,11 +1,16 @@
 package com.example.quizzy.Adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.HomeActivity
+import com.example.quizzy.Screens.QuizDetailActivity
+import com.example.quizzy.dataModel.enums.Difficulty
 import com.example.quizzy.dataModel.model.QuizShortModel
 import kotlinx.android.synthetic.main.layout_create_quiz.view.*
 import kotlinx.android.synthetic.main.list_item_quiz.view.*
@@ -42,7 +47,8 @@ class HomePageAdapter(val activity: HomeActivity) : RecyclerView.Adapter<HomePag
         val desc = view.quiz_desc
         val rating = view.rating
         val timesPlayed = view.no_of_rating
-//        val difficulty = view.difficulty
+        val difficulty = view.difficulty
+        val button=view.attempt_button
 
         fun bind(data: QuizShortModel,activity: HomeActivity) {
             authorName.text = data.authorName
@@ -50,6 +56,19 @@ class HomePageAdapter(val activity: HomeActivity) : RecyclerView.Adapter<HomePag
             desc.text = data.description
             rating.text = data.avgRating.toString()
             timesPlayed.text = data.timesPlayed.toString()
+
+            when(data.difficulty){
+                Difficulty.EASY->difficulty.setImageResource(R.drawable.diff_easy)
+                Difficulty.MEDIUM->difficulty.setImageResource(R.drawable.diff_med)
+                Difficulty.HARD->difficulty.setImageResource(R.drawable.diff_hard)
+            }
+
+            button.setOnClickListener {
+                val intent=Intent(activity,QuizDetailActivity::class.java)
+                intent.putExtra("quizId",data.quizId)
+                activity.startActivity(intent)
+            }
+
         }
     }
 

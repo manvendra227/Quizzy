@@ -218,6 +218,7 @@
                     android:background="@android:color/transparent">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/attempt_button"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/dimen_8"
