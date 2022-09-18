@@ -17,4 +17,5 @@
         <item name="android:solidColor">@color/black</item>
         <item name="android:panelBackground">@color/black</item>
     </style>
+
 </resources>

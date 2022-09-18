@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/dimen_16"
-    tools:context=".Screens.HomeFragment">
+    tools:context=".Screens.HomeActivity">
 
     <ImageView
         android:id="@+id/filter"
@@ -82,7 +82,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/temp_text"
-
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
