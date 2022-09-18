@@ -3,9 +3,13 @@ package com.example.quizzy.Service
 import com.example.quizzy.dataModel.model.QuizShortModel
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface QuizService {
 
     @GET("quiz/load")
-    fun loadQuiz(): Call<List<QuizShortModel>>
+    fun loadQuiz(@Query("page") page:Int): Call<List<QuizShortModel>>
+
+    @GET("quiz/search")
+    fun loadSearch(@Query("searchKey") searchKey:String):Call<List<QuizShortModel>>
 }

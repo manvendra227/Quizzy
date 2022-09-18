@@ -34,13 +34,17 @@ class SearchTagAdapter(val activity: HomeActivity) : RecyclerView.Adapter<Search
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private var colors= arrayListOf("#9DFF7A","#97F6E5","#E8FF5E","#61FDB2","#EEEEEE","#4cb0fe","#ffa4ff","#FFF769","#A08AE5")
-        val tagText=view.tag_text
-        val tagItem=view.tag_item
+        private var colors= arrayListOf("#9DFF7A","#97F6E5","#E8FF5E","#61FDB2","#EEEEEE","#FFD7C4","#FFF769","#c8bbf2")
+        private val tagText=view.tag_text
+        private val tagItem=view.tag_item
 
         fun bind(data: String, activity: HomeActivity) {
             tagText.text=data
             tagItem.setCardBackgroundColor(Color.parseColor(colors.random()))
+
+            tagItem.setOnClickListener {
+                activity.searchTag.value= data
+            }
         }
     }
 }

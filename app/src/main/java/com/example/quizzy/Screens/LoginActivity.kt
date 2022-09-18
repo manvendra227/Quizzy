@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding;
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
     private var saveSPLogin=LoginStateSharedPrefrence()
     private var saveSPUserID=UserDetailsSharedPrefrence()
