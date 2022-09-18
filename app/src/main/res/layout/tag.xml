@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tag_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
@@ -10,7 +11,7 @@
     app:strokeColor="@color/black"
     app:strokeWidth="1dp">
     <TextView
-        android:id="@+id/tag"
+        android:id="@+id/tag_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sen_regular"
@@ -19,5 +20,5 @@
         android:paddingRight="12dp"
         android:paddingBottom="2dp"
         android:text="Java"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 </com.google.android.material.card.MaterialCardView>

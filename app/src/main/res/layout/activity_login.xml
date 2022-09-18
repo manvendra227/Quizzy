@@ -1,271 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".Screens.LoginActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="loginViewModel"
+            type="com.example.quizzy.viewModels.LoginViewModel" />
+    </data>
 
 
     <RelativeLayout
-        android:id="@+id/logo"
-        android:layout_width="390dp"
-        android:layout_height="166dp"
-        android:layout_above="@id/bg"
-        android:layout_centerHorizontal="true">
-
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/dimen_40"
-            android:layout_marginEnd="@dimen/dimen_40"
-            android:src="@drawable/quizzy" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:src="@drawable/ic_boy" />
-
-    </RelativeLayout>
-
-
-    <ImageView
-        android:id="@+id/bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/login_bg" />
-    <!--Todo:login_bg not responsive+Not scrollable-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="80dp">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".Screens.LoginActivity">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_edittext_width"
-            android:layout_marginStart="@dimen/dimen_28"
-            android:layout_marginEnd="@dimen/dimen_36"
-            app:cardBackgroundColor="@color/back2"
-            app:cardCornerRadius="@dimen/dimen_8"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_edittext_width"
-            android:layout_marginStart="@dimen/dimen_32"
-            android:layout_marginTop="@dimen/dimen_4"
-            android:layout_marginEnd="@dimen/dimen_32"
-            app:cardCornerRadius="@dimen/dimen_8"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp">
-
-            <ImageView
-                android:layout_width="@dimen/dimen_24"
-                android:layout_height="@dimen/dimen_24"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:src="@drawable/ic_email"
-                app:tint="@color/gray"
-                tools:ignore="ContentDescription" />
-
-            <EditText
-                android:id="@+id/text_email"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="@dimen/dimen_40"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:layout_marginBottom="2dp"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/sen_regular"
-                android:hint="Email ID"
-                android:inputType="textEmailAddress"
-                android:textSize="@dimen/dimen_text_16" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_edittext_width"
-            android:layout_below="@id/email"
-            android:layout_marginStart="@dimen/dimen_28"
-            android:layout_marginTop="@dimen/dimen_24"
-            android:layout_marginEnd="@dimen/dimen_36"
-            app:cardBackgroundColor="@color/back2"
-            app:cardCornerRadius="@dimen/dimen_8"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_edittext_width"
-            android:layout_below="@id/email"
-            android:layout_marginStart="@dimen/dimen_32"
-            android:layout_marginTop="@dimen/dimen_28"
-            android:layout_marginEnd="@dimen/dimen_32"
-            app:cardCornerRadius="@dimen/dimen_8"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp">
-
-            <ImageView
-                android:layout_width="@dimen/dimen_24"
-                android:layout_height="@dimen/dimen_24"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:src="@drawable/ic_password"
-                app:tint="@color/gray"
-                tools:ignore="ContentDescription" />
-
-            <EditText
-                android:id="@+id/text_password"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="@dimen/dimen_40"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:layout_marginBottom="2dp"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/sen_regular"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textSize="@dimen/dimen_text_16" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!--ButtonCode-->
         <RelativeLayout
-            android:id="@+id/temp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/password"
+            android:id="@+id/logo"
+            android:layout_width="390dp"
+            android:layout_height="166dp"
+            android:layout_above="@id/bg"
             android:layout_centerHorizontal="true">
 
-            <RelativeLayout
-                android:layout_width="200dp"
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/dimen_40"
+                android:layout_marginEnd="@dimen/dimen_40"
+                android:src="@drawable/quizzy" />
+
+            <ImageView
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent">
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="22dp"
+                android:src="@drawable/ic_boy" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/login_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_56"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginEnd="4dp"
-                    android:fontFamily="@font/sen_bold"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:backgroundTint="@color/button_blue"
-                    app:cornerRadius="@dimen/dimen_12" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="190dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/transparent_background" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/temp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:fontFamily="@font/sen_regular"
-            android:text="@string/forgot_password"
-            android:textColor="@color/black" />
 
-        <LinearLayout
-            android:id="@+id/separator"
+        <ImageView
+            android:id="@+id/bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/temp"
-            android:layout_marginStart="@dimen/dimen_24"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="@dimen/dimen_24"
-            android:orientation="horizontal"
-            android:weightSum="12">
-
-            <View
-                android:layout_width="@dimen/dimen_0"
-                android:layout_height="2dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="5"
-                android:background="@color/black" />
-
-            <TextView
-                android:layout_width="@dimen/dimen_0"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/sen_extrabold"
-                android:gravity="center"
-                android:text="OR"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dimen_text_18" />
-
-            <View
-                android:layout_width="@dimen/dimen_0"
-                android:layout_height="2dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="5"
-                android:background="@color/black" />
-        </LinearLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/sign_up_button"
+            android:layout_alignParentBottom="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_bg" />
+        <!--Todo:login_bg not responsive+Not scrollable-->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_44"
-            android:layout_below="@id/separator"
-            android:layout_marginStart="@dimen/dimen_36"
-            android:layout_marginTop="@dimen/dimen_24"
-            android:layout_marginEnd="@dimen/dimen_36"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            app:cardCornerRadius="@dimen/dimen_8"
-            app:strokeColor="?android:textColorHighlight"
-            app:strokeWidth="1dp">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="80dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_edittext_width"
+                android:layout_marginStart="@dimen/dimen_28"
+                android:layout_marginEnd="@dimen/dimen_36"
+                app:cardBackgroundColor="@color/back2"
+                app:cardCornerRadius="@dimen/dimen_8"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sen_extrabold"
-                    android:text="Sign Up"
-                    android:textColor="@color/button_blue"
-                    android:textSize="@dimen/dimen_text_18" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_edittext_width"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_32"
+                app:cardCornerRadius="@dimen/dimen_8"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
 
                 <ImageView
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:src="@drawable/ic_email"
+                    app:tint="@color/gray"
+                    tools:ignore="ContentDescription" />
+
+
+                <EditText
+                    android:id="@+id/text_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_gravity="bottom"
+                    android:paddingStart="40dp"
+                    android:layout_marginEnd="@dimen/dimen_4"
+                    android:layout_marginBottom="2dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/sen_regular"
+                    android:hint="Email ID"
+                    android:inputType="textEmailAddress"
+                    android:text="@={loginViewModel.emailID}"
+                    android:textSize="@dimen/dimen_text_16" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_edittext_width"
+                android:layout_below="@id/email"
+                android:layout_marginStart="@dimen/dimen_28"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_marginEnd="@dimen/dimen_36"
+                app:cardBackgroundColor="@color/back2"
+                app:cardCornerRadius="@dimen/dimen_8"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_edittext_width"
+                android:layout_below="@id/email"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginTop="@dimen/dimen_28"
+                android:layout_marginEnd="@dimen/dimen_32"
+                app:cardCornerRadius="@dimen/dimen_8"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:src="@drawable/ic_password"
+                    app:tint="@color/gray"
+                    tools:ignore="ContentDescription" />
+
+                <EditText
+                    android:id="@+id/text_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_gravity="bottom"
+                    android:paddingStart="40dp"
+                    android:layout_marginEnd="@dimen/dimen_4"
+                    android:layout_marginBottom="2dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/sen_regular"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:text="@={loginViewModel.password}"
+                    android:textSize="@dimen/dimen_text_16" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--ButtonCode-->
+            <RelativeLayout
+                android:id="@+id/temp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password"
+                android:layout_centerHorizontal="true">
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_56"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/sen_bold"
+                        android:onClick="@{()->loginViewModel.onLoginClick()}"
+                        android:text="Login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:backgroundTint="@color/button_blue"
+                        app:cornerRadius="@dimen/dimen_12"
+                        tools:ignore="HardcodedText" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="190dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/transparent_background" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/forgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:fontFamily="@font/sen_regular"
+                android:text="@string/forgot_password"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temp"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:orientation="horizontal"
+                android:weightSum="12">
+
+                <View
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="5"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sen_extrabold"
+                    android:gravity="center"
+                    android:text="OR"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_text_18" />
+
+                <View
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="5"
+                    android:background="@color/black" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/sign_up_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_44"
+                android:layout_below="@id/separator"
+                android:layout_marginStart="@dimen/dimen_36"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_marginEnd="@dimen/dimen_36"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                app:cardCornerRadius="@dimen/dimen_8"
+                app:strokeColor="?android:textColorHighlight"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/dimen_12"
-                    android:src="@drawable/ic_arrow_left"
-                    app:tint="@color/button_blue" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sen_extrabold"
+                        android:text="Sign Up"
+                        android:textColor="@color/button_blue"
+                        android:textSize="@dimen/dimen_text_18" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dimen_12"
+                        android:src="@drawable/ic_arrow_left"
+                        app:tint="@color/button_blue" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</layout>
