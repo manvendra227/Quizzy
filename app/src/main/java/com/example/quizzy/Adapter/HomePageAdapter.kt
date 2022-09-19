@@ -12,7 +12,8 @@ import com.example.quizzy.dataModel.enums.Difficulty
 import com.example.quizzy.dataModel.model.QuizShortModel
 import kotlinx.android.synthetic.main.list_item_quiz.view.*
 
-class HomePageAdapter(val activity: HomeActivity) : RecyclerView.Adapter<HomePageAdapter.MyViewHolder>() {
+class HomePageAdapter(val activity: HomeActivity) :
+    RecyclerView.Adapter<HomePageAdapter.MyViewHolder>() {
 
     private var quizList: List<QuizShortModel>? = null
 
@@ -27,7 +28,7 @@ class HomePageAdapter(val activity: HomeActivity) : RecyclerView.Adapter<HomePag
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(quizList?.get(position)!!,activity)
+        holder.bind(quizList?.get(position)!!, activity)
     }
 
     override fun getItemCount(): Int {
@@ -44,24 +45,24 @@ class HomePageAdapter(val activity: HomeActivity) : RecyclerView.Adapter<HomePag
         val rating = view.rating
         val timesPlayed = view.no_of_rating
         val difficulty = view.difficulty
-        val button=view.attempt_button
+        val button = view.attempt_button
 
-        fun bind(data: QuizShortModel,activity: HomeActivity) {
+        fun bind(data: QuizShortModel, activity: HomeActivity) {
             authorName.text = data.authorName
             title.text = data.title
             desc.text = data.description
             rating.text = data.avgRating.toString()
             timesPlayed.text = data.timesPlayed.toString()
 
-            when(data.difficulty){
-                Difficulty.EASY->difficulty.setImageResource(R.drawable.diff_easy)
-                Difficulty.MEDIUM->difficulty.setImageResource(R.drawable.diff_med)
-                Difficulty.HARD->difficulty.setImageResource(R.drawable.diff_hard)
+            when (data.difficulty) {
+                Difficulty.EASY -> difficulty.setImageResource(R.drawable.diff_easy)
+                Difficulty.MEDIUM -> difficulty.setImageResource(R.drawable.diff_med)
+                Difficulty.HARD -> difficulty.setImageResource(R.drawable.diff_hard)
             }
 
             button.setOnClickListener {
-                val intent=Intent(activity,QuizDetailActivity::class.java)
-                intent.putExtra("quizId",data.quizId)
+                val intent = Intent(activity, QuizDetailActivity::class.java)
+                intent.putExtra("quizId", data.quizId)
                 activity.startActivity(intent)
             }
 

@@ -16,8 +16,9 @@
         android:theme="@style/Theme.Quizzy"
         tools:targetApi="31">
         <activity
-            android:name=".Screens.LoginActivity"
-            android:exported="true">
+            android:name=".Screens.SplashActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".Screens.QuizDetailActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Screens.SignUpActivity"
             android:exported="false" />
@@ -43,7 +44,7 @@
             android:name=".Screens.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Screens.SplashActivity"
+            android:name=".Screens.LoginActivity"
             android:exported="false" />
     </application>
 

@@ -6,20 +6,19 @@ import com.example.quizzy.dataModel.extras.Questions
 import java.util.*
 
 
-data class Quiz (
-
-    private val quizID: String,
-    private val title: String,
-    private val description: String,
-    private val difficulty: Difficulty? = null,
-    private val quizType: QuizType? = null,
-    private val questions: Questions? = null,
-    private val authorID: String,
-    private val authorName: String,
-    private val tags: List<String>? = null,
-    private val time:Int,
-    private val timestamp: Date? = null,
-    private val isImported: Boolean = false,
-    private val timesPlayed:Int,
-    private val avgRating:Double
+data class Quiz(
+    val quizID: String,
+    val title: String,
+    val description: String,
+    val difficulty: Difficulty? = null,
+    val quizType: QuizType? = null,
+    val questions: Questions? = null,
+    val authorID: String,
+    val authorName: String,
+    val tags: List<String>? = null,
+    val time: Int,
+    val timestamp: Date? = null,
+    val isImported: Boolean = false,
+    val timesPlayed: Int,
+    val avgRating: Double
 )

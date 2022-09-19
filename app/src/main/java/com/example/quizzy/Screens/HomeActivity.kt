@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -42,6 +43,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var searchTagAdapter: SearchTagAdapter
     private val emailSP = UserDetailsSharedPrefrence()
     private var toast = MyToast(this)
+    private var doubleBackToExitPressedOnce = false
+
 
     var searchTag = MutableLiveData<String>()
 
@@ -175,5 +178,16 @@ class HomeActivity : AppCompatActivity() {
         search_text.clearFocus()
         val `in` = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         `in`.hideSoftInputFromWindow(search_text.windowToken, 0)
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        toast.showShort("Please click again to exit")
+        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 }
