@@ -37,13 +37,10 @@
             android:name=".Screens.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Screens.AddQuizActivity"
+            android:name=".Screens.PostQuizActivity"
             android:exported="false" />
         <activity
             android:name=".Screens.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Screens.CreateQuizActivity"
             android:exported="false" />
         <activity
             android:name=".Screens.SplashActivity"

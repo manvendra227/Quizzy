@@ -1,20 +1,16 @@
 package com.example.quizzy.Adapter
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.HomeActivity
 import com.example.quizzy.Screens.QuizDetailActivity
 import com.example.quizzy.dataModel.enums.Difficulty
 import com.example.quizzy.dataModel.model.QuizShortModel
-import kotlinx.android.synthetic.main.layout_create_quiz.view.*
 import kotlinx.android.synthetic.main.list_item_quiz.view.*
-import kotlinx.android.synthetic.main.popup_rating.view.*
 
 class HomePageAdapter(val activity: HomeActivity) : RecyclerView.Adapter<HomePageAdapter.MyViewHolder>() {
 
