@@ -8,21 +8,20 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.Window
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.Adapter.HomePageAdapter
 import com.example.quizzy.Adapter.SearchTagAdapter
 import com.example.quizzy.R
@@ -52,7 +51,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-
         initViewModel()
         initLoads()
         initRecyclerViewMain()
@@ -61,6 +59,7 @@ class HomeActivity : AppCompatActivity() {
         searchPressed()
         refreshQuiz()
         filterData()
+        CreateButton()
 
     }
 
@@ -186,8 +185,25 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
+        initLoads()
         this.doubleBackToExitPressedOnce = true
         toast.showShort("Please click again to exit")
         Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+    }
+
+    fun CreateButton(){
+        scroller.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY + 35 && extendedFab.isExtended) {     // Scroll Down
+                extendedFab.shrink()
+            }
+
+            if(scrollY < oldScrollY - 35 && !extendedFab.isExtended) {      // Scroll Up
+                extendedFab.extend()
+            }
+
+            if (scrollY == 0) {     // At the top
+                extendedFab.extend()
+            }
+        })
     }
 }

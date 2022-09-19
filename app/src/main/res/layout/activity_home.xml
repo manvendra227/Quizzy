@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="homeViewModel"
             type="com.example.quizzy.viewModels.HomeViewModel" />
@@ -73,18 +74,14 @@
             android:background="@color/black"
             android:backgroundTint="?android:textColorPrimary" />
 
-        
-
-
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/temp_line">
 
-            <ScrollView
-
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -114,8 +111,28 @@
                         android:orientation="horizontal"
                         tools:listitem="@layout/list_item_quiz" />
                 </RelativeLayout>
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/extendedFab"
+            android:layout_width="132dp"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="#F8D149"
+            android:fontFamily="@font/sen_bold"
+            android:text="Create"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_baseline_edit_24"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
+
     </RelativeLayout>
 
 </layout>
