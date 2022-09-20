@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class HomeViewModel(email: String) : ViewModel() {
 
-    private var quizList: MutableLiveData<List<QuizShortModel>> = MutableLiveData()
+    private var quizList: MutableLiveData<List<QuizShortModel>?> = MutableLiveData()
     private var tagList: MutableLiveData<List<String>> = MutableLiveData()
     private val emailId = email
 
@@ -23,11 +23,11 @@ class HomeViewModel(email: String) : ViewModel() {
     val searchKey = MutableLiveData<String>()
 
 
-    fun getMainList(): MutableLiveData<List<QuizShortModel>> {
+    fun getMainList(): MutableLiveData<List<QuizShortModel>?> {
         return quizList
     }
 
-    fun getSearchList(): MutableLiveData<List<QuizShortModel>> {
+    fun getSearchList(): MutableLiveData<List<QuizShortModel>?> {
         return quizList
     }
 

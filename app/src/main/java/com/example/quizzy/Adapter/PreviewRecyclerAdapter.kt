@@ -7,32 +7,33 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.AddQuizFragment
 import com.example.quizzy.dataModel.extras.questionFormat
 import kotlinx.android.synthetic.main.list_item_question.view.*
 
-class PreviewRecyclerAdapter(val context: AddQuizFragment) :
+class PreviewRecyclerAdapter(val context: FragmentActivity) :
     RecyclerView.Adapter<PreviewRecyclerAdapter.MyViewHolder>() {
 
-    private var questionList: ArrayList<questionFormat>? = null
+    private var questionList: List<questionFormat>? = null
 
-    fun setPreviewList(questionList: ArrayList<questionFormat>?) {
+    fun setPreviewList(questionList: List<questionFormat>?) {
         this.questionList = questionList
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PreviewRecyclerAdapter.MyViewHolder {
+    ): MyViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.list_item_question, parent, false)
-        return PreviewRecyclerAdapter.MyViewHolder(view)
+        return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PreviewRecyclerAdapter.MyViewHolder, position: Int) {
-        holder.bind(questionList?.get(position)!!, context)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.bind(questionList?.get(position)!!)
     }
 
     override fun getItemCount(): Int {
@@ -61,7 +62,7 @@ class PreviewRecyclerAdapter(val context: AddQuizFragment) :
         val backC: RelativeLayout = view.backC
         val backD: RelativeLayout = view.backD
 
-        fun bind(data: questionFormat, context: AddQuizFragment) {
+        fun bind(data: questionFormat) {
 
             question.text=data.question
 
@@ -71,11 +72,10 @@ class PreviewRecyclerAdapter(val context: AddQuizFragment) :
             optionD.text=data.options?.get(3)
 
             when(data.answer){
-                0->{
-                }
-                1->{}
-                2->{}
-                3->{}
+                "0"->{}
+                "1"->{}
+                "2"->{}
+                "3"->{}
             }
         }
     }

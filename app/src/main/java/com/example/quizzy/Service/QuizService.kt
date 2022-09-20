@@ -4,7 +4,9 @@ import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.entity.User
 import com.example.quizzy.dataModel.model.QuizShortModel
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface QuizService {
@@ -17,4 +19,7 @@ interface QuizService {
 
     @GET("quiz")
     fun fetchQuizById(@Query("id") quizId:String):Call<Quiz>
+
+    @POST("quiz")
+    fun saveQuiz(@Body quiz:Quiz):Call<String>
 }

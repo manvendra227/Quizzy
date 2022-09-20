@@ -1,15 +1,18 @@
 package com.example.quizzy.viewModels
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.enums.Difficulty
-import com.example.quizzy.dataModel.enums.Gender
 import com.example.quizzy.dataModel.enums.QuizType
-import com.example.quizzy.dataModel.enums.Status
+import com.example.quizzy.dataModel.extras.Questions
+import com.example.quizzy.dataModel.extras.Score
 import com.example.quizzy.dataModel.extras.questionFormat
+import com.example.quizzy.dataModel.model.QuizShortModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PostQuizViewModel : ViewModel() {
 
@@ -70,9 +73,15 @@ class PostQuizViewModel : ViewModel() {
     val errorQues: LiveData<String?> get() = _errorQues
     val errorAns: LiveData<String?> get() = _errorAns
 
-    val indexTitle=MutableLiveData("Enter question number : 1")
+    val indexTitle = MutableLiveData("Enter question number : 1")
 
-    private var questionList= arrayListOf<questionFormat>()
+//    private var tempQuesList= arrayListOf<questionFormat?>()
+    private var questionList: MutableLiveData<List<questionFormat>?> = MutableLiveData()
+
+    fun getQuestionList(): MutableLiveData<List<questionFormat>?> {
+        return questionList
+    }
+
 
     fun setDifficulty() {
         if (isEasy.value == true) difficulty.value = Difficulty.EASY
@@ -104,18 +113,17 @@ class PostQuizViewModel : ViewModel() {
         }
     }
 
-    fun generateTags() {
+    private fun generateTags(): List<String>? {
         val str = tags.value
-        val list = str?.split(" ", ",", " ,", ", ", ignoreCase = true)
-        Log.i("message", list.toString())
+        return str?.split(",", " ,", ", ", ignoreCase = true)
     }
 
     fun checkStatus() {
-        if (title.value.isNullOrEmpty()) {
+        if (title.value.isNullOrBlank()) {
             _errorTitle.value = "Quiz must have a Title"
         } else if (title.value!!.length <= 10) {
             _errorTitle.value = "Title is too small"
-        } else if (tags.value.isNullOrEmpty()) {
+        } else if (tags.value.isNullOrBlank()) {
             _errorTags.value = "Tags make search easier, it would be helpful if you enter some tags"
         } else {
             _checkPass.value = true
@@ -135,40 +143,91 @@ class PostQuizViewModel : ViewModel() {
         if (isD.value == true) answer.value = 3
     }
 
-    fun addQuesToList(){
-        if (question.value.isNullOrEmpty()){ _errorQues.value="Question cannot be blank"}
-        else if (optionA.value.isNullOrEmpty()){_errorA.value="Option A cannot be empty"}
-        else if (optionB.value.isNullOrEmpty()){_errorB.value="Option B cannot be empty"}
-        else if (optionC.value.isNullOrEmpty()){_errorC.value="Option C cannot be empty"}
-        else if (optionD.value.isNullOrEmpty()){_errorD.value="Option D cannot be empty"}
-        else if (answer.value!! !in 0..4){_errorAns.value="Choose Answer"}
-        else{
+    fun addQuesToList() {
+        if (question.value.isNullOrBlank()) {
+            _errorQues.value = "Question cannot be blank"
+        } else if (optionA.value.isNullOrBlank()) {
+            _errorA.value = "Option A cannot be empty"
+        } else if (optionB.value.isNullOrBlank()) {
+            _errorB.value = "Option B cannot be empty"
+        } else if (optionC.value.isNullOrBlank()) {
+            _errorC.value = "Option C cannot be empty"
+        } else if (optionD.value.isNullOrBlank()) {
+            _errorD.value = "Option D cannot be empty"
+        } else if (answer.value!! !in 0..4) {
+            _errorAns.value = "Choose Answer"
+        } else {
             //Perform saving
-            val options= listOf(optionA.value!!,optionB.value!!,optionC.value!!,optionD.value!!)
-            val ques=questionFormat(question.value!!,options, answer.value!!,explanation.value.toString())
-            questionList.add(ques)
+            val options = listOf(optionA.value!!, optionB.value!!, optionC.value!!, optionD.value!!)
+            val ques = questionFormat(
+                question.value!!,
+                options,
+                answer.value!!.toString().trim(),
+                explanation.value.toString()
+            )
+
+            val tempList= mutableListOf(ques)
+            val alreadyStored= questionList.value
+            alreadyStored?.let { tempList.addAll(it) }
+            questionList.value = tempList
+
+            Log.i("mess", "Ques added ${questionList.value.toString()}")
             resetPage()
-            Log.i("mess","Ques added ${questionList.toString()}")
+
         }
     }
 
-    private fun resetPage(){
-        question.value=""
-        optionA.value=""
-        optionB.value=""
-        optionC.value=""
-        optionD.value=""
-        answer.value=69
-        explanation.value=""
-        _errorQues.value=null
-        _errorA.value=null
-        _errorB.value=null
-        _errorC.value=null
-        _errorD.value=null
-        isA.value=false
-        isB.value=false
-        isC.value=false
-        isD.value=false
-        indexTitle.value="Enter question number : ${questionList.size+1}"
+    private fun resetPage() {
+        question.value = ""
+        optionA.value = ""
+        optionB.value = ""
+        optionC.value = ""
+        optionD.value = ""
+        answer.value = 69
+        explanation.value = ""
+        _errorQues.value = null
+        _errorA.value = null
+        _errorB.value = null
+        _errorC.value = null
+        _errorD.value = null
+        isA.value = false
+        isB.value = false
+        isC.value = false
+        isD.value = false
+        indexTitle.value = "Enter question number : ${questionList.value!!.size + 1}"
     }
+
+    fun postQuiz() {
+        if (questionList.value != null && questionList.value!!.size < 2) {
+
+            val score = Score(
+                maxScore = (questionList.value!!.size) * (onCorrect.value!!.toInt()),
+                passingScore = passing.value!!.toDouble(),
+                onCorrect = onCorrect.value!!.toInt(),
+                onWrong = onWrong.value!!.toInt()
+            )
+            val questions = Questions(
+                noOfQuestions = questionList.value!!.size,
+                question = questionList.value!!.reversed(),
+                score = score
+            )
+            val quiz = Quiz(
+                quizID = "",
+                title = title.value.toString(),
+                description = desc.value.toString(),
+                difficulty = difficulty.value,
+                quizType = quizType.value,
+                questions = questions,
+                authorID = "AAAA",
+                authorName = "BBBB",
+                tags = generateTags(),
+                time = timer.value!!,
+                timestamp = Calendar.getInstance().time,
+                isImported = isImported.value!!,
+                timesPlayed = 0,
+                avgRating = 0.0
+            )
+        }
+    }
+
 }

@@ -1,8 +1,8 @@
 package com.example.quizzy.dataModel.extras
 
 data class Score(
-    val maxScore: Double,
+    val maxScore: Int,
     val passingScore: Double,
-    val onCorrect: Double,
-    val onWrong: Double
+    val onCorrect: Int,
+    val onWrong: Int
 )

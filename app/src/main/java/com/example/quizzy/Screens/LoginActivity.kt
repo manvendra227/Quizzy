@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             if (isLogined) {
                 startActivity(Intent(this, HomeActivity::class.java))
                 saveSPLogin.setState(this,true)
-                saveSPUserID.setEmailID(this,viewModel.emailID.value!!)
+                saveSPUserID.setEmailID(this,viewModel.emailID.value!!.trim())
                 finish()
             }
         }

@@ -188,7 +188,7 @@ class HomeActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 
-    fun createButton(){
+    private fun createButton(){
         scroller.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if (scrollY > oldScrollY + 35 && extendedFab.isExtended) {     // Scroll Down
                 extendedFab.shrink()

@@ -3,6 +3,7 @@ package com.example.quizzy.Screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -27,6 +28,7 @@ class QuizDetailActivity : AppCompatActivity() {
         binding=DataBindingUtil.setContentView(this,R.layout.activity_quiz_detail)
 
         val quizId=intent.getStringExtra("quizId")
+        Log.i("mess",quizId.toString())
         initViewModel(quizId!!)
         viewModel.getData()
 

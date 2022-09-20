@@ -1,14 +1,17 @@
 package com.example.quizzy.Screens
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.quizzy.Adapter.PreviewRecyclerAdapter
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentAddQuizBinding
 import com.example.quizzy.utilities.MyToast
@@ -20,6 +23,7 @@ class AddQuizFragment : Fragment() {
 
     private lateinit var binding: FragmentAddQuizBinding
     private lateinit var viewModel: PostQuizViewModel
+    private lateinit var mAdapter:PreviewRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +33,8 @@ class AddQuizFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_quiz, container, false)
 
         initViewModel()
+        initRecyclerPreview()
+        loadPreview()
         errors()
 
         return binding.root
@@ -49,5 +55,23 @@ class AddQuizFragment : Fragment() {
         viewModel.errorD.observe(requireActivity()){binding.optionBoxD.error=viewModel.errorD.value}
         viewModel.errorAns.observe(requireActivity()){
             StyleableToast.makeText(requireActivity(),viewModel.errorAns.value,R.style.errorToast).show()}
+    }
+
+    private fun initRecyclerPreview(){
+        binding.previewRecycler.layoutManager=LinearLayoutManager(requireActivity())
+        mAdapter= PreviewRecyclerAdapter(requireActivity())
+        binding.previewRecycler.adapter=mAdapter
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun loadPreview(){
+        viewModel.getQuestionList().observe(requireActivity(), Observer {
+            if (it!=null){
+                mAdapter.setPreviewList(it)
+                mAdapter.notifyDataSetChanged()
+            }else{
+                Log.i("lul","Error")
+            }
+        })
     }
 }

@@ -72,10 +72,13 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
         _passing.value= tempScore?.passingScore?.toInt().toString()
         _maxScore.value= tempScore?.maxScore?.toInt().toString()
 
-        val a: Double? = tempScore?.onCorrect
-        val b: Double? = tempScore?.maxScore
-        val c= a?.let { b?.div(it) }
-        _noOfQuestion.value= c?.toInt().toString()
+        val a: Int? = tempScore?.onCorrect
+        val b: Int? = tempScore?.maxScore
+        var c=0
+        if (!(tempScore?.maxScore==0 || tempScore?.onCorrect==0)){
+          c= a?.div(b!!) ?: 0
+        }
+        _noOfQuestion.value= c?.toString()
     }
 
     fun startQuiz(){
