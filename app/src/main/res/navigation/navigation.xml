@@ -11,15 +11,15 @@
         tools:layout="@layout/fragment_create_quiz">
         <action
             android:id="@+id/action_createQuizFragment_to_addQuizFragment"
-            app:destination="@id/addQuizFragment" />
+            app:destination="@id/addQuizFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/addQuizFragment"
         android:name="com.example.quizzy.Screens.AddQuizFragment"
         android:label="AddQuizFragment"
-        tools:layout="@layout/fragment_add_quiz">
-        <action
-            android:id="@+id/action_addQuizFragment_to_createQuizFragment"
-            app:destination="@id/createQuizFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_add_quiz"/>
 </navigation>

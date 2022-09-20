@@ -163,7 +163,7 @@
                                 android:layout_marginTop="24dp"
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center_vertical"
-                                android:onCheckedChanged="@{()->createQuizModel.onDifficultyClick()}"
+                                android:onCheckedChanged="@{()->createQuizModel.setDifficulty()}"
                                 android:orientation="horizontal"
                                 android:weightSum="3">
 
@@ -856,6 +856,7 @@
                                         android:layout_marginEnd="4dp"
                                         android:fontFamily="@font/sen_bold"
                                         android:text="Next"
+                                        android:onClick="@{()->createQuizModel.checkStatus()}"
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
                                         android:textSize="16sp"

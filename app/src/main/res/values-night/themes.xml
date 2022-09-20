@@ -31,4 +31,16 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">0dp</item>
     </style>
+
+
+    <style name="errorToast">
+        <item name="stColorBackground">#FF8881</item>
+        <item name="stTextColor">#FFF</item>
+        <item name="stIconStart">@drawable/ic_baseline_error_24</item>
+        <item name="startIconTint">#fff</item>
+        <item name="stStrokeColor">#fff</item>
+        <item name="stStrokeWidth">1.5dp</item>
+        <item name="stLength">LONG</item>
+        <item name="cornerRadius">3dp</item>
+    </style>
 </resources>

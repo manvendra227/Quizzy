@@ -74,7 +74,7 @@ dependencies {
 //    kapt 'com.google.dagger:dagger-compiler:2.29'
 
     implementation 'com.github.santalu:maskara:1.0.0'
-
+    implementation 'io.github.muddz:styleabletoast:2.4.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
 }

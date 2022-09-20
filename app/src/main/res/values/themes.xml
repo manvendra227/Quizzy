@@ -33,6 +33,14 @@
         <item name="cornerSize">20dp</item>
     </style>
 
-
+    <style name="errorToast">
+        <item name="stColorBackground">#FF8881</item>
+        <item name="stTextColor">#000</item>
+        <item name="stIconStart">@drawable/ic_baseline_error_24</item>
+        <item name="stStrokeColor">#000</item>
+        <item name="stStrokeWidth">1.5dp</item>
+        <item name="stLength">LONG</item>
+        <item name="cornerRadius">3dp</item>
+    </style>
 
 </resources>

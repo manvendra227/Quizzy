@@ -1,21 +1,14 @@
 package com.example.quizzy.Screens
 
-import android.app.DatePickerDialog
-import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.widget.DatePicker
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.example.quizzy.R
 import com.example.quizzy.databinding.ActivitySignUpBinding
 import com.example.quizzy.utilities.MyToast
-import com.example.quizzy.viewModels.LoginViewModel
 import com.example.quizzy.viewModels.SignUpViewModel
 import kotlinx.android.synthetic.main.activity_sign_up.*
 

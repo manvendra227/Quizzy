@@ -74,23 +74,9 @@
                                         android:layout_marginTop="12dp"
                                         android:layout_marginBottom="8dp"
                                         android:fontFamily="@font/sen_bold"
-                                        android:text="Enter Question number 3"
+                                        android:text="@={addQuizViewModel.indexTitle}"
                                         android:textColor="?android:textColorPrimary"
-                                        android:textSize="12sp" />
-
-                                    <TextView
-                                        android:id="@+id/no_ques"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignEnd="@+id/name_box"
-                                        android:layout_marginStart="16dp"
-                                        android:layout_marginTop="12dp"
-                                        android:layout_marginBottom="8dp"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="Added 3"
-                                        android:textColor="?android:textColorPrimary"
-                                        android:textSize="12sp" />
-
+                                        android:textSize="14sp" />
 
                                     <com.google.android.material.card.MaterialCardView
                                         android:id="@+id/name_box"
@@ -110,15 +96,16 @@
                                         app:strokeWidth="1dp">
 
                                         <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/box1"
+                                            android:id="@+id/questionString"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@null"
                                             android:fontFamily="@font/sen_reg"
-                                            android:hint="Question 3"
+                                            android:hint="Question here"
                                             android:inputType="textMultiLine"
                                             android:minHeight="@dimen/dimen_44"
                                             android:padding="@dimen/dimen_12"
+                                            android:text="@={addQuizViewModel.question}"
                                             android:textSize="@dimen/dimen_text_14" />
                                     </com.google.android.material.card.MaterialCardView>
                                 </RelativeLayout>
@@ -179,6 +166,7 @@
                                                 android:inputType="textMultiLine"
                                                 android:minHeight="@dimen/dimen_44"
                                                 android:padding="@dimen/dimen_12"
+                                                android:text="@={addQuizViewModel.optionA}"
                                                 android:textSize="@dimen/dimen_text_14" />
                                         </com.google.android.material.card.MaterialCardView>
 
@@ -239,6 +227,7 @@
                                                 android:inputType="textMultiLine"
                                                 android:minHeight="@dimen/dimen_44"
                                                 android:padding="@dimen/dimen_12"
+                                                android:text="@={addQuizViewModel.optionB}"
                                                 android:textSize="@dimen/dimen_text_14" />
                                         </com.google.android.material.card.MaterialCardView>
 
@@ -299,6 +288,7 @@
                                                 android:inputType="textMultiLine"
                                                 android:minHeight="@dimen/dimen_44"
                                                 android:padding="@dimen/dimen_12"
+                                                android:text="@={addQuizViewModel.optionC}"
                                                 android:textSize="@dimen/dimen_text_14" />
                                         </com.google.android.material.card.MaterialCardView>
 
@@ -359,6 +349,7 @@
                                                 android:inputType="textMultiLine"
                                                 android:minHeight="@dimen/dimen_44"
                                                 android:padding="@dimen/dimen_12"
+                                                android:text="@={addQuizViewModel.optionD}"
                                                 android:textSize="@dimen/dimen_text_14" />
                                         </com.google.android.material.card.MaterialCardView>
 
@@ -394,6 +385,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_marginLeft="16dp"
+                                        android:onCheckedChanged="@{()->addQuizViewModel.setAnswer()}"
                                         android:orientation="horizontal">
 
                                         <RadioButton
@@ -402,7 +394,8 @@
                                             android:layout_marginStart="12dp"
                                             android:layout_marginEnd="8dp"
                                             android:background="@drawable/switch_option_a"
-                                            android:button="@null" />
+                                            android:button="@null"
+                                            android:checked="@={addQuizViewModel.isA}" />
 
                                         <RadioButton
                                             android:layout_width="36dp"
@@ -410,7 +403,8 @@
                                             android:layout_marginStart="8dp"
                                             android:layout_marginEnd="8dp"
                                             android:background="@drawable/switch_option_b"
-                                            android:button="@null" />
+                                            android:button="@null"
+                                            android:checked="@={addQuizViewModel.isB}" />
 
                                         <RadioButton
                                             android:layout_width="36dp"
@@ -418,14 +412,16 @@
                                             android:layout_marginStart="8dp"
                                             android:layout_marginEnd="8dp"
                                             android:background="@drawable/switch_option_c"
-                                            android:button="@null" />
+                                            android:button="@null"
+                                            android:checked="@={addQuizViewModel.isC}" />
 
                                         <RadioButton
                                             android:layout_width="36dp"
                                             android:layout_height="36dp"
                                             android:layout_marginStart="8dp"
                                             android:background="@drawable/switch_option_d"
-                                            android:button="@null" />
+                                            android:button="@null"
+                                            android:checked="@={addQuizViewModel.isD}" />
 
                                     </RadioGroup>
 
@@ -469,6 +465,7 @@
                                         android:inputType="textMultiLine"
                                         android:padding="@dimen/dimen_12"
                                         android:scrollbars="vertical"
+                                        android:text="@={addQuizViewModel.explanation}"
                                         android:textSize="@dimen/dimen_text_14" />
                                 </com.google.android.material.card.MaterialCardView>
 
@@ -483,10 +480,10 @@
                                     android:src="@drawable/dash_lines" />
 
                                 <RelativeLayout
-                                    android:layout_width="160dp"
+                                    android:layout_width="150dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="8dp">
+                                    android:layout_marginBottom="@dimen/dimen_8">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -494,27 +491,28 @@
                                         android:background="@android:color/transparent">
 
                                         <com.google.android.material.button.MaterialButton
-                                            android:id="@+id/next"
+                                            android:id="@+id/add_button"
                                             android:layout_width="match_parent"
-                                            android:layout_height="@dimen/dimen_56"
+                                            android:layout_height="48dp"
                                             android:layout_marginStart="@dimen/dimen_8"
-                                            android:layout_marginTop="4dp"
-                                            android:layout_marginEnd="-4dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginEnd="4dp"
                                             android:fontFamily="@font/sen_bold"
-                                            android:text="Add question"
+                                            android:onClick="@{()->addQuizViewModel.addQuesToList()}"
+                                            android:text="Add"
                                             android:textAllCaps="false"
                                             android:textColor="@color/white"
                                             android:textSize="13sp"
                                             app:backgroundTint="@color/button_blue"
-                                            app:cornerRadius="@dimen/dimen_12" />
+                                            app:cornerRadius="9dp" />
 
                                     </RelativeLayout>
 
                                     <RelativeLayout
-                                        android:layout_width="190dp"
-                                        android:layout_height="46dp"
+                                        android:layout_width="139dp"
+                                        android:layout_height="38dp"
                                         android:layout_marginStart="4dp"
-                                        android:layout_marginTop="5dp"
+                                        android:layout_marginTop="14dp"
                                         android:background="@drawable/transparent_background" />
                                 </RelativeLayout>
 
@@ -531,37 +529,79 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
-                    app:cardElevation="0dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    app:cardElevation="0dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/sen_bold"
-                        android:text="Preview"
-                        android:textColor="?android:textColorPrimary"
-                        android:textSize="16sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:rotation="90"
-                        android:src="@drawable/ic_arrow" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="Preview"
+                            android:textColor="?android:textColorPrimary"
+                            android:textSize="16sp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/preview_recycler"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="48dp"
-                        tools:listitem="@layout/list_item_question"/>
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:rotation="90"
+                            android:src="@drawable/ic_arrow" />
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/preview_recycler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="48dp"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/list_item_question" />
 
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/preview_recycler"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/dimen_8">
 
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/upload_button"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="48dp"
+                                    android:layout_marginStart="@dimen/dimen_8"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="4dp"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:onClick="@{()->addQuizViewModel.addQuesToList()}"
+                                    android:text="Upload"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="13sp"
+                                    app:backgroundTint="@color/primary_green"
+                                    app:cornerRadius="9dp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="139dp"
+                                android:layout_height="38dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/transparent_background" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
 
             </RelativeLayout>

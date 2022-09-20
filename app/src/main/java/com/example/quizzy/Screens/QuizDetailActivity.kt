@@ -3,8 +3,6 @@ package com.example.quizzy.Screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -36,7 +34,7 @@ class QuizDetailActivity : AppCompatActivity() {
 
     }
 
-    fun initViewModel(quizId:String){
+    private fun initViewModel(quizId:String){
 
         viewModelFactory = QuizDetailsViewModelFactory(quizId)
         viewModel = ViewModelProvider(this, viewModelFactory)[QuizDetailViewModel::class.java]
@@ -44,7 +42,7 @@ class QuizDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner=this
     }
 
-    fun startQuiz(){
+    private fun startQuiz(){
         viewModel.shouldStart.observe(this, Observer { check->
             if(check){
                 startActivity(Intent(this,QuizActivity::class.java))
