@@ -20,8 +20,8 @@ class SignUpViewModel:ViewModel() {
     val password = MutableLiveData<String>("")
     val matchingPassword = MutableLiveData<String>("")
     val rawDate=MutableLiveData<String>("")
-    private val gender=MutableLiveData<Gender>(Gender.MALE)
-    private val status=MutableLiveData<Status>(Status.STUDENT)
+    private var gender=MutableLiveData<Gender>(Gender.MALE)
+    private var status=MutableLiveData<Status>(Status.STUDENT)
 
     val isMale=MutableLiveData<Boolean>(false)
     val isStudent=MutableLiveData<Boolean>(false)
@@ -83,11 +83,9 @@ class SignUpViewModel:ViewModel() {
     fun onGenderClick(){
         if (isMale.value == true) gender.value=Gender.MALE
         else gender.value=Gender.FEMALE
-        Log.i("message","${gender.value}")
     }
     fun onStatusClick(){
         if(isStudent.value==true) status.value=Status.STUDENT
         else status.value=Status.WORKING
-        Log.i("message","${status.value}")
     }
 }

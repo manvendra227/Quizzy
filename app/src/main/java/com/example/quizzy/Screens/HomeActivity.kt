@@ -59,7 +59,7 @@ class HomeActivity : AppCompatActivity() {
         searchPressed()
         refreshQuiz()
         filterData()
-        CreateButton()
+        createButton()
 
     }
 
@@ -191,7 +191,7 @@ class HomeActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 
-    fun CreateButton(){
+    fun createButton(){
         scroller.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if (scrollY > oldScrollY + 35 && extendedFab.isExtended) {     // Scroll Down
                 extendedFab.shrink()
@@ -205,5 +205,9 @@ class HomeActivity : AppCompatActivity() {
                 extendedFab.extend()
             }
         })
+
+        extendedFab.setOnClickListener {
+            startActivity(Intent(this,PostQuizActivity::class.java))
+        }
     }
 }

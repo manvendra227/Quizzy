@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="24dp"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
 
     <View
         android:id="@+id/line1"
@@ -22,19 +22,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
+
         <ImageView
             android:id="@+id/delete"
             android:layout_width="24dp"
-            android:layout_marginTop="4dp"
             android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/ic_close"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_close" />
+
         <TextView
-            android:layout_below="@id/delete"
             android:id="@+id/questionNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/delete"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/sen_regular"
             android:text="@string/questnumber"
@@ -70,6 +72,7 @@
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
+                    android:id="@+id/backA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -97,6 +100,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
+                        android:id="@+id/textA"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -134,6 +138,7 @@
                 android:text="+10"
                 android:textColor="@color/black" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/optionB"
             android:layout_width="wrap_content"
@@ -151,6 +156,7 @@
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
+                    android:id="@+id/backB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -178,6 +184,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
+                        android:id="@+id/textB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -212,10 +219,11 @@
                 android:layout_centerVertical="true"
                 android:background="@color/medium"
                 android:padding="2dp"
-                android:visibility="gone"
                 android:text="+10"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:visibility="gone" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/optionC"
             android:layout_width="wrap_content"
@@ -233,6 +241,7 @@
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
+                    android:id="@+id/backC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -260,6 +269,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
+                        android:id="@+id/textC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -294,10 +304,11 @@
                 android:layout_centerVertical="true"
                 android:background="@color/medium"
                 android:padding="2dp"
-                android:visibility="gone"
                 android:text="+10"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:visibility="gone" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/optionD"
             android:layout_width="wrap_content"
@@ -315,6 +326,7 @@
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
+                    android:id="@+id/backD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -342,6 +354,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
+                        android:id="@+id/textD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -377,8 +390,8 @@
                 android:background="@color/medium"
                 android:padding="2dp"
                 android:text="+10"
-                android:visibility="gone"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 
