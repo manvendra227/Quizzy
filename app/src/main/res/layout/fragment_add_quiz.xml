@@ -583,7 +583,7 @@
                                     android:layout_marginTop="10dp"
                                     android:layout_marginEnd="4dp"
                                     android:fontFamily="@font/sen_bold"
-                                    android:onClick="@{()->addQuizViewModel.addQuesToList()}"
+                                    android:onClick="@{()->addQuizViewModel.postQuiz()}"
                                     android:text="Upload"
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"

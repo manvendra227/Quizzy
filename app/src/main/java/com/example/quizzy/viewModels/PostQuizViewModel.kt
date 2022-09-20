@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quizzy.Service.QuizService
+import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.enums.Difficulty
 import com.example.quizzy.dataModel.enums.QuizType
@@ -11,6 +13,9 @@ import com.example.quizzy.dataModel.extras.Questions
 import com.example.quizzy.dataModel.extras.Score
 import com.example.quizzy.dataModel.extras.questionFormat
 import com.example.quizzy.dataModel.model.QuizShortModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -75,8 +80,8 @@ class PostQuizViewModel : ViewModel() {
 
     val indexTitle = MutableLiveData("Enter question number : 1")
 
-//    private var tempQuesList= arrayListOf<questionFormat?>()
     private var questionList: MutableLiveData<List<questionFormat>?> = MutableLiveData()
+    private val quizService = RetrofitBuilder.buildService(QuizService::class.java)
 
     fun getQuestionList(): MutableLiveData<List<questionFormat>?> {
         return questionList
@@ -158,12 +163,12 @@ class PostQuizViewModel : ViewModel() {
             _errorAns.value = "Choose Answer"
         } else {
             //Perform saving
-            val options = listOf(optionA.value!!, optionB.value!!, optionC.value!!, optionD.value!!)
+            val options = listOf(optionA.value!!.trim(), optionB.value!!.trim(), optionC.value!!.trim(), optionD.value!!.trim())
             val ques = questionFormat(
-                question.value!!,
+                question.value!!.trim(),
                 options,
                 answer.value!!.toString().trim(),
-                explanation.value.toString()
+                explanation.value.toString().trim()
             )
 
             val tempList= mutableListOf(ques)
@@ -198,8 +203,7 @@ class PostQuizViewModel : ViewModel() {
     }
 
     fun postQuiz() {
-        if (questionList.value != null && questionList.value!!.size < 2) {
-
+        if (questionList.value != null && questionList.value!!.size > 2) {
             val score = Score(
                 maxScore = (questionList.value!!.size) * (onCorrect.value!!.toInt()),
                 passingScore = passing.value!!.toDouble(),
@@ -222,11 +226,28 @@ class PostQuizViewModel : ViewModel() {
                 authorName = "BBBB",
                 tags = generateTags(),
                 time = timer.value!!,
-                timestamp = Calendar.getInstance().time,
+                timestamp = null,
                 isImported = isImported.value!!,
                 timesPlayed = 0,
                 avgRating = 0.0
             )
+
+            val request=quizService.saveQuiz(quiz)
+            request.enqueue(object :Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    if (response.isSuccessful){
+                        Log.i("ID",response.body().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Log.i("Failed",t.message.toString())
+
+                }
+            })
+        }
+        else{
+            Log.i("message","Error in upload")
         }
     }
 

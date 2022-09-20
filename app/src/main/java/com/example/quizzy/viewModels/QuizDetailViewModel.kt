@@ -68,7 +68,7 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
 
         val tempScore = quiz.questions?.score
         _onCorrect.value= tempScore?.onCorrect?.toInt().toString()
-        _onWrong.value= "-"+tempScore?.onWrong?.toInt().toString()
+        _onWrong.value= tempScore?.onWrong?.toInt().toString()
         _passing.value= tempScore?.passingScore?.toInt().toString()
         _maxScore.value= tempScore?.maxScore?.toInt().toString()
 
@@ -78,7 +78,7 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
         if (!(tempScore?.maxScore==0 || tempScore?.onCorrect==0)){
           c= a?.div(b!!) ?: 0
         }
-        _noOfQuestion.value= c?.toString()
+        _noOfQuestion.value= c.toString()
     }
 
     fun startQuiz(){

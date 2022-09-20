@@ -1,23 +1,23 @@
 package com.example.quizzy.Adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
-import com.example.quizzy.Screens.AddQuizFragment
 import com.example.quizzy.dataModel.extras.questionFormat
 import kotlinx.android.synthetic.main.list_item_question.view.*
+
 
 class PreviewRecyclerAdapter(val context: FragmentActivity) :
     RecyclerView.Adapter<PreviewRecyclerAdapter.MyViewHolder>() {
 
-    private var questionList: List<questionFormat>? = null
+    var questionList: List<questionFormat>? = null
 
     fun setPreviewList(questionList: List<questionFormat>?) {
         this.questionList = questionList
@@ -33,7 +33,7 @@ class PreviewRecyclerAdapter(val context: FragmentActivity) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(questionList?.get(position)!!)
+        holder.bind(questionList?.get(position)!!,position)
     }
 
     override fun getItemCount(): Int {
@@ -43,26 +43,29 @@ class PreviewRecyclerAdapter(val context: FragmentActivity) :
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val delete: ImageView = view.delete
-        val sNo: TextView = view.questionNum
-        val question: TextView = view.question
 
-        val optionA: TextView = view.textA
-        val optionB: TextView = view.textB
-        val optionC: TextView = view.textC
-        val optionD: TextView = view.textD
+        private val delete: ImageView = view.delete
+        private val sNo: TextView = view.questionNum
+        private val question: TextView = view.question
 
-        val statusA: TextView = view.statusA
-        val statusB: TextView = view.statusB
-        val statusC: TextView = view.statusC
-        val statusD: TextView = view.statusD
+        private val optionA: TextView = view.textA
+        private val optionB: TextView = view.textB
+        private val optionC: TextView = view.textC
+        private val optionD: TextView = view.textD
 
-        val backA: RelativeLayout = view.backA
-        val backB: RelativeLayout = view.backB
-        val backC: RelativeLayout = view.backC
-        val backD: RelativeLayout = view.backD
+        private val statusA: TextView = view.scoreA
+        private val statusB: TextView = view.scoreB
+        private val statusC: TextView = view.scoreC
+        private val statusD: TextView = view.scoreD
 
-        fun bind(data: questionFormat) {
+        private val backA = view.backA
+        private val backB = view.backB
+        private val backC = view.backC
+        private val backD = view.backD
+
+
+        @SuppressLint("ResourceAsColor")
+        fun bind(data: questionFormat, position: Int) {
 
             question.text=data.question
 
@@ -71,11 +74,29 @@ class PreviewRecyclerAdapter(val context: FragmentActivity) :
             optionC.text=data.options?.get(2)
             optionD.text=data.options?.get(3)
 
+            sNo.text="${(position+1)} . "
+
             when(data.answer){
-                "0"->{}
-                "1"->{}
-                "2"->{}
-                "3"->{}
+                "0"->{
+                    backA.setBackgroundColor(Color.parseColor("#30D158"))
+                    statusA.visibility=View.VISIBLE
+                }
+                "1"->{
+                    backB.setBackgroundColor(Color.parseColor("#30D158"))
+                    statusB.visibility=View.VISIBLE
+                }
+                "2"->{
+                    backC.setBackgroundColor(Color.parseColor("#30D158"))
+                    statusC.visibility=View.VISIBLE
+                }
+                "3"->{
+                    backD.setBackgroundColor(Color.parseColor("#30D158"))
+                    statusD.visibility=View.VISIBLE
+
+                }
+            }
+
+            delete.setOnClickListener {
             }
         }
     }

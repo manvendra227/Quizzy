@@ -67,7 +67,7 @@ class AddQuizFragment : Fragment() {
     private fun loadPreview(){
         viewModel.getQuestionList().observe(requireActivity(), Observer {
             if (it!=null){
-                mAdapter.setPreviewList(it)
+                mAdapter.setPreviewList(it.reversed())
                 mAdapter.notifyDataSetChanged()
             }else{
                 Log.i("lul","Error")
