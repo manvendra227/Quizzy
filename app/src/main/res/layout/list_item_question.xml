@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/delete"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/sen_regular"
+            android:fontFamily="@font/sen_bold"
             android:text="@string/questnumber"
             android:textColor="@color/black"
             android:textSize="20sp" />

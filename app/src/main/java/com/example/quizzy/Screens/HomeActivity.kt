@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -22,11 +23,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizzy.Adapter.HomePageAdapter
 import com.example.quizzy.Adapter.SearchTagAdapter
 import com.example.quizzy.R
+import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.databinding.ActivityHomeBinding
 import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.HomeViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.HomeViewModelFactory
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -37,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewModelFactory: HomeViewModelFactory
     private lateinit var homePageAdapter: HomePageAdapter
     private lateinit var searchTagAdapter: SearchTagAdapter
-    private val emailSP = UserDetailsSharedPrefrence()
+    private val savedUser = UserDetailsSharedPrefrence()
     private var toast = MyToast(this)
     private var doubleBackToExitPressedOnce = false
 
@@ -83,7 +86,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initViewModel() {
 
-        viewModelFactory = HomeViewModelFactory(emailSP.getEmailID(this).toString())
+        //Getting data from sharedPreferences and converting to object
+        val gson = Gson()
+        val savedUserResponse=savedUser.getUserDetails(this)
+        val savedUserModel=gson.fromJson(savedUserResponse,SavedUserModel::class.java)
+
+        viewModelFactory = HomeViewModelFactory(savedUserModel.emailId)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         binding.homeViewModel = viewModel
 

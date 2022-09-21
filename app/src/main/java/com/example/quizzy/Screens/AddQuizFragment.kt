@@ -2,22 +2,24 @@ package com.example.quizzy.Screens
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizzy.Adapter.PreviewRecyclerAdapter
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentAddQuizBinding
-import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.viewModels.PostQuizViewModel
 import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.popup_rating.view.*
+
 
 class AddQuizFragment : Fragment() {
 
@@ -36,6 +38,7 @@ class AddQuizFragment : Fragment() {
         initRecyclerPreview()
         loadPreview()
         errors()
+        previewExpandableLayout()
 
         return binding.root
     }
@@ -73,5 +76,22 @@ class AddQuizFragment : Fragment() {
                 Log.i("lul","Error")
             }
         })
+    }
+
+    private fun previewExpandableLayout(){
+        binding.previewCard.setOnClickListener {
+
+            if (binding.previewRecycler.visibility === View.VISIBLE) {
+                // The transition of the hiddenView is carried out by the TransitionManager class.
+                // Here we use an object of the AutoTransition Class to create a default transition
+                TransitionManager.beginDelayedTransition(binding.previewCard, AutoTransition())
+                binding.previewRecycler.visibility = View.GONE
+                binding.arrow.setImageResource(R.drawable.ic_arrow_close)
+            } else {
+                TransitionManager.beginDelayedTransition(binding.previewCard, AutoTransition())
+                binding.previewRecycler.visibility = View.VISIBLE
+                binding.arrow.setImageResource(R.drawable.ic_arrow_down)
+            }
+        }
     }
 }

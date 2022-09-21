@@ -67,16 +67,16 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
         _time.value=quiz.time.toString()+" min"
 
         val tempScore = quiz.questions?.score
-        _onCorrect.value= tempScore?.onCorrect?.toInt().toString()
-        _onWrong.value= tempScore?.onWrong?.toInt().toString()
-        _passing.value= tempScore?.passingScore?.toInt().toString()
-        _maxScore.value= tempScore?.maxScore?.toInt().toString()
+        _onCorrect.value= tempScore?.onCorrect.toString()
+        _onWrong.value= tempScore?.onWrong.toString()
+        _passing.value= tempScore?.passingScore?.toString()
+        _maxScore.value= tempScore?.maxScore.toString()
 
         val a: Int? = tempScore?.onCorrect
         val b: Int? = tempScore?.maxScore
         var c=0
-        if (!(tempScore?.maxScore==0 || tempScore?.onCorrect==0)){
-          c= a?.div(b!!) ?: 0
+        if (a!=null && a!=0 && b!=null){
+            c=b.div(a)
         }
         _noOfQuestion.value= c.toString()
     }

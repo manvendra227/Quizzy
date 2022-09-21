@@ -10,6 +10,7 @@ import com.example.quizzy.dataModel.model.LoginModel
 import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.Service.userService
 import com.example.quizzy.utilities.LoginStateSharedPrefrence
+import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,8 +18,10 @@ import retrofit2.Response
 
 class LoginViewModel : ViewModel() {
 
+
     val emailID = MutableLiveData<String>()
     val password = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
 
     private val _errorMessageEmail = MutableLiveData<String>()
     val errorMessageEmail: LiveData<String> get() = _errorMessageEmail
@@ -28,6 +31,10 @@ class LoginViewModel : ViewModel() {
 
     private val _loginStatus = MutableLiveData<Boolean>()
     val loginStatus: LiveData<Boolean> get() = _loginStatus
+
+    private val _loginResponse = MutableLiveData<String>()
+    val loginResponse: LiveData<String> get() = _loginResponse
+
 
 
     private val service = RetrofitBuilder.buildService(userService::class.java)
@@ -40,7 +47,8 @@ class LoginViewModel : ViewModel() {
 
                     if (response.isSuccessful) {
 
-                        if (response.body().toString().equals("Login Success", true)){
+                        if ((response.body()?.substring(0,13)).equals("Login Success", true)){
+                            _loginResponse.value= response.body()!!.substring(15)
                             _loginStatus.value = true
                         }
                         else {

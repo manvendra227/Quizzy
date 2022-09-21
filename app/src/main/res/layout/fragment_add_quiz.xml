@@ -10,48 +10,51 @@
             type="com.example.quizzy.viewModels.PostQuizViewModel" />
     </data>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".Screens.SignUpActivity">
+        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <com.skydoves.elasticviews.ElasticLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layout_duration="200"
+            app:layout_scale="0.98">
 
-            <RelativeLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/grey_card"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignBottom="@+id/card"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="@dimen/dimen_24"
-                    android:layout_marginEnd="@dimen/dimen_28"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/gray"
-                    app:cardCornerRadius="@dimen/dimen_12"
-                    app:strokeColor="?android:textColorHighlight"
-                    app:strokeWidth="1dp" />
+                    android:layout_height="match_parent">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_28"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="22dp"
-                    app:cardCornerRadius="@dimen/dimen_12"
-                    app:strokeColor="?android:textColorHighlight"
-                    app:strokeWidth="1dp">
-
-
-                    <androidx.core.widget.NestedScrollView
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/white_bg"
+                        android:layout_alignBottom="@id/white_bg"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="-6dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="6dp"
+                        app:cardBackgroundColor="@color/back2"
+                        app:cardCornerRadius="@dimen/dimen_12"
+                        app:strokeColor="?android:textColorHighlight"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/white_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="@dimen/dimen_32"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="@dimen/dimen_16"
+                        app:cardCornerRadius="@dimen/dimen_12"
+                        app:strokeColor="?android:textColorHighlight"
+                        app:strokeWidth="1dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -519,93 +522,99 @@
 
                             </LinearLayout>
                         </RelativeLayout>
-                    </androidx.core.widget.NestedScrollView>
-                </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="16dp"
-                    app:cardElevation="0dp">
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <RelativeLayout
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/preview_card"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="12dp"
-                            android:fontFamily="@font/sen_bold"
-                            android:text="Preview"
-                            android:textColor="?android:textColorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:rotation="90"
-                            android:src="@drawable/ic_arrow" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/preview_recycler"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="48dp"
-                            tools:itemCount="2"
-                            tools:listitem="@layout/list_item_question" />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/card"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardElevation="0dp">
 
                         <RelativeLayout
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/preview_recycler"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="@dimen/dimen_8">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/sen_bold"
+                                android:text="Preview"
+                                android:textColor="?android:textColorPrimary"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/arrow"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:src="@drawable/ic_arrow_close" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/preview_recycler"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="48dp"
+                                android:visibility="gone"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/list_item_question" />
 
                             <RelativeLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/transparent">
+                                android:layout_below="@id/preview_recycler"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="48dp"
+                                android:layout_marginBottom="@dimen/dimen_8">
 
-                                <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/upload_button"
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="48dp"
-                                    android:layout_marginStart="@dimen/dimen_8"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginEnd="4dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:onClick="@{()->addQuizViewModel.postQuiz()}"
-                                    android:text="Upload"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp"
-                                    app:backgroundTint="@color/primary_green"
-                                    app:cornerRadius="9dp" />
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent">
 
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/upload_button"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="48dp"
+                                        android:layout_marginStart="@dimen/dimen_8"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:onClick="@{()->addQuizViewModel.postQuiz()}"
+                                        android:text="Upload"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp"
+                                        app:backgroundTint="@color/primary_green"
+                                        app:cornerRadius="9dp" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="139dp"
+                                    android:layout_height="38dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="14dp"
+                                    android:background="@drawable/transparent_background" />
                             </RelativeLayout>
 
-                            <RelativeLayout
-                                android:layout_width="139dp"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginTop="14dp"
-                                android:background="@drawable/transparent_background" />
                         </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
 
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
+            </androidx.core.widget.NestedScrollView>
 
-            </RelativeLayout>
-        </androidx.core.widget.NestedScrollView>
+        </com.skydoves.elasticviews.ElasticLayout>
 
     </RelativeLayout>
+
 </layout>

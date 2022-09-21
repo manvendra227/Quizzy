@@ -9,7 +9,7 @@ import java.util.*
 data class Quiz(
     val quizID: String,
     val title: String,
-    val description: String,
+    val description: String="",
     val difficulty: Difficulty? = null,
     val quizType: QuizType? = null,
     val questions: Questions? = null,

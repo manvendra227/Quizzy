@@ -1,6 +1,8 @@
 package com.example.quizzy.viewModels
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,13 +15,18 @@ import com.example.quizzy.dataModel.extras.Questions
 import com.example.quizzy.dataModel.extras.Score
 import com.example.quizzy.dataModel.extras.questionFormat
 import com.example.quizzy.dataModel.model.QuizShortModel
+import com.example.quizzy.dataModel.model.SavedUserModel
+import com.example.quizzy.utilities.UserDetailsSharedPrefrence
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PostQuizViewModel : ViewModel() {
+class PostQuizViewModel(application: Application) : AndroidViewModel(application) {
+
+    private var userDetails= UserDetailsSharedPrefrence()
 
     //Create Quiz Members
     val title = MutableLiveData<String>()
@@ -126,7 +133,7 @@ class PostQuizViewModel : ViewModel() {
     fun checkStatus() {
         if (title.value.isNullOrBlank()) {
             _errorTitle.value = "Quiz must have a Title"
-        } else if (title.value!!.length <= 10) {
+        } else if (title.value!!.length <= 5) {
             _errorTitle.value = "Title is too small"
         } else if (tags.value.isNullOrBlank()) {
             _errorTags.value = "Tags make search easier, it would be helpful if you enter some tags"
@@ -203,7 +210,13 @@ class PostQuizViewModel : ViewModel() {
     }
 
     fun postQuiz() {
-        if (questionList.value != null && questionList.value!!.size > 2) {
+        //extracting user info here
+        val gson = Gson()
+        val savedUserResponse=userDetails.getUserDetails(getApplication())
+        val savedUserModel=gson.fromJson(savedUserResponse, SavedUserModel::class.java)
+
+        Log.i("check",savedUserModel.toString())
+        if (questionList.value != null && questionList.value!!.size > 1) {
             val score = Score(
                 maxScore = (questionList.value!!.size) * (onCorrect.value!!.toInt()),
                 passingScore = passing.value!!.toDouble(),
@@ -222,8 +235,8 @@ class PostQuizViewModel : ViewModel() {
                 difficulty = difficulty.value,
                 quizType = quizType.value,
                 questions = questions,
-                authorID = "AAAA",
-                authorName = "BBBB",
+                authorID =savedUserModel.userId,
+                authorName = savedUserModel.name,
                 tags = generateTags(),
                 time = timer.value!!,
                 timestamp = null,

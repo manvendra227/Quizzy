@@ -2,6 +2,7 @@ package com.example.quizzy.Screens
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -14,29 +15,26 @@ import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
     private var saveSPLogin=LoginStateSharedPrefrence()
-    private var saveSPUserID=UserDetailsSharedPrefrence()
+    private var savedUser=UserDetailsSharedPrefrence()
     private var toast=MyToast(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        binding.loginViewModel = viewModel
-        binding.lifecycleOwner = this
+        initViewModel()
+        errors()
 
-        viewModel.errorMessageEmail.observe(this, Observer { text_email.error = viewModel.errorMessageEmail.value })
-        viewModel.errorMessagePassword.observe(this) { text_password.error = viewModel.errorMessagePassword.value }
         viewModel.loginStatus.observe(this) { isLogined ->
             if (isLogined) {
                 startActivity(Intent(this, HomeActivity::class.java))
-                saveSPLogin.setState(this,true)
-                saveSPUserID.setEmailID(this,viewModel.emailID.value!!.trim())
+                saveDetailsOnFirstLogin()
                 finish()
             }
         }
@@ -48,5 +46,26 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this,HomeActivity::class.java))
             finish()
         }
+    }
+
+    private fun initViewModel(){
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+        binding.loginViewModel = viewModel
+        binding.lifecycleOwner = this
+    }
+
+    private fun errors(){
+        viewModel.errorMessageEmail.observe(this, Observer { text_email.error = viewModel.errorMessageEmail.value })
+        viewModel.errorMessagePassword.observe(this) { text_password.error = viewModel.errorMessagePassword.value }
+    }
+
+    private fun saveDetailsOnFirstLogin(){
+
+        val response: String? =viewModel.loginResponse.value
+        val x:Int= response?.indexOf('|') ?: 0
+        val userId= response?.substring(0,x)?.trim()
+        val name= response?.substring(x+2)?.trim()
+        savedUser.setUserDetails(this,viewModel.emailID.value!!.trim(), userId.toString(), name.toString())
+        saveSPLogin.setState(this,true)
     }
 }

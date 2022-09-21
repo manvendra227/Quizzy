@@ -34,6 +34,7 @@ class CreateQuizFragment : Fragment() {
     }
 
     private fun initViewModel() {
+
         viewModel = ViewModelProvider(requireActivity())[PostQuizViewModel::class.java]
         binding.createQuizModel = viewModel
         binding.lifecycleOwner = this
