@@ -2,6 +2,7 @@ package com.example.quizzy.Screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import com.example.quizzy.R
 import com.example.quizzy.databinding.ActivityPostQuizBinding
@@ -17,6 +18,9 @@ class PostQuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_post_quiz)
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
 }

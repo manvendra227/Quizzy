@@ -10,10 +10,34 @@
     </data>
 
     <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_16"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/dimen_16"
+            android:layout_height="@dimen/dimen_16"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:src="@drawable/ic_arrow_left"
+            app:tint="?android:textColorPrimary" />
+
+        <TextView
+            android:id="@+id/pageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:layout_toEndOf="@id/back_button"
+            android:fontFamily="@font/sen_bold"
+            android:text="Create Quiz"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="@dimen/dimen_text_18" />
+
         <com.skydoves.elasticviews.ElasticLayout
+            android:layout_below="@id/back_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_duration="200"

@@ -15,83 +15,448 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.skydoves.elasticviews.ElasticLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_duration="200"
-            app:layout_scale="0.98">
+            android:layout_height="wrap_content">
 
-            <androidx.core.widget.NestedScrollView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <RelativeLayout
+                <com.skydoves.elasticviews.ElasticLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    app:layout_duration="200"
+                    app:layout_scale="0.98">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignTop="@id/white_bg"
-                        android:layout_alignBottom="@id/white_bg"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="-6dp"
-                        android:layout_marginEnd="24dp"
-                        android:layout_marginBottom="6dp"
-                        app:cardBackgroundColor="@color/back2"
-                        app:cardCornerRadius="@dimen/dimen_12"
-                        app:strokeColor="?android:textColorHighlight"
-                        app:strokeWidth="1dp" />
+                        android:layout_height="match_parent">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/white_bg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="22dp"
-                        android:layout_marginTop="@dimen/dimen_32"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="@dimen/dimen_16"
-                        app:cardCornerRadius="@dimen/dimen_12"
-                        app:strokeColor="?android:textColorHighlight"
-                        app:strokeWidth="1dp">
-
-                        <RelativeLayout
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/white_bg"
+                            android:layout_alignBottom="@id/white_bg"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="-6dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="6dp"
+                            app:cardBackgroundColor="@color/back2"
+                            app:cardCornerRadius="@dimen/dimen_12"
+                            app:strokeColor="?android:textColorHighlight"
+                            app:strokeWidth="1dp" />
 
-                            <LinearLayout
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/white_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="22dp"
+                            android:layout_marginTop="@dimen/dimen_32"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="@dimen/dimen_16"
+                            app:cardCornerRadius="@dimen/dimen_12"
+                            app:strokeColor="?android:textColorHighlight"
+                            app:strokeWidth="1dp">
+
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:layout_height="wrap_content">
 
-                                <RelativeLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/numberQues"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="16dp"
+                                            android:layout_marginTop="12dp"
+                                            android:layout_marginBottom="8dp"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:text="@={addQuizViewModel.indexTitle}"
+                                            android:textColor="?android:textColorPrimary"
+                                            android:textSize="14sp" />
+
+                                        <com.google.android.material.card.MaterialCardView
+                                            android:id="@+id/name_box"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/numberQues"
+                                            android:layout_marginStart="@dimen/dimen_16"
+                                            android:layout_marginLeft="@dimen/dimen_16"
+                                            android:layout_marginTop="@dimen/dimen_4"
+                                            android:layout_marginEnd="@dimen/dimen_16"
+                                            android:layout_marginRight="@dimen/dimen_16"
+                                            android:minHeight="@dimen/dimen_40"
+                                            app:cardBackgroundColor="?android:itemBackground"
+                                            app:cardCornerRadius="@dimen/dimen_8"
+                                            app:cardElevation="@null"
+                                            app:strokeColor="?android:textColorHighlight"
+                                            app:strokeWidth="1dp">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/questionString"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@null"
+                                                android:fontFamily="@font/sen_reg"
+                                                android:hint="Question here"
+                                                android:inputType="textMultiLine"
+                                                android:minHeight="@dimen/dimen_44"
+                                                android:padding="@dimen/dimen_12"
+                                                android:text="@={addQuizViewModel.question}"
+                                                android:textSize="@dimen/dimen_text_14" />
+                                        </com.google.android.material.card.MaterialCardView>
+                                    </RelativeLayout>
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="5dp"
+                                        android:layout_below="@+id/box1"
+                                        android:layout_marginStart="@dimen/dimen_16"
+                                        android:layout_marginTop="2dp"
+                                        android:layout_marginEnd="@dimen/dimen_16"
+                                        android:src="@drawable/dash_lines" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:text="@string/option_a"
+                                            android:textColor="?android:textColorPrimary"
+                                            android:textSize="12dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optionA_box"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/q1"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginLeft="@dimen/dimen_16"
+                                                android:layout_marginTop="@dimen/dimen_4"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:minHeight="@dimen/dimen_40"
+                                                app:cardBackgroundColor="?android:itemBackground"
+                                                app:cardCornerRadius="@dimen/dimen_8"
+                                                app:cardElevation="@null"
+                                                app:strokeColor="?android:textColorHighlight"
+                                                app:strokeWidth="1dp">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/optionBoxA"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@null"
+                                                    android:fontFamily="@font/sen_reg"
+                                                    android:hint="Option A"
+                                                    android:inputType="textMultiLine"
+                                                    android:minHeight="@dimen/dimen_44"
+                                                    android:padding="@dimen/dimen_12"
+                                                    android:text="@={addQuizViewModel.optionA}"
+                                                    android:textSize="@dimen/dimen_text_14" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="5dp"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginTop="2dp"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:src="@drawable/dash_lines" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:text="@string/option_b"
+                                            android:textColor="?android:textColorPrimary"
+                                            android:textSize="12dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optionB_box"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/q1"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginLeft="@dimen/dimen_16"
+                                                android:layout_marginTop="@dimen/dimen_4"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:minHeight="@dimen/dimen_40"
+                                                app:cardBackgroundColor="?android:itemBackground"
+                                                app:cardCornerRadius="@dimen/dimen_8"
+                                                app:cardElevation="@null"
+                                                app:strokeColor="?android:textColorHighlight"
+                                                app:strokeWidth="1dp">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/optionBoxB"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@null"
+                                                    android:fontFamily="@font/sen_reg"
+                                                    android:hint="Option B"
+                                                    android:inputType="textMultiLine"
+                                                    android:minHeight="@dimen/dimen_44"
+                                                    android:padding="@dimen/dimen_12"
+                                                    android:text="@={addQuizViewModel.optionB}"
+                                                    android:textSize="@dimen/dimen_text_14" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="5dp"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginTop="2dp"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:src="@drawable/dash_lines" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:text="@string/option_c"
+                                            android:textColor="?android:textColorPrimary"
+                                            android:textSize="12dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optionC_box"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/q1"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginLeft="@dimen/dimen_16"
+                                                android:layout_marginTop="@dimen/dimen_4"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:minHeight="@dimen/dimen_40"
+                                                app:cardBackgroundColor="?android:itemBackground"
+                                                app:cardCornerRadius="@dimen/dimen_8"
+                                                app:cardElevation="@null"
+                                                app:strokeColor="?android:textColorHighlight"
+                                                app:strokeWidth="1dp">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/optionBoxC"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@null"
+                                                    android:fontFamily="@font/sen_reg"
+                                                    android:hint="Option C"
+                                                    android:inputType="textMultiLine"
+                                                    android:minHeight="@dimen/dimen_44"
+                                                    android:padding="@dimen/dimen_12"
+                                                    android:text="@={addQuizViewModel.optionC}"
+                                                    android:textSize="@dimen/dimen_text_14" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="5dp"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginTop="2dp"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:src="@drawable/dash_lines" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:text="Option D"
+                                            android:textColor="?android:textColorPrimary"
+                                            android:textSize="12dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optionD_box"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/q1"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginLeft="@dimen/dimen_16"
+                                                android:layout_marginTop="@dimen/dimen_4"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:minHeight="@dimen/dimen_40"
+                                                app:cardBackgroundColor="?android:itemBackground"
+                                                app:cardCornerRadius="@dimen/dimen_8"
+                                                app:cardElevation="@null"
+                                                app:strokeColor="?android:textColorHighlight"
+                                                app:strokeWidth="1dp">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/optionBoxD"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@null"
+                                                    android:fontFamily="@font/sen_reg"
+                                                    android:hint="Option D"
+                                                    android:inputType="textMultiLine"
+                                                    android:minHeight="@dimen/dimen_44"
+                                                    android:padding="@dimen/dimen_12"
+                                                    android:text="@={addQuizViewModel.optionD}"
+                                                    android:textSize="@dimen/dimen_text_14" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="5dp"
+                                                android:layout_marginStart="@dimen/dimen_16"
+                                                android:layout_marginTop="2dp"
+                                                android:layout_marginEnd="@dimen/dimen_16"
+                                                android:src="@drawable/dash_lines" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="44dp"
+                                        android:layout_marginStart="18dp"
+                                        android:layout_marginTop="20dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="center_vertical"
+                                            android:fontFamily="@font/sen_bold"
+                                            android:text="Answer"
+                                            android:textColor="?android:textColorPrimary"
+                                            android:textSize="12dp" />
+
+                                        <RadioGroup
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="16dp"
+                                            android:onCheckedChanged="@{()->addQuizViewModel.setAnswer()}"
+                                            android:orientation="horizontal">
+
+                                            <RadioButton
+                                                android:layout_width="36dp"
+                                                android:layout_height="36dp"
+                                                android:layout_marginStart="12dp"
+                                                android:layout_marginEnd="8dp"
+                                                android:background="@drawable/switch_option_a"
+                                                android:button="@null"
+                                                android:checked="@={addQuizViewModel.isA}" />
+
+                                            <RadioButton
+                                                android:layout_width="36dp"
+                                                android:layout_height="36dp"
+                                                android:layout_marginStart="8dp"
+                                                android:layout_marginEnd="8dp"
+                                                android:background="@drawable/switch_option_b"
+                                                android:button="@null"
+                                                android:checked="@={addQuizViewModel.isB}" />
+
+                                            <RadioButton
+                                                android:layout_width="36dp"
+                                                android:layout_height="36dp"
+                                                android:layout_marginStart="8dp"
+                                                android:layout_marginEnd="8dp"
+                                                android:background="@drawable/switch_option_c"
+                                                android:button="@null"
+                                                android:checked="@={addQuizViewModel.isC}" />
+
+                                            <RadioButton
+                                                android:layout_width="36dp"
+                                                android:layout_height="36dp"
+                                                android:layout_marginStart="8dp"
+                                                android:background="@drawable/switch_option_d"
+                                                android:button="@null"
+                                                android:checked="@={addQuizViewModel.isD}" />
+
+                                        </RadioGroup>
+
+                                    </LinearLayout>
 
                                     <TextView
-                                        android:id="@+id/numberQues"
+                                        android:id="@+id/numberQues2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="12dp"
                                         android:layout_marginBottom="8dp"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="@={addQuizViewModel.indexTitle}"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/explanation"
                                         android:textColor="?android:textColorPrimary"
-                                        android:textSize="14sp" />
+                                        android:textSize="12sp" />
 
                                     <com.google.android.material.card.MaterialCardView
-                                        android:id="@+id/name_box"
+                                        android:id="@+id/explanation"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_below="@+id/numberQues"
                                         android:layout_marginStart="@dimen/dimen_16"
                                         android:layout_marginLeft="@dimen/dimen_16"
                                         android:layout_marginTop="@dimen/dimen_4"
                                         android:layout_marginEnd="@dimen/dimen_16"
                                         android:layout_marginRight="@dimen/dimen_16"
-                                        android:minHeight="@dimen/dimen_40"
+                                        android:minHeight="80dp"
                                         app:cardBackgroundColor="?android:itemBackground"
                                         app:cardCornerRadius="@dimen/dimen_8"
                                         app:cardElevation="@null"
@@ -99,393 +464,121 @@
                                         app:strokeWidth="1dp">
 
                                         <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/questionString"
+                                            android:id="@+id/box2"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@null"
                                             android:fontFamily="@font/sen_reg"
-                                            android:hint="Question here"
+                                            android:hint="Explain the Answer"
                                             android:inputType="textMultiLine"
-                                            android:minHeight="@dimen/dimen_44"
                                             android:padding="@dimen/dimen_12"
-                                            android:text="@={addQuizViewModel.question}"
+                                            android:scrollbars="vertical"
+                                            android:text="@={addQuizViewModel.explanation}"
                                             android:textSize="@dimen/dimen_text_14" />
                                     </com.google.android.material.card.MaterialCardView>
-                                </RelativeLayout>
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="5dp"
-                                    android:layout_below="@+id/box1"
-                                    android:layout_marginStart="@dimen/dimen_16"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_marginEnd="@dimen/dimen_16"
-                                    android:src="@drawable/dash_lines" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="@string/option_a"
-                                        android:textColor="?android:textColorPrimary"
-                                        android:textSize="12dp" />
-
-                                    <LinearLayout
+                                    <ImageView
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                        android:layout_height="5dp"
+                                        android:layout_below="@+id/box1"
+                                        android:layout_marginStart="@dimen/dimen_16"
+                                        android:layout_marginTop="2dp"
+                                        android:layout_marginEnd="@dimen/dimen_16"
+                                        android:layout_marginBottom="12dp"
+                                        android:src="@drawable/dash_lines" />
 
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:id="@+id/optionA_box"
+                                    <RelativeLayout
+                                        android:layout_width="150dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginBottom="@dimen/dimen_8">
+
+                                        <RelativeLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_below="@+id/q1"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginLeft="@dimen/dimen_16"
-                                            android:layout_marginTop="@dimen/dimen_4"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:minHeight="@dimen/dimen_40"
-                                            app:cardBackgroundColor="?android:itemBackground"
-                                            app:cardCornerRadius="@dimen/dimen_8"
-                                            app:cardElevation="@null"
-                                            app:strokeColor="?android:textColorHighlight"
-                                            app:strokeWidth="1dp">
+                                            android:background="@android:color/transparent">
 
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/optionBoxA"
+                                            <com.google.android.material.button.MaterialButton
+                                                android:id="@+id/add_button"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:background="@null"
-                                                android:fontFamily="@font/sen_reg"
-                                                android:hint="Option A"
-                                                android:inputType="textMultiLine"
-                                                android:minHeight="@dimen/dimen_44"
-                                                android:padding="@dimen/dimen_12"
-                                                android:text="@={addQuizViewModel.optionA}"
-                                                android:textSize="@dimen/dimen_text_14" />
-                                        </com.google.android.material.card.MaterialCardView>
+                                                android:layout_height="48dp"
+                                                android:layout_marginStart="@dimen/dimen_8"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginEnd="4dp"
+                                                android:fontFamily="@font/sen_bold"
+                                                android:onClick="@{()->addQuizViewModel.addQuesToList()}"
+                                                android:text="Add"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/white"
+                                                android:textSize="13sp"
+                                                app:backgroundTint="@color/button_blue"
+                                                app:cornerRadius="9dp" />
 
-                                        <ImageView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="5dp"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:src="@drawable/dash_lines" />
-                                    </LinearLayout>
-                                </LinearLayout>
+                                        </RelativeLayout>
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:orientation="horizontal">
+                                        <RelativeLayout
+                                            android:layout_width="139dp"
+                                            android:layout_height="38dp"
+                                            android:layout_marginStart="4dp"
+                                            android:layout_marginTop="14dp"
+                                            android:background="@drawable/transparent_background" />
+                                    </RelativeLayout>
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="@string/option_b"
-                                        android:textColor="?android:textColorPrimary"
-                                        android:textSize="12dp" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:id="@+id/optionB_box"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_below="@+id/q1"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginLeft="@dimen/dimen_16"
-                                            android:layout_marginTop="@dimen/dimen_4"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:minHeight="@dimen/dimen_40"
-                                            app:cardBackgroundColor="?android:itemBackground"
-                                            app:cardCornerRadius="@dimen/dimen_8"
-                                            app:cardElevation="@null"
-                                            app:strokeColor="?android:textColorHighlight"
-                                            app:strokeWidth="1dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/optionBoxB"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:background="@null"
-                                                android:fontFamily="@font/sen_reg"
-                                                android:hint="Option B"
-                                                android:inputType="textMultiLine"
-                                                android:minHeight="@dimen/dimen_44"
-                                                android:padding="@dimen/dimen_12"
-                                                android:text="@={addQuizViewModel.optionB}"
-                                                android:textSize="@dimen/dimen_text_14" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <ImageView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="5dp"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:src="@drawable/dash_lines" />
-                                    </LinearLayout>
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="@string/option_c"
-                                        android:textColor="?android:textColorPrimary"
-                                        android:textSize="12dp" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:id="@+id/optionC_box"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_below="@+id/q1"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginLeft="@dimen/dimen_16"
-                                            android:layout_marginTop="@dimen/dimen_4"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:minHeight="@dimen/dimen_40"
-                                            app:cardBackgroundColor="?android:itemBackground"
-                                            app:cardCornerRadius="@dimen/dimen_8"
-                                            app:cardElevation="@null"
-                                            app:strokeColor="?android:textColorHighlight"
-                                            app:strokeWidth="1dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/optionBoxC"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:background="@null"
-                                                android:fontFamily="@font/sen_reg"
-                                                android:hint="Option C"
-                                                android:inputType="textMultiLine"
-                                                android:minHeight="@dimen/dimen_44"
-                                                android:padding="@dimen/dimen_12"
-                                                android:text="@={addQuizViewModel.optionC}"
-                                                android:textSize="@dimen/dimen_text_14" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <ImageView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="5dp"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:src="@drawable/dash_lines" />
-                                    </LinearLayout>
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="Option D"
-                                        android:textColor="?android:textColorPrimary"
-                                        android:textSize="12dp" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:id="@+id/optionD_box"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_below="@+id/q1"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginLeft="@dimen/dimen_16"
-                                            android:layout_marginTop="@dimen/dimen_4"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:minHeight="@dimen/dimen_40"
-                                            app:cardBackgroundColor="?android:itemBackground"
-                                            app:cardCornerRadius="@dimen/dimen_8"
-                                            app:cardElevation="@null"
-                                            app:strokeColor="?android:textColorHighlight"
-                                            app:strokeWidth="1dp">
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/optionBoxD"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:background="@null"
-                                                android:fontFamily="@font/sen_reg"
-                                                android:hint="Option D"
-                                                android:inputType="textMultiLine"
-                                                android:minHeight="@dimen/dimen_44"
-                                                android:padding="@dimen/dimen_12"
-                                                android:text="@={addQuizViewModel.optionD}"
-                                                android:textSize="@dimen/dimen_text_14" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <ImageView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="5dp"
-                                            android:layout_marginStart="@dimen/dimen_16"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_marginEnd="@dimen/dimen_16"
-                                            android:src="@drawable/dash_lines" />
-                                    </LinearLayout>
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="44dp"
-                                    android:layout_marginStart="18dp"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_gravity="center_vertical"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:text="Answer"
-                                        android:textColor="?android:textColorPrimary"
-                                        android:textSize="12dp" />
-
-                                    <RadioGroup
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginLeft="16dp"
-                                        android:onCheckedChanged="@{()->addQuizViewModel.setAnswer()}"
-                                        android:orientation="horizontal">
-
-                                        <RadioButton
-                                            android:layout_width="36dp"
-                                            android:layout_height="36dp"
-                                            android:layout_marginStart="12dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@drawable/switch_option_a"
-                                            android:button="@null"
-                                            android:checked="@={addQuizViewModel.isA}" />
-
-                                        <RadioButton
-                                            android:layout_width="36dp"
-                                            android:layout_height="36dp"
-                                            android:layout_marginStart="8dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@drawable/switch_option_b"
-                                            android:button="@null"
-                                            android:checked="@={addQuizViewModel.isB}" />
-
-                                        <RadioButton
-                                            android:layout_width="36dp"
-                                            android:layout_height="36dp"
-                                            android:layout_marginStart="8dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@drawable/switch_option_c"
-                                            android:button="@null"
-                                            android:checked="@={addQuizViewModel.isC}" />
-
-                                        <RadioButton
-                                            android:layout_width="36dp"
-                                            android:layout_height="36dp"
-                                            android:layout_marginStart="8dp"
-                                            android:background="@drawable/switch_option_d"
-                                            android:button="@null"
-                                            android:checked="@={addQuizViewModel.isD}" />
-
-                                    </RadioGroup>
 
                                 </LinearLayout>
+                            </RelativeLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/preview_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="28dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardElevation="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:id="@+id/numberQues2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="12dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/explanation"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="Preview"
                                     android:textColor="?android:textColorPrimary"
-                                    android:textSize="12sp" />
-
-                                <com.google.android.material.card.MaterialCardView
-                                    android:id="@+id/explanation"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimen_16"
-                                    android:layout_marginLeft="@dimen/dimen_16"
-                                    android:layout_marginTop="@dimen/dimen_4"
-                                    android:layout_marginEnd="@dimen/dimen_16"
-                                    android:layout_marginRight="@dimen/dimen_16"
-                                    android:minHeight="80dp"
-                                    app:cardBackgroundColor="?android:itemBackground"
-                                    app:cardCornerRadius="@dimen/dimen_8"
-                                    app:cardElevation="@null"
-                                    app:strokeColor="?android:textColorHighlight"
-                                    app:strokeWidth="1dp">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/box2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@null"
-                                        android:fontFamily="@font/sen_reg"
-                                        android:hint="Explain the Answer"
-                                        android:inputType="textMultiLine"
-                                        android:padding="@dimen/dimen_12"
-                                        android:scrollbars="vertical"
-                                        android:text="@={addQuizViewModel.explanation}"
-                                        android:textSize="@dimen/dimen_text_14" />
-                                </com.google.android.material.card.MaterialCardView>
+                                    android:textSize="16sp" />
 
                                 <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="5dp"
-                                    android:layout_below="@+id/box1"
-                                    android:layout_marginStart="@dimen/dimen_16"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_marginEnd="@dimen/dimen_16"
-                                    android:layout_marginBottom="12dp"
-                                    android:src="@drawable/dash_lines" />
+                                    android:id="@+id/arrow"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:src="@drawable/ic_arrow_close" />
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/preview_recycler"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="48dp"
+                                    android:visibility="gone"
+                                    tools:itemCount="2"
+                                    tools:listitem="@layout/list_item_question" />
 
                                 <RelativeLayout
                                     android:layout_width="150dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
+                                    android:layout_below="@id/preview_recycler"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="48dp"
                                     android:layout_marginBottom="@dimen/dimen_8">
 
                                     <RelativeLayout
@@ -494,19 +587,19 @@
                                         android:background="@android:color/transparent">
 
                                         <com.google.android.material.button.MaterialButton
-                                            android:id="@+id/add_button"
+                                            android:id="@+id/upload_button"
                                             android:layout_width="match_parent"
                                             android:layout_height="48dp"
                                             android:layout_marginStart="@dimen/dimen_8"
                                             android:layout_marginTop="10dp"
                                             android:layout_marginEnd="4dp"
                                             android:fontFamily="@font/sen_bold"
-                                            android:onClick="@{()->addQuizViewModel.addQuesToList()}"
-                                            android:text="Add"
+                                            android:onClick="@{()->addQuizViewModel.postQuiz()}"
+                                            android:text="Upload"
                                             android:textAllCaps="false"
                                             android:textColor="@color/white"
                                             android:textSize="13sp"
-                                            app:backgroundTint="@color/button_blue"
+                                            app:backgroundTint="@color/primary_green"
                                             app:cornerRadius="9dp" />
 
                                     </RelativeLayout>
@@ -519,101 +612,16 @@
                                         android:background="@drawable/transparent_background" />
                                 </RelativeLayout>
 
-
-                            </LinearLayout>
-                        </RelativeLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/preview_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/card"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="16dp"
-                        app:cardElevation="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="12dp"
-                                android:fontFamily="@font/sen_bold"
-                                android:text="Preview"
-                                android:textColor="?android:textColorPrimary"
-                                android:textSize="16sp" />
-
-                            <ImageView
-                                android:id="@+id/arrow"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:src="@drawable/ic_arrow_close" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/preview_recycler"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="48dp"
-                                android:visibility="gone"
-                                tools:itemCount="2"
-                                tools:listitem="@layout/list_item_question" />
-
-                            <RelativeLayout
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/preview_recycler"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="48dp"
-                                android:layout_marginBottom="@dimen/dimen_8">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/transparent">
-
-                                    <com.google.android.material.button.MaterialButton
-                                        android:id="@+id/upload_button"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_marginStart="@dimen/dimen_8"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginEnd="4dp"
-                                        android:fontFamily="@font/sen_bold"
-                                        android:onClick="@{()->addQuizViewModel.postQuiz()}"
-                                        android:text="Upload"
-                                        android:textAllCaps="false"
-                                        android:textColor="@color/white"
-                                        android:textSize="13sp"
-                                        app:backgroundTint="@color/primary_green"
-                                        app:cornerRadius="9dp" />
-
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="139dp"
-                                    android:layout_height="38dp"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="14dp"
-                                    android:background="@drawable/transparent_background" />
                             </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                        </RelativeLayout>
-                    </com.google.android.material.card.MaterialCardView>
-                </RelativeLayout>
+                    </RelativeLayout>
+                </com.skydoves.elasticviews.ElasticLayout>
 
-            </androidx.core.widget.NestedScrollView>
+            </RelativeLayout>
 
-        </com.skydoves.elasticviews.ElasticLayout>
+        </androidx.core.widget.NestedScrollView>
+
 
     </RelativeLayout>
 

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver.OnScrollChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -81,7 +82,7 @@ class AddQuizFragment : Fragment() {
     private fun previewExpandableLayout(){
         binding.previewCard.setOnClickListener {
 
-            if (binding.previewRecycler.visibility === View.VISIBLE) {
+            if (binding.previewRecycler.visibility == View.VISIBLE) {
                 // The transition of the hiddenView is carried out by the TransitionManager class.
                 // Here we use an object of the AutoTransition Class to create a default transition
                 TransitionManager.beginDelayedTransition(binding.previewCard, AutoTransition())
@@ -94,4 +95,5 @@ class AddQuizFragment : Fragment() {
             }
         }
     }
+
 }
