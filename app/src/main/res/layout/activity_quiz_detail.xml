@@ -94,12 +94,17 @@
                     app:strokeColor="@color/black"
                     app:strokeWidth="1dp">
 
-                    <ScrollView
+                    <androidx.core.widget.NestedScrollView
                         android:id="@+id/scroll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fillViewport="true">
 
+                        <com.skydoves.elasticviews.ElasticLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_duration="100"
+                            app:layout_scale="0.98">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -469,7 +474,8 @@
                             </RelativeLayout>
 
                         </RelativeLayout>
-                    </ScrollView>
+                        </com.skydoves.elasticviews.ElasticLayout>
+                    </androidx.core.widget.NestedScrollView>
 
                 </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>

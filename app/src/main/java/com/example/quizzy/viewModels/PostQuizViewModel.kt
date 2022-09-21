@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.dataModel.entity.Quiz
@@ -14,23 +13,20 @@ import com.example.quizzy.dataModel.enums.QuizType
 import com.example.quizzy.dataModel.extras.Questions
 import com.example.quizzy.dataModel.extras.Score
 import com.example.quizzy.dataModel.extras.questionFormat
-import com.example.quizzy.dataModel.model.QuizShortModel
 import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-import kotlin.collections.ArrayList
 
 class PostQuizViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var userDetails= UserDetailsSharedPrefrence()
+    private var userDetails = UserDetailsSharedPrefrence()
 
     //Create Quiz Members
     val title = MutableLiveData<String>()
-    val desc = MutableLiveData<String>()
+    val desc = MutableLiveData("")
     val tags = MutableLiveData<String>()
     val time = MutableLiveData<String>()
 
@@ -56,6 +52,12 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
 
     private val _checkPass = MutableLiveData(false)
     val checkPass: LiveData<Boolean> get() = _checkPass
+
+    private val _isUploaded = MutableLiveData(false)
+    val isUploaded: LiveData<Boolean> get() = _isUploaded
+
+    private val _quizId = MutableLiveData<String?>()
+    val quizId: LiveData<String?> get() = _quizId
 
     //Add Questions Member
     val question = MutableLiveData<String>()
@@ -170,7 +172,12 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
             _errorAns.value = "Choose Answer"
         } else {
             //Perform saving
-            val options = listOf(optionA.value!!.trim(), optionB.value!!.trim(), optionC.value!!.trim(), optionD.value!!.trim())
+            val options = listOf(
+                optionA.value!!.trim(),
+                optionB.value!!.trim(),
+                optionC.value!!.trim(),
+                optionD.value!!.trim()
+            )
             val ques = questionFormat(
                 question.value!!.trim(),
                 options,
@@ -178,8 +185,8 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
                 explanation.value.toString().trim()
             )
 
-            val tempList= mutableListOf(ques)
-            val alreadyStored= questionList.value
+            val tempList = mutableListOf(ques)
+            val alreadyStored = questionList.value
             alreadyStored?.let { tempList.addAll(it) }
             questionList.value = tempList
 
@@ -212,10 +219,10 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
     fun postQuiz() {
         //extracting user info here
         val gson = Gson()
-        val savedUserResponse=userDetails.getUserDetails(getApplication())
-        val savedUserModel=gson.fromJson(savedUserResponse, SavedUserModel::class.java)
+        val savedUserResponse = userDetails.getUserDetails(getApplication())
+        val savedUserModel = gson.fromJson(savedUserResponse, SavedUserModel::class.java)
 
-        Log.i("check",savedUserModel.toString())
+        Log.i("check", savedUserModel.toString())
         if (questionList.value != null && questionList.value!!.size > 1) {
             val score = Score(
                 maxScore = (questionList.value!!.size) * (onCorrect.value!!.toInt()),
@@ -235,7 +242,7 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
                 difficulty = difficulty.value,
                 quizType = quizType.value,
                 questions = questions,
-                authorID =savedUserModel.userId,
+                authorID = savedUserModel.userId,
                 authorName = savedUserModel.name,
                 tags = generateTags(),
                 time = timer.value!!,
@@ -245,22 +252,22 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
                 avgRating = 0.0
             )
 
-            val request=quizService.saveQuiz(quiz)
-            request.enqueue(object :Callback<String>{
+            val request = quizService.saveQuiz(quiz)
+            request.enqueue(object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
-                    if (response.isSuccessful){
-                        Log.i("ID",response.body().toString())
+                    if (response.isSuccessful) {
+                        _quizId.value = response.body()
+                        _isUploaded.value = true
                     }
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
-                    Log.i("Failed",t.message.toString())
+                    Log.i("Failed", t.message.toString())
 
                 }
             })
-        }
-        else{
-            Log.i("message","Error in upload")
+        } else {
+            Log.i("message", "Error in upload")
         }
     }
 

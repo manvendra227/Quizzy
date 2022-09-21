@@ -111,6 +111,12 @@
         app:strokeColor="@color/black"
         app:strokeWidth="1dp">
 
+        <com.skydoves.elasticviews.ElasticLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_duration="200"
+            app:layout_scale="0.98">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -217,6 +223,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent">
 
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/attempt_button"
                         android:layout_width="match_parent"
@@ -239,9 +246,11 @@
                     android:layout_height="38dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="24dp"
-                    android:background="@drawable/transparent_background" />
+                    android:background="@drawable/transparent_background"/>
             </RelativeLayout>
         </RelativeLayout>
+
+        </com.skydoves.elasticviews.ElasticLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>
