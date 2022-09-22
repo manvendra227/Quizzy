@@ -1,81 +1,545 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="quizViewModel"
+            type="com.example.quizzy.viewModels.QuizViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="@dimen/dimen_16"
-            android:layout_height="@dimen/dimen_16"
-            android:layout_marginStart="@dimen/dimen_16"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:src="@drawable/ic_arrow_left" />
-
-        <TextView
-            android:id="@+id/basicshead"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_12"
-            android:layout_marginTop="@dimen/dimen_12"
-            android:layout_toEndOf="@id/back_button"
-            android:fontFamily="@font/sen_bold"
-            android:text="Basics of Java"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dimen_text_18" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/timer"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_alignParentEnd="true"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/black"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/primary_green"
-            android:layout_marginEnd="10dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/sen_bold"
-                android:text="@string/timer"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                />
-        </com.google.android.material.card.MaterialCardView>
-
-        <!--TODO Create a progress bar -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/progressBar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_below="@+id/basicshead"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="20dp"
-            app:cardCornerRadius="12dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listQuestion"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/lime_green"
+                android:theme="@style/ToolbarTheme"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="  Time left - 00:58:23"
+                app:titleTextColor="@color/light_grey" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/progressBar"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical"
-            tools:listitem="@layout/list_item_question" />
+            android:background="@color/lime_green">
 
-    </RelativeLayout>
-</LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/main_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    app:layout_duration="160"
+                    app:layout_scale="0.98">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="20dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:paddingBottom="24dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:paddingTop="12dp">
+
+
+                                <TextView
+                                    android:id="@+id/questionNum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="4dp"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/question"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/questionNum"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_toEndOf="@+id/questionNum"
+                                    android:fontFamily="@font/sen_regular"
+                                    android:text="11. What are datatypes and what do they do?"
+                                    android:textColor="@color/black"
+                                    android:textSize="17sp" />
+
+                                <RelativeLayout
+                                    android:id="@+id/optionA"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/question"
+                                    android:layout_alignStart="@+id/question"
+                                    android:layout_marginTop="24dp"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="4dp"
+                                        app:cardCornerRadius="12dp"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:foreground="?android:attr/selectableItemBackground">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optA"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_marginStart="7dp"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                app:cardBackgroundColor="@color/white"
+                                                app:cardCornerRadius="8dp"
+                                                app:strokeColor="@color/black"
+                                                app:strokeWidth="1dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_regular"
+                                                    android:text="@string/optionA"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="20sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="305dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerVertical="true"
+                                                android:layout_marginStart="-8dp"
+                                                android:layout_toEndOf="@+id/optA"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:padding="8dp"
+                                                android:text="Option Number 1What are datatypes and what do they do? what the fuckkkkkkkkkkkkkkkkkkkk do?"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+
+                                        </RelativeLayout>
+                                    </com.google.android.material.card.MaterialCardView>
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/optionB"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/optionA"
+                                    android:layout_alignStart="@+id/question"
+                                    android:layout_marginTop="12dp"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="4dp"
+                                        app:cardCornerRadius="12dp"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:foreground="?android:attr/selectableItemBackground">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optB"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_marginStart="7dp"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                app:cardBackgroundColor="@color/white"
+                                                app:cardCornerRadius="8dp"
+                                                app:strokeColor="@color/black"
+                                                app:strokeWidth="1dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_regular"
+                                                    android:text="B"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="20sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:layout_toEndOf="@+id/optB"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:padding="8dp"
+                                                android:text="Option Number 2"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+
+
+                                        </RelativeLayout>
+                                    </com.google.android.material.card.MaterialCardView>
+
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/optionC"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/optionB"
+                                    android:layout_alignStart="@+id/question"
+                                    android:layout_marginTop="12dp"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="4dp"
+                                        app:cardCornerRadius="12dp"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:foreground="?android:attr/selectableItemBackground">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optC"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_marginStart="7dp"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                app:cardBackgroundColor="@color/white"
+                                                app:cardCornerRadius="8dp"
+                                                app:strokeColor="@color/black"
+                                                app:strokeWidth="1dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_regular"
+                                                    android:text="C"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="20sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:layout_toEndOf="@+id/optC"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:padding="8dp"
+                                                android:text="Option Number 3"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+
+                                        </RelativeLayout>
+                                    </com.google.android.material.card.MaterialCardView>
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/optionD"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/optionC"
+                                    android:layout_alignStart="@+id/question"
+                                    android:layout_marginTop="12dp"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="4dp"
+                                        app:cardCornerRadius="12dp"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:foreground="?android:attr/selectableItemBackground">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:id="@+id/optD"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_marginStart="7dp"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                app:cardBackgroundColor="@color/white"
+                                                app:cardCornerRadius="8dp"
+                                                app:strokeColor="@color/black"
+                                                app:strokeWidth="1dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_regular"
+                                                    android:text="D"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="20sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:layout_toEndOf="@+id/optD"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:padding="8dp"
+                                                android:text="Option Number 4"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+                                        </RelativeLayout>
+                                    </com.google.android.material.card.MaterialCardView>
+
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="20dp"
+                                android:weightSum="10">
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2" />
+
+                                <RelativeLayout
+                                    android:id="@+id/button_2"
+                                    android:layout_width="120dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_weight="2">
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/button_blue1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginStart="3dp"
+                                        android:elevation="5dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="Previous"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp"
+                                        app:backgroundTint="@color/medium"
+                                        app:cornerRadius="20dp" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/transparent_background3"
+                                        android:elevation="10dp"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2" />
+
+                                <RelativeLayout
+                                    android:id="@+id/button_3"
+                                    android:layout_width="120dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_weight="2">
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/button_blue2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginStart="3dp"
+                                        android:elevation="5dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="Next"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp"
+                                        app:backgroundTint="@color/medium"
+                                        app:cornerRadius="20dp" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/transparent_background3"
+                                        android:elevation="10dp"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.5" />
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/temp_line"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="12dp"
+                                    android:fontFamily="@font/sen_bold"
+                                    android:text="Progress"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:orientation="vertical">
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/progress_recycler"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="16dp"
+                                        android:nestedScrollingEnabled="false"
+                                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                        app:strokeColor="@color/black"
+                                        app:strokeWidth="1dp"
+                                        tools:itemCount="5"
+                                        tools:listitem="@layout/list_item_progress" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/question_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_card"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="2dp">
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <RelativeLayout
+                    android:id="@+id/button_4"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/question_nav"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_blue3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="3dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/sen_bold"
+                        android:text="Submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/button_blue"
+                        app:cornerRadius="20dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/transparent_background3"
+                        android:elevation="10dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
