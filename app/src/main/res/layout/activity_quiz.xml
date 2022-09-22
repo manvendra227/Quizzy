@@ -146,14 +146,14 @@
                                             </com.google.android.material.card.MaterialCardView>
 
                                             <TextView
-                                                android:layout_width="305dp"
+                                                android:layout_width="wrap_content"
                                                 android:layout_height="match_parent"
                                                 android:layout_centerVertical="true"
-                                                android:layout_marginStart="-8dp"
+
                                                 android:layout_toEndOf="@+id/optA"
                                                 android:fontFamily="@font/sen_regular"
                                                 android:padding="8dp"
-                                                android:text="Option Number 1What are datatypes and what do they do? what the fuckkkkkkkkkkkkkkkkkkkk do?"
+                                                android:text="What are datatypes and what do they do?"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
 

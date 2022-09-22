@@ -149,7 +149,6 @@ class HomeActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     private fun searchByTag() {
         searchTag.observe(this, Observer {
-            toast.showShort(searchTag.value.toString())
             viewModel.getSearchList().observe(this, Observer {
                 if (it != null) {
                     homePageAdapter.setQuizList(it)

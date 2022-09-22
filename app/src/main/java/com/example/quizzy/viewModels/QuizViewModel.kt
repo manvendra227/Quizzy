@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.quizzy.dataModel.model.ProgressModel
 import com.example.quizzy.dataModel.model.QuizShortModel
 
-class QuizViewModel():ViewModel() {
+class QuizViewModel:ViewModel() {
 
     private var progressList: MutableLiveData<List<ProgressModel>?> = MutableLiveData()
 

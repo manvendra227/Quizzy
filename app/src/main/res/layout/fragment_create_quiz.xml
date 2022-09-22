@@ -78,7 +78,7 @@
                         <com.skydoves.elasticviews.ElasticLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:layout_duration="100"
+                            app:layout_duration="200"
                             app:layout_scale="0.98">
 
                             <LinearLayout

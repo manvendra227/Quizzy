@@ -96,6 +96,12 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
         return questionList
     }
 
+    fun updateQuestionList(index:Int){
+        val tempList= questionList.value?.reversed()?.toMutableList()
+        tempList?.removeAt(index)
+        questionList.value= tempList?.reversed()?.toList()
+        indexTitle.value = "Enter question number : ${questionList.value!!.size + 1}"
+    }
 
     fun setDifficulty() {
         if (isEasy.value == true) difficulty.value = Difficulty.EASY

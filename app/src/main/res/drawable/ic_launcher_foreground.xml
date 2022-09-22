@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <group android:scaleX="1.608"
+      android:scaleY="1.608"
+      android:translateX="17.82"
+      android:translateY="17.82">
+    <group>
+      <clip-path
+          android:pathData="M0,0h45v45h-45z"/>
+      <path
+          android:pathData="M30,0H15V45H30V0Z"
+          android:fillColor="#E8FF5E"/>
+      <path
+          android:pathData="M15,0H0V45H15V0Z"
+          android:fillColor="#97F6E5"/>
+      <path
+          android:pathData="M45,0H30V45H45V0Z"
+          android:fillColor="#9DFF7A"/>
+      <path
+          android:pathData="M18.369,8.848C20.623,8.334 22.926,8.841 25.213,10.327C28.262,12.308 30.02,14.77 30.36,17.629C30.527,19.221 30.377,20.608 29.845,21.746L25.97,19.228C26.179,18.21 26.192,17.394 26.042,16.719C25.773,15.473 24.955,14.446 23.621,13.58C22.223,12.672 20.846,12.518 19.489,13.12C18.132,13.722 16.861,14.958 15.803,16.909C14.712,18.92 14.364,20.672 14.661,22.184C14.958,23.696 15.773,24.886 17.044,25.711C18.378,26.578 19.625,26.812 20.787,26.413C21.399,26.233 22.114,25.708 22.864,24.959L23.457,27.319L26.675,27.436C25.3,29.18 23.647,30.167 21.589,30.479C19.594,30.831 17.485,30.285 15.388,28.923C12.784,27.23 11.117,25.076 10.549,22.48C9.916,19.844 10.441,17.134 11.994,14.269C13.583,11.179 15.762,9.379 18.369,8.848Z"
+          android:fillColor="#424242"
+          android:fillAlpha="0.99"/>
+      <path
+          android:pathData="M26.198,18.714L35.647,25.272L33.971,26.75L33.608,28.794L24.159,22.236L25.718,19.92L26.198,18.714Z"
+          android:fillColor="#424242"
+          android:fillAlpha="0.99"/>
+      <path
+          android:pathData="M37.139,31.162C38.167,31.162 39,30.25 39,29.125C39,28.001 38.167,27.089 37.139,27.089C36.112,27.089 35.279,28.001 35.279,29.125C35.279,30.25 36.112,31.162 37.139,31.162Z"
+          android:fillColor="#424242"
+          android:fillAlpha="0.99"/>
+    </group>
+  </group>
+</vector>

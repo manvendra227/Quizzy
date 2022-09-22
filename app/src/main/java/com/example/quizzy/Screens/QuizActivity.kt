@@ -58,7 +58,7 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun initRecycler() {
-        val mNoOfColumns: Int = GridColumnCalculator.calculateNoOfColumns(applicationContext,46.0f)
+        val mNoOfColumns: Int = GridColumnCalculator.calculateNoOfColumns(applicationContext, 46.0f)
         progress_recycler.layoutManager = GridLayoutManager(this, mNoOfColumns)
         progressAdapater = ProgressAdapter(this)
         progress_recycler.adapter = progressAdapater
@@ -82,8 +82,8 @@ class QuizActivity : AppCompatActivity() {
 //            }
 //        })
 
-                val list: List<ProgressModel> = List(25) { ProgressModel(Progress.UNMARKED) }
-                progressAdapater.setProgressList(list)
-                progressAdapater.notifyDataSetChanged()
+        val list: List<ProgressModel> = List(25) { ProgressModel(Progress.UNMARKED) }
+        progressAdapater.setProgressList(list)
+        progressAdapater.notifyDataSetChanged()
     }
 }

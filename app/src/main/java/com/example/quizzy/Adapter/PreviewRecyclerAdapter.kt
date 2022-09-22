@@ -14,11 +14,12 @@ import com.example.quizzy.dataModel.extras.questionFormat
 import kotlinx.android.synthetic.main.list_item_question.view.*
 
 
-class PreviewRecyclerAdapter(val context: FragmentActivity) :
+class PreviewRecyclerAdapter(val context: FragmentActivity, val onClickDelete: (Int) -> Unit) :
     RecyclerView.Adapter<PreviewRecyclerAdapter.MyViewHolder>() {
 
     var questionList: List<questionFormat>? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setPreviewList(questionList: List<questionFormat>?) {
         this.questionList = questionList
     }
@@ -33,7 +34,7 @@ class PreviewRecyclerAdapter(val context: FragmentActivity) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(questionList?.get(position)!!,position)
+        holder.bind(questionList?.get(position)!!, position)
     }
 
     override fun getItemCount(): Int {
@@ -41,8 +42,7 @@ class PreviewRecyclerAdapter(val context: FragmentActivity) :
         else return questionList?.size!!
     }
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val delete: ImageView = view.delete
         private val sNo: TextView = view.questionNum
@@ -64,40 +64,54 @@ class PreviewRecyclerAdapter(val context: FragmentActivity) :
         private val backD = view.backD
 
 
-        @SuppressLint("ResourceAsColor")
+        @SuppressLint("ResourceAsColor", "NotifyDataSetChanged")
         fun bind(data: questionFormat, position: Int) {
 
-            question.text=data.question
+            resetViews()
+            question.text = data.question
 
-            optionA.text=data.options?.get(0)
-            optionB.text=data.options?.get(1)
-            optionC.text=data.options?.get(2)
-            optionD.text=data.options?.get(3)
+            optionA.text = data.options?.get(0)
+            optionB.text = data.options?.get(1)
+            optionC.text = data.options?.get(2)
+            optionD.text = data.options?.get(3)
 
-            sNo.text="${(position+1)} . "
+            sNo.text = "${(position + 1)} . "
 
-            when(data.answer){
-                "0"->{
+            when (data.answer) {
+                "0" -> {
                     backA.setBackgroundColor(Color.parseColor("#30D158"))
-                    statusA.visibility=View.VISIBLE
+                    statusA.visibility = View.VISIBLE
                 }
-                "1"->{
+                "1" -> {
                     backB.setBackgroundColor(Color.parseColor("#30D158"))
-                    statusB.visibility=View.VISIBLE
+                    statusB.visibility = View.VISIBLE
                 }
-                "2"->{
+                "2" -> {
                     backC.setBackgroundColor(Color.parseColor("#30D158"))
-                    statusC.visibility=View.VISIBLE
+                    statusC.visibility = View.VISIBLE
                 }
-                "3"->{
+                "3" -> {
                     backD.setBackgroundColor(Color.parseColor("#30D158"))
-                    statusD.visibility=View.VISIBLE
+                    statusD.visibility = View.VISIBLE
 
                 }
             }
 
+            //passing the index to activity on button click
             delete.setOnClickListener {
+                onClickDelete(position)
             }
+        }
+
+        private fun resetViews(){
+            backA.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            backB.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            backC.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            backD.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            statusA.visibility = View.INVISIBLE
+            statusB.visibility = View.INVISIBLE
+            statusC.visibility = View.INVISIBLE
+            statusD.visibility = View.INVISIBLE
         }
     }
 

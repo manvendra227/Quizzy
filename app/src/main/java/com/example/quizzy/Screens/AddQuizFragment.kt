@@ -75,8 +75,15 @@ class AddQuizFragment : Fragment() {
 
     private fun initRecyclerPreview() {
         binding.previewRecycler.layoutManager = LinearLayoutManager(requireActivity())
-        mAdapter = PreviewRecyclerAdapter(requireActivity())
+        mAdapter = PreviewRecyclerAdapter(requireActivity()) { index -> deleteItem(index) }
         binding.previewRecycler.adapter = mAdapter
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun deleteItem(index: Int) {
+        viewModel.updateQuestionList(index)
+        mAdapter.notifyDataSetChanged()
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
