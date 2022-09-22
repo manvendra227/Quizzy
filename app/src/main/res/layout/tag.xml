@@ -6,11 +6,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
-    android:foreground="@drawable/transparent_background"
+    android:foreground="@drawable/transparent_background4"
     app:cardView_duration="200"
-    app:cardView_scale="1.2"
+    app:cardView_scale="1.15"
     android:layout_marginStart="12dp"
     android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     app:strokeColor="@color/black"
     app:strokeWidth="1dp">
     <TextView

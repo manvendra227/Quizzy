@@ -36,8 +36,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/lime_green">
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -438,53 +437,6 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="2.5" />
                             </LinearLayout>
-
-                            <View
-                                android:id="@+id/temp_line"
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:background="@color/black" />
-
-                            <LinearLayout
-
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="12dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="Progress"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="16dp"
-                                    android:orientation="vertical">
-
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/progress_recycler"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginEnd="16dp"
-                                        android:nestedScrollingEnabled="false"
-                                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                        app:strokeColor="@color/black"
-                                        app:strokeWidth="1dp"
-                                        tools:itemCount="5"
-                                        tools:listitem="@layout/list_item_progress" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
@@ -501,6 +453,28 @@
                     app:cardCornerRadius="20dp"
                     app:strokeColor="@color/black"
                     app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/progress_recycler"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:nestedScrollingEnabled="false"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:strokeColor="@color/black"
+                                app:strokeWidth="1dp"
+                                tools:itemCount="5"
+                                tools:listitem="@layout/list_item_progress" />
+
+                        </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 

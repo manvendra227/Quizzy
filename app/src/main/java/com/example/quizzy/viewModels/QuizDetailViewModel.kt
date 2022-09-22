@@ -36,6 +36,8 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     val maxScore :LiveData<String> get() = _maxScore
     val noOfQuestion :LiveData<String> get() = _noOfQuestion
 
+    private var tagList: MutableLiveData<List<String>?> = MutableLiveData()
+
 
     private var _shouldStart=MutableLiveData<Boolean>()
     val shouldStart:LiveData<Boolean> get() = _shouldStart
@@ -79,9 +81,17 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
             c=b.div(a)
         }
         _noOfQuestion.value= c.toString()
+
+        tagList.value=quiz.tags
     }
 
     fun startQuiz(){
         _shouldStart.value=true
     }
+
+
+    fun getTagsList(): MutableLiveData<List<String>?> {
+        return tagList
+    }
+
 }

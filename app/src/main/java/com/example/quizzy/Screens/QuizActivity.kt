@@ -26,7 +26,7 @@ class QuizActivity : AppCompatActivity() {
     private val toast = MyToast(this)
     private lateinit var binding: ActivityQuizBinding
     private lateinit var viewModel: QuizViewModel
-    private lateinit var progressAdapater: ProgressAdapter
+    private lateinit var progressAdapter: ProgressAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,6 @@ class QuizActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
 
         initViewModel()
         initRecycler()
@@ -58,10 +57,10 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun initRecycler() {
-        val mNoOfColumns: Int = GridColumnCalculator.calculateNoOfColumns(applicationContext, 46.0f)
+        val mNoOfColumns: Int = GridColumnCalculator.calculateNoOfColumns(applicationContext, 48.0f)
         progress_recycler.layoutManager = GridLayoutManager(this, mNoOfColumns)
-        progressAdapater = ProgressAdapter(this)
-        progress_recycler.adapter = progressAdapater
+        progressAdapter = ProgressAdapter(this)
+        progress_recycler.adapter = progressAdapter
     }
 
     private fun initViewModel() {
@@ -82,8 +81,8 @@ class QuizActivity : AppCompatActivity() {
 //            }
 //        })
 
-        val list: List<ProgressModel> = List(25) { ProgressModel(Progress.UNMARKED) }
-        progressAdapater.setProgressList(list)
-        progressAdapater.notifyDataSetChanged()
+        val list: List<ProgressModel> = List(50) { ProgressModel(Progress.UNMARKED) }
+        progressAdapter.setProgressList(list)
+        progressAdapter.notifyDataSetChanged()
     }
 }
