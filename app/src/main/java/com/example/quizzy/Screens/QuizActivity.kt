@@ -1,11 +1,13 @@
 package com.example.quizzy.Screens
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
@@ -21,7 +23,6 @@ import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.viewModels.QuizViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.QuizViewModelFactory
 import kotlinx.android.synthetic.main.activity_quiz.*
-import kotlin.math.min
 
 
 class QuizActivity : AppCompatActivity() {
@@ -65,11 +66,6 @@ class QuizActivity : AppCompatActivity() {
         progress_recycler.adapter = progressAdapter
     }
 
-    private fun chooseQuestion(index: Int) {
-        viewModel.selectQuestion(index)
-        progressAdapter.notifyDataSetChanged()
-    }
-
     private fun initViewModel(quizId: String) {
 
         viewModelFactory = QuizViewModelFactory(quizId, time)
@@ -81,7 +77,6 @@ class QuizActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     private fun loadPage() {
 
-        viewModel.fetchQuestions()
         viewModel.getProgressList().observe(this, Observer {
             if (it != null) {
                 progressAdapter.setProgressList(it)
@@ -114,16 +109,18 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun observers() {
 
         viewModel.currentTime.observe(this) { newTime ->
             setTimer(newTime)
         }
 
-        viewModel.eventQuizFinished.observe(this){ isFinished ->
-            if (isFinished){
-                toast.showShort("Finished") } }
-
+        viewModel.eventQuizFinished.observe(this) { isFinished ->
+            if (isFinished) {
+                toast.showShort("Finished")
+            }
+        }
 
         viewModel.eventBuzz.observe(this, Observer { currentBuzz ->
             if (currentBuzz != BuzzType.NO_BUZZ) {
@@ -131,6 +128,22 @@ class QuizActivity : AppCompatActivity() {
                 viewModel.onBuzzComplete()
             }
         })
+
+        viewModel.selection.observe(this){
+            resetColors()
+            when(it){
+                0->{setGreen(optA)}
+                1->{setGreen(optB)}
+                2->{setGreen(optC)}
+                3->{setGreen(optD)}
+            }
+        }
+    }
+
+
+    private fun chooseQuestion(index: Int) {
+        viewModel.selectQuestion(index)
+        progressAdapter.notifyDataSetChanged()
     }
 
     /**
@@ -150,20 +163,20 @@ class QuizActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceAsColor")
-    private fun setTimer(newTime:Long){
-        if (newTime>0){
-            val seconds=if ((newTime%60)>9) "${newTime%60}" else "0${newTime%60}"
-            val minutes=if(((newTime/60).toInt())>9) "${((newTime/60).toInt())%60}" else "0${(newTime/60).toInt()}"
-            val hours=((newTime/60).toInt())/60
-            binding.toolbarTextView.text=" 0${hours}:${minutes}:${seconds}"
+    private fun setTimer(newTime: Long) {
+        if (newTime > 0) {
+            val seconds = if ((newTime % 60) > 9) "${newTime % 60}" else "0${newTime % 60}"
+            val minutes =
+                if (((newTime / 60).toInt()) > 9) "${((newTime / 60).toInt()) % 60}" else "0${(newTime / 60).toInt()}"
+            val hours = ((newTime / 60).toInt()) / 60
+            binding.toolbarTextView.text = " 0${hours}:${minutes}:${seconds}"
+        } else {
+            binding.toolbarTextView.text = "Time Over"
         }
-        else{
-            binding.toolbarTextView.text="Time Over"
-        }
-        if (newTime<30){
+        if (newTime < 30) {
             toolbar.animation = AnimationUtils.loadAnimation(this, R.anim.slow_blinking)
         }
-        if (newTime<10){
+        if (newTime < 10) {
             toolbar.animation = AnimationUtils.loadAnimation(this, R.anim.blinking)
         }
     }
@@ -181,4 +194,16 @@ class QuizActivity : AppCompatActivity() {
         }, 2000)
     }
 
+    private fun setGreen(view: RelativeLayout) {
+        view.setBackgroundColor(Color.parseColor("#30D158"))
+    }
+    private fun setWhite(view: RelativeLayout) {
+        view.setBackgroundColor(Color.parseColor("#FFFFFF"))
+    }
+    private fun resetColors(){
+        setWhite(optA)
+        setWhite(optB)
+        setWhite(optC)
+        setWhite(optD)
+    }
 }

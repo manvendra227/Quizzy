@@ -49,8 +49,11 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     init {
         Log.i("Quiz", "QuizViewModel created!")
 
-        _eventQuizFinished.value=false
+        //fetchData
+        fetchQuestions()
 
+        //timer
+        _eventQuizFinished.value = false
         val quizTimeInMins = time.filter { it.isDigit() }
         val quizTimeInMilliSeconds = quizTimeInMins.toLong() * 1000L * 60L
 
@@ -60,7 +63,7 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
                 if (millisUntilFinished / ONE_SECOND <= COUNTDOWN_PANIC_SECONDS) {
                     _eventBuzz.value = BuzzType.COUNTDOWN_PANIC
                 }
-                _currentTime.value=millisUntilFinished/1000
+                _currentTime.value = millisUntilFinished / 1000
             }
 
             override fun onFinish() {
@@ -73,6 +76,7 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     }
 
 
+    private lateinit var tempAnswer: MutableList<Int>
     private var progressList: MutableLiveData<List<ProgressModel>?> = MutableLiveData()
     private val quizService = RetrofitBuilder.buildService(QuizService::class.java)
 
@@ -96,31 +100,14 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     val index: LiveData<Int> get() = _index
     val noOfQuestions: LiveData<Int> get() = _noOfQuestions
 
+    private var _selection=MutableLiveData(-1)
+    val selection:LiveData<Int> get() = _selection
 
     fun getProgressList(): MutableLiveData<List<ProgressModel>?> {
         return progressList
     }
 
-    fun prevClick() {
-        _index.value = _index.value?.minus(1)
-        _eventBuzz.value = BuzzType.NEXT
-
-    }
-
-    fun nextClick() {
-        _index.value = _index.value?.plus(1)
-        _eventBuzz.value = BuzzType.NEXT
-
-    }
-
-    fun submitClick() {
-        _eventBuzz.value=BuzzType.NEXT
-    }
-
-
-    fun timer() {}
-
-    fun fetchQuestions() {
+    private fun fetchQuestions() {
         val request = quizService.fetchQuestionsById(quizId = quizId)
         request.enqueue(object : Callback<Questions> {
 
@@ -130,6 +117,8 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
                     scores = response.body()!!.score!!
                     questionList = response.body()!!.question!!
                     _noOfQuestions.value = response.body()!!.noOfQuestions
+                    tempAnswer = MutableList(noOfQuestions.value!!) { -1 }
+                    Log.i("message", tempAnswer.toString())
                     progressList.value =
                         List(questionList.size) { ProgressModel(Progress.UNMARKED) }
                     if (questionList.isNotEmpty()) {
@@ -147,7 +136,14 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
         })
     }
 
+    fun selectQuestion(index: Int) {
+        resetSelections()
+        _index.value = index
+    }
+
+
     fun setQuestion(index: Int?) {
+        resetSelections()
         if (!questionList.isNullOrEmpty()) {
             val currentQuestion = questionList[index!!]
             _question.value = "${index.plus(1)}.${currentQuestion.question}"
@@ -155,17 +151,47 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
             _optionB.value = currentQuestion.options?.get(1)
             _optionC.value = currentQuestion.options?.get(2)
             _optionD.value = currentQuestion.options?.get(3)
+            _selection.value=tempAnswer[index]
         }
     }
 
-    fun selectQuestion(index: Int) {
-        _index.value = index
+    private fun resetSelections() {
+        _selection.value=-1
+    }
+
+    private fun saveAnswer(answer:Int) {
+        index.value?.let { tempAnswer.set(it,answer) }
+    }
+
+    fun onClick(marker: Int){
+        resetSelections()
+        when(marker) {
+            0->{_selection.value=0}
+            1->{_selection.value=1}
+            2->{_selection.value=2}
+            3->{_selection.value=3}
+        }
+        saveAnswer(marker)
+        Log.i("message",tempAnswer.toString())
+    }
+
+    fun prevClick() {
+        _index.value = _index.value?.minus(1)
+        _eventBuzz.value = BuzzType.NEXT
+    }
+
+    fun nextClick() {
+        _index.value = _index.value?.plus(1)
+        _eventBuzz.value = BuzzType.NEXT
+    }
+
+    fun submitClick() {
+        _eventBuzz.value = BuzzType.NEXT
     }
 
     fun onBuzzComplete() {
         _eventBuzz.value = BuzzType.NO_BUZZ
     }
-
 
     override fun onCleared() {
         super.onCleared()
