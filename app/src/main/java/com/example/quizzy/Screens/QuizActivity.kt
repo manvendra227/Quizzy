@@ -5,6 +5,7 @@ import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
@@ -20,6 +21,7 @@ import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.viewModels.QuizViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.QuizViewModelFactory
 import kotlinx.android.synthetic.main.activity_quiz.*
+import kotlin.math.min
 
 
 class QuizActivity : AppCompatActivity() {
@@ -115,7 +117,7 @@ class QuizActivity : AppCompatActivity() {
     private fun observers() {
 
         viewModel.currentTime.observe(this) { newTime ->
-            binding.toolbar.title = "Time left- $newTime"
+            setTimer(newTime)
         }
 
         viewModel.eventQuizFinished.observe(this){ isFinished ->
@@ -144,6 +146,25 @@ class QuizActivity : AppCompatActivity() {
                 //deprecated in API 26
                 buzzer.vibrate(pattern, -1)
             }
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun setTimer(newTime:Long){
+        if (newTime>0){
+            val seconds=if ((newTime%60)>9) "${newTime%60}" else "0${newTime%60}"
+            val minutes=if(((newTime/60).toInt())>9) "${((newTime/60).toInt())%60}" else "0${(newTime/60).toInt()}"
+            val hours=((newTime/60).toInt())/60
+            binding.toolbarTextView.text=" 0${hours}:${minutes}:${seconds}"
+        }
+        else{
+            binding.toolbarTextView.text="Time Over"
+        }
+        if (newTime<30){
+            toolbar.animation = AnimationUtils.loadAnimation(this, R.anim.slow_blinking)
+        }
+        if (newTime<10){
+            toolbar.animation = AnimationUtils.loadAnimation(this, R.anim.blinking)
         }
     }
 

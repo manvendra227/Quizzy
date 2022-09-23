@@ -60,6 +60,7 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
                 if (millisUntilFinished / ONE_SECOND <= COUNTDOWN_PANIC_SECONDS) {
                     _eventBuzz.value = BuzzType.COUNTDOWN_PANIC
                 }
+                _currentTime.value=millisUntilFinished/1000
             }
 
             override fun onFinish() {
