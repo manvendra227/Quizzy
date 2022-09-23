@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.persistableBundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.QuizActivity
@@ -11,7 +12,7 @@ import com.example.quizzy.dataModel.enums.Progress
 import com.example.quizzy.dataModel.model.ProgressModel
 import kotlinx.android.synthetic.main.list_item_progress.view.*
 
-class ProgressAdapter(private val activity: QuizActivity) : RecyclerView.Adapter<ProgressAdapter.MyViewHolder>() {
+class ProgressAdapter(private val activity: QuizActivity ,val onClickProgress: (Int) -> Unit) : RecyclerView.Adapter<ProgressAdapter.MyViewHolder>() {
 
     private var progress: List<ProgressModel>? = null
 
@@ -34,7 +35,7 @@ class ProgressAdapter(private val activity: QuizActivity) : RecyclerView.Adapter
     }
 
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val progressBox=view.progressBox
 
@@ -45,6 +46,10 @@ class ProgressAdapter(private val activity: QuizActivity) : RecyclerView.Adapter
                 Progress.MARKED->{progressBox.setCardBackgroundColor(Color.parseColor("#48B725"))}
                 Progress.PINNED->{progressBox.setCardBackgroundColor(Color.parseColor("#FFB912"))}
                 else -> {progressBox.setCardBackgroundColor(Color.parseColor("#000000"))}
+            }
+
+            progressBox.setOnClickListener {
+                onClickProgress(adapterPosition)
             }
         }
     }

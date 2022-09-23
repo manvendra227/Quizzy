@@ -720,7 +720,7 @@
                                                 android:background="@null"
                                                 android:fontFamily="@font/sen_reg"
                                                 android:hint="60 mins"
-                                                android:inputType="numberDecimal"
+                                                android:inputType="number"
                                                 android:maxLength="6"
                                                 android:maxLines="1"
                                                 android:minHeight="@dimen/dimen_44"
@@ -736,7 +736,6 @@
                                                 android:layout_marginEnd="12dp"
                                                 android:background="@drawable/switch_checkbox"
                                                 android:checked="@={createQuizModel.isTimed}"
-                                                android:onCheckedChanged="@{()->createQuizModel.onTimerClick()}"
                                                 android:textOff=""
                                                 android:textOn="" />
 

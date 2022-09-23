@@ -52,21 +52,11 @@ class AddQuizFragment : Fragment() {
     }
 
     private fun errors() {
-        viewModel.errorQues.observe(requireActivity()) {
-            binding.questionString.error = viewModel.errorQues.value
-        }
-        viewModel.errorA.observe(requireActivity()) {
-            binding.optionBoxA.error = viewModel.errorA.value
-        }
-        viewModel.errorB.observe(requireActivity()) {
-            binding.optionBoxB.error = viewModel.errorB.value
-        }
-        viewModel.errorC.observe(requireActivity()) {
-            binding.optionBoxC.error = viewModel.errorC.value
-        }
-        viewModel.errorD.observe(requireActivity()) {
-            binding.optionBoxD.error = viewModel.errorD.value
-        }
+        viewModel.errorQues.observe(requireActivity()) { binding.questionString.error = viewModel.errorQues.value }
+        viewModel.errorA.observe(requireActivity()) { binding.optionBoxA.error = viewModel.errorA.value }
+        viewModel.errorB.observe(requireActivity()) { binding.optionBoxB.error = viewModel.errorB.value }
+        viewModel.errorC.observe(requireActivity()) { binding.optionBoxC.error = viewModel.errorC.value }
+        viewModel.errorD.observe(requireActivity()) { binding.optionBoxD.error = viewModel.errorD.value }
         viewModel.errorAns.observe(requireActivity()) {
             StyleableToast.makeText(requireActivity(), viewModel.errorAns.value, R.style.errorToast)
                 .show()

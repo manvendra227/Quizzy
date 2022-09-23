@@ -29,7 +29,7 @@
                 android:theme="@style/ToolbarTheme"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="  Time left - 00:58:23"
+                app:title="Time left - 00:58:23"
                 app:titleTextColor="@color/light_grey" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -94,7 +94,7 @@
                                     android:layout_marginStart="5dp"
                                     android:layout_toEndOf="@+id/questionNum"
                                     android:fontFamily="@font/sen_regular"
-                                    android:text="11. What are datatypes and what do they do?"
+                                    android:text="@{quizViewModel.question}"
                                     android:textColor="@color/black"
                                     android:textSize="17sp" />
 
@@ -148,11 +148,10 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="match_parent"
                                                 android:layout_centerVertical="true"
-
                                                 android:layout_toEndOf="@+id/optA"
                                                 android:fontFamily="@font/sen_regular"
                                                 android:padding="8dp"
-                                                android:text="What are datatypes and what do they do?"
+                                                android:text="@{quizViewModel.optionA}"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
 
@@ -214,7 +213,7 @@
                                                 android:layout_toEndOf="@+id/optB"
                                                 android:fontFamily="@font/sen_regular"
                                                 android:padding="8dp"
-                                                android:text="Option Number 2"
+                                                android:text="@{quizViewModel.optionB}"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
 
@@ -278,7 +277,7 @@
                                                 android:layout_toEndOf="@+id/optC"
                                                 android:fontFamily="@font/sen_regular"
                                                 android:padding="8dp"
-                                                android:text="Option Number 3"
+                                                android:text="@{quizViewModel.optionC}"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
 
@@ -339,7 +338,7 @@
                                                 android:layout_toEndOf="@+id/optD"
                                                 android:fontFamily="@font/sen_regular"
                                                 android:padding="8dp"
-                                                android:text="Option Number 4"
+                                                android:text="@{quizViewModel.optionD}"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
                                         </RelativeLayout>
@@ -354,27 +353,29 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="20dp"
+                                android:gravity="center"
                                 android:weightSum="10">
 
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="2" />
 
                                 <RelativeLayout
-                                    android:id="@+id/button_2"
-                                    android:layout_width="120dp"
+                                    android:id="@+id/button_prev"
+                                    android:layout_width="0dp"
                                     android:layout_height="50dp"
                                     android:layout_marginTop="10dp"
-                                    android:layout_weight="2">
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_marginRight="12dp"
+                                    android:layout_weight="5">
 
                                     <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_blue1"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_marginStart="3dp"
+                                        android:clickable="true"
                                         android:elevation="5dp"
+                                        android:focusable="true"
                                         android:fontFamily="@font/sen_bold"
+                                        android:onClick="@{()->quizViewModel.prevClick()}"
                                         android:text="Previous"
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
@@ -394,31 +395,32 @@
                                         app:strokeWidth="1dp" />
                                 </RelativeLayout>
 
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="2" />
 
                                 <RelativeLayout
-                                    android:id="@+id/button_3"
-                                    android:layout_width="120dp"
+                                    android:id="@+id/button_next"
+                                    android:layout_width="0dp"
                                     android:layout_height="50dp"
                                     android:layout_marginTop="10dp"
-                                    android:layout_weight="2">
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_marginRight="12dp"
+                                    android:layout_weight="5">
 
                                     <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_blue2"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_marginStart="3dp"
+                                        android:clickable="true"
                                         android:elevation="5dp"
                                         android:fontFamily="@font/sen_bold"
+                                        android:onClick="@{()->quizViewModel.nextClick()}"
                                         android:text="Next"
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
                                         android:textSize="13sp"
                                         app:backgroundTint="@color/medium"
                                         app:cornerRadius="20dp" />
+
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -432,17 +434,13 @@
                                         app:strokeWidth="1dp" />
                                 </RelativeLayout>
 
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="2.5" />
                             </LinearLayout>
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
                 </com.skydoves.elasticviews.ElasticLayout>
 
-                <com.google.android.material.card.MaterialCardView
+                <com.skydoves.elasticviews.ElasticCardView
                     android:id="@+id/question_nav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -450,33 +448,36 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
+                    android:foreground="@drawable/transparent_background5"
                     app:cardCornerRadius="20dp"
+                    app:cardView_duration="160"
+                    app:cardView_scale=".98"
                     app:strokeColor="@color/black"
                     app:strokeWidth="2dp">
 
-                        <LinearLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/progress_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:orientation="vertical">
+                            android:nestedScrollingEnabled="false"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:strokeColor="@color/black"
+                            app:strokeWidth="1dp"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/list_item_progress" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/progress_recycler"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:nestedScrollingEnabled="false"
-                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:strokeColor="@color/black"
-                                app:strokeWidth="1dp"
-                                tools:itemCount="5"
-                                tools:listitem="@layout/list_item_progress" />
+                    </LinearLayout>
 
-                        </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
+                </com.skydoves.elasticviews.ElasticCardView>
 
                 <RelativeLayout
                     android:id="@+id/button_4"
@@ -494,6 +495,7 @@
                         android:layout_marginStart="3dp"
                         android:elevation="5dp"
                         android:fontFamily="@font/sen_bold"
+                        android:onClick="@{()->quizViewModel.submitClick()}"
                         android:text="Submit"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

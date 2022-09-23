@@ -48,6 +48,8 @@ class CreateQuizFragment : Fragment() {
                 findNavController().navigate(R.id.action_createQuizFragment_to_addQuizFragment)
             }
         })
+
+        viewModel.time.observe(requireActivity()){viewModel.onTimerClick()}
     }
 
     private fun errors(){

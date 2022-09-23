@@ -36,7 +36,7 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
 
     private var difficulty = MutableLiveData(Difficulty.EASY)
     private var quizType = MutableLiveData(QuizType.MCQ)
-    private var timer = MutableLiveData(60)
+    private var timer = MutableLiveData(0)
 
     val isTimed = MutableLiveData(false)
     val isImported = MutableLiveData(false)
@@ -111,7 +111,7 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
 
     fun onTimerClick() {
         Log.i("timer", timer.value.toString())
-        if (isTimed.value == true && time.value != null) timer.value = time.value?.toInt()
+        if (isTimed.value == true && !time.value.isNullOrEmpty()) timer.value = time.value?.toInt()
         else if (isTimed.value == true && time.value == null) timer.value = 60
         else timer.value = 0
         Log.i("timer", timer.value.toString())
@@ -135,7 +135,7 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
 
     private fun generateTags(): List<String>? {
         val str = tags.value
-        return str?.split( ",", " ,", ", ", ignoreCase = true)
+        return str?.split(",", " ,", ", ", ignoreCase = true)
     }
 
     fun checkStatus() {
@@ -269,9 +269,9 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.i("Failed", t.message.toString())
-
                 }
             })
+
         } else {
             Log.i("message", "Error in upload")
         }

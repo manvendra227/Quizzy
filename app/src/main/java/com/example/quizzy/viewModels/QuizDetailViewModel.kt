@@ -26,6 +26,7 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     private var _passing = MutableLiveData<String>()
     private var _maxScore = MutableLiveData<String>()
     private var _noOfQuestion = MutableLiveData<String>()
+    private var _allQuestions=MutableLiveData<Questions?>()
 
     val title :LiveData<String> get() = _title
     val desc :LiveData<String> get() = _desc
@@ -35,6 +36,7 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     val passing :LiveData<String> get() = _passing
     val maxScore :LiveData<String> get() = _maxScore
     val noOfQuestion :LiveData<String> get() = _noOfQuestion
+    val allQuestions:LiveData<Questions?> get() = _allQuestions
 
     private var tagList: MutableLiveData<List<String>?> = MutableLiveData()
 
@@ -73,6 +75,7 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
         _onWrong.value= tempScore?.onWrong.toString()
         _passing.value= tempScore?.passingScore?.toString()
         _maxScore.value= tempScore?.maxScore.toString()
+        _allQuestions.value=quiz.questions
 
         val a: Int? = tempScore?.onCorrect
         val b: Int? = tempScore?.maxScore

@@ -28,15 +28,15 @@ class QuizDetailActivity : AppCompatActivity() {
     private lateinit var viewModel: QuizDetailViewModel
     private lateinit var viewModelFactory: QuizDetailsViewModelFactory
     private lateinit var quizTagAdapter: QuizTagAdapter
+    private lateinit var quizId: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_quiz_detail)
 
-        val quizId=intent.getStringExtra("quizId")
-        Log.i("mess",quizId.toString())
-        initViewModel(quizId!!)
+        quizId= intent.getStringExtra("quizId").toString()
+        initViewModel(quizId)
         viewModel.getData()
 
         initRecyclerView()
@@ -67,7 +67,8 @@ class QuizDetailActivity : AppCompatActivity() {
     private fun startQuiz(){
         viewModel.shouldStart.observe(this, Observer { check->
             if(check){
-                startActivity(Intent(this,QuizActivity::class.java))
+                val i=
+                startActivity(Intent(this,QuizActivity::class.java).putExtra("quizId",quizId).putExtra("time",viewModel.time.value))
                 finish()
             }
         })
