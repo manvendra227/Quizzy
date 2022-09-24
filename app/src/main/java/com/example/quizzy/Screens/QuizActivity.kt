@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.*
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
@@ -22,7 +24,9 @@ import com.example.quizzy.utilities.GridColumnCalculator
 import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.viewModels.QuizViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.QuizViewModelFactory
+import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.activity_quiz.*
+import kotlinx.android.synthetic.main.popup_quiz_result.view.*
 
 
 class QuizActivity : AppCompatActivity() {
@@ -118,7 +122,7 @@ class QuizActivity : AppCompatActivity() {
 
         viewModel.eventQuizFinished.observe(this) { isFinished ->
             if (isFinished) {
-                toast.showShort("Finished")
+                dialogueResult()
             }
         }
 
@@ -129,17 +133,48 @@ class QuizActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.selection.observe(this){
+        viewModel.selection.observe(this) {
             resetColors()
-            when(it){
-                0->{setGreen(optA)}
-                1->{setGreen(optB)}
-                2->{setGreen(optC)}
-                3->{setGreen(optD)}
+            when (it) {
+                0 -> {
+                    setGreen(optA)
+                }
+                1 -> {
+                    setGreen(optB)
+                }
+                2 -> {
+                    setGreen(optC)
+                }
+                3 -> {
+                    setGreen(optD)
+                }
             }
         }
     }
 
+    private fun dialogueFeedback() {
+        val feedback = LayoutInflater.from(this).inflate(R.layout.popup_rating, null)
+        AlertDialog.Builder(this, R.style.Theme_Transparent).setView(feedback).show()
+    }
+
+    private fun dialogueResult() {
+
+        val score= LayoutInflater.from(this).inflate(R.layout.popup_quiz_result, null)
+        AlertDialog.Builder(this, R.style.Theme_Transparent).setView(score).show().setCancelable(false)
+
+        score.text2.text = "You scored ${viewModel.percentage.value}%"
+        score.text3.text = "${viewModel.counter.value}/${viewModel.noOfQuestions.value}"
+        if (viewModel.isPassed.value == true) {
+            score.text1.text = "Congratulations! You have passed"
+            score.won_emoji.visibility = View.VISIBLE
+            score.lost_emoji.visibility = View.INVISIBLE
+        } else {
+            score.text1.text = "You didn’t get passing score"
+            score.won_emoji.visibility = View.INVISIBLE
+            score.lost_emoji.visibility = View.VISIBLE
+        }
+
+    }
 
     private fun chooseQuestion(index: Int) {
         viewModel.selectQuestion(index)
@@ -173,6 +208,9 @@ class QuizActivity : AppCompatActivity() {
         } else {
             binding.toolbarTextView.text = "Time Over"
         }
+        if (newTime == 30L) {
+            StyleableToast.makeText(this, "30 seconds left", R.style.errorToast).show()
+        }
         if (newTime < 30) {
             toolbar.animation = AnimationUtils.loadAnimation(this, R.anim.slow_blinking)
         }
@@ -197,10 +235,12 @@ class QuizActivity : AppCompatActivity() {
     private fun setGreen(view: RelativeLayout) {
         view.setBackgroundColor(Color.parseColor("#30D158"))
     }
+
     private fun setWhite(view: RelativeLayout) {
         view.setBackgroundColor(Color.parseColor("#FFFFFF"))
     }
-    private fun resetColors(){
+
+    private fun resetColors() {
         setWhite(optA)
         setWhite(optB)
         setWhite(optC)

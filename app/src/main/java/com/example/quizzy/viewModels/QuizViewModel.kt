@@ -16,6 +16,8 @@ import com.example.quizzy.dataModel.model.ProgressModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
 
@@ -46,10 +48,12 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     private var _eventQuizFinished = MutableLiveData<Boolean>()
     val eventQuizFinished: LiveData<Boolean> get() = _eventQuizFinished
 
+    private var quizService:QuizService
+
     init {
         Log.i("Quiz", "QuizViewModel created!")
 
-        //fetchData
+        quizService = RetrofitBuilder.buildService(QuizService::class.java)
         fetchQuestions()
 
         //timer
@@ -78,7 +82,6 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
 
     private lateinit var tempAnswer: MutableList<Int>
     private var progressList: MutableLiveData<List<ProgressModel>?> = MutableLiveData()
-    private val quizService = RetrofitBuilder.buildService(QuizService::class.java)
 
     private lateinit var allQuestions: Questions
     private lateinit var scores: Score
@@ -102,6 +105,15 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
 
     private var _selection=MutableLiveData(-1)
     val selection:LiveData<Int> get() = _selection
+
+    private var _counter=MutableLiveData(0)
+    val counter:LiveData<Int> get() = _counter
+
+    private var _isPassed=MutableLiveData(false)
+    val isPassed:LiveData<Boolean> get() = _isPassed
+
+    private var _percentage=MutableLiveData("")
+    val percentage:LiveData<String> get() = _percentage
 
     fun getProgressList(): MutableLiveData<List<ProgressModel>?> {
         return progressList
@@ -136,12 +148,6 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
         })
     }
 
-    fun selectQuestion(index: Int) {
-        resetSelections()
-        _index.value = index
-    }
-
-
     fun setQuestion(index: Int?) {
         resetSelections()
         if (!questionList.isNullOrEmpty()) {
@@ -153,6 +159,11 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
             _optionD.value = currentQuestion.options?.get(3)
             _selection.value=tempAnswer[index]
         }
+    }
+
+    fun selectQuestion(index: Int) {
+        resetSelections()
+        _index.value = index
     }
 
     private fun resetSelections() {
@@ -187,6 +198,20 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
 
     fun submitClick() {
         _eventBuzz.value = BuzzType.NEXT
+        _currentTime.value = DONE
+        calculateScore()
+        _eventQuizFinished.value=true
+    }
+
+    private fun calculateScore(){
+
+        for ((index, value) in questionList.withIndex()) {
+            if (value.answer.toInt()==tempAnswer[index]) _counter.value=_counter.value?.plus(1)
+        }
+
+        val tempPer = counter.value?.toDouble()?.div(noOfQuestions.value!!.toDouble())?.times(100.0)
+        _percentage.value=String.format("%.2f",tempPer)
+        if (tempPer!! >= scores.passingScore) _isPassed.value=true
     }
 
     fun onBuzzComplete() {
