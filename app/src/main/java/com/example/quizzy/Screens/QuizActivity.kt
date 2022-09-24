@@ -1,6 +1,7 @@
 package com.example.quizzy.Screens
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.*
 import android.util.Log
@@ -172,6 +173,13 @@ class QuizActivity : AppCompatActivity() {
             score.text1.text = "You didn’t get passing score"
             score.won_emoji.visibility = View.INVISIBLE
             score.lost_emoji.visibility = View.VISIBLE
+        }
+
+        score.close_button.setOnClickListener {
+            val intent=Intent(this,QuizDetailActivity::class.java)
+            intent.putExtra("quizId",quizId)
+            startActivity(intent)
+            finish()
         }
 
     }

@@ -199,6 +199,7 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     fun submitClick() {
         _eventBuzz.value = BuzzType.NEXT
         _currentTime.value = DONE
+        timer.cancel()
         calculateScore()
         _eventQuizFinished.value=true
     }
