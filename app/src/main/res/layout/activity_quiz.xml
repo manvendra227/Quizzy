@@ -515,7 +515,6 @@
                 </com.skydoves.elasticviews.ElasticCardView>
 
                 <RelativeLayout
-                    android:id="@+id/button_4"
                     android:layout_width="150dp"
                     android:layout_height="60dp"
                     android:layout_below="@+id/question_nav"
@@ -524,13 +523,12 @@
                     android:layout_marginBottom="16dp">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button_blue3"
+                        android:id="@+id/submit_button"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="3dp"
                         android:elevation="5dp"
                         android:fontFamily="@font/sen_bold"
-                        android:onClick="@{()->quizViewModel.submitClick()}"
                         android:text="Submit"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

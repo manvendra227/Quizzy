@@ -57,6 +57,7 @@ class QuizViewModel(val userId:String, val quizId: String, val time: String) : V
     private lateinit var pins: MutableList<Int>
 
     val isPinned = MutableLiveData(false)
+    val wantSubmit = MutableLiveData(false)
     val rating=MutableLiveData(0.0f)
     val isRated=MutableLiveData(false)
 
@@ -235,7 +236,6 @@ class QuizViewModel(val userId:String, val quizId: String, val time: String) : V
         _eventBuzz.value = BuzzType.NEXT
         _currentTime.value = DONE
         calculateScore()
-        _eventQuizFinished.value = true
 
         //if no timer , no cancel required
         if (!(time.isNullOrEmpty() || time.equals("No Time limit", true))) {

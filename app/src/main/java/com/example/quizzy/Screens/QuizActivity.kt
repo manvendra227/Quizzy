@@ -25,6 +25,7 @@ import com.example.quizzy.dataModel.enums.BuzzType
 import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.databinding.ActivityQuizBinding
 import com.example.quizzy.databinding.PopupRatingBinding
+import com.example.quizzy.databinding.PopupSubmitQuizBinding
 import com.example.quizzy.utilities.GridColumnCalculator
 import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
@@ -48,7 +49,9 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var quizId: String
     private lateinit var time: String
     private lateinit var dialogBinding: PopupRatingBinding
+    private lateinit var dialogWarningSubmitBinding: PopupSubmitQuizBinding
     private lateinit var dialogFeedback: Dialog
+    private lateinit var dialogWarningSubmit: Dialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,6 +127,10 @@ class QuizActivity : AppCompatActivity() {
 
             }
         }
+
+        binding.submitButton.setOnClickListener {
+            dialogSubmitWarning()
+        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -135,7 +142,7 @@ class QuizActivity : AppCompatActivity() {
 
         viewModel.eventQuizFinished.observe(this) { isFinished ->
             if (isFinished) {
-                dialogueResult()
+                dialogResult()
             }
         }
 
@@ -156,9 +163,15 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.wantSubmit.observe(this){
+            if (it) {
+                dialogResult()
+            }
+        }
+
     }
 
-    private fun dialogueFeedback() {
+    private fun dialogFeedback() {
 
         dialogBinding = PopupRatingBinding.inflate(layoutInflater)
         dialogFeedback = Dialog(this)
@@ -185,9 +198,8 @@ class QuizActivity : AppCompatActivity() {
         dialogFeedback.show()
     }
 
-
     @SuppressLint("SetTextI18n")
-    private fun dialogueResult() {
+    private fun dialogResult() {
 
         val score = LayoutInflater.from(this).inflate(R.layout.popup_quiz_result, null)
         val box =
@@ -209,8 +221,23 @@ class QuizActivity : AppCompatActivity() {
 
         score.close_button.setOnClickListener {
             box.dismiss()
-            dialogueFeedback()
+            dialogFeedback()
         }
+    }
+
+    private fun dialogSubmitWarning() {
+
+        dialogWarningSubmitBinding = PopupSubmitQuizBinding.inflate(layoutInflater)
+        dialogWarningSubmit = Dialog(this)
+        dialogWarningSubmit.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogWarningSubmit.setContentView(dialogWarningSubmitBinding.root)
+
+        dialogWarningSubmitBinding.yesButton.setOnClickListener {
+            viewModel.submitClick()
+            viewModel.wantSubmit.value=true
+            dialogWarningSubmit.dismiss()
+        }
+        dialogWarningSubmit.show()
     }
 
     private fun chooseQuestion(index: Int) {

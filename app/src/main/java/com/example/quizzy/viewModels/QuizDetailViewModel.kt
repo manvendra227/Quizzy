@@ -8,11 +8,9 @@ import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.extras.Questions
-import com.example.quizzy.dataModel.extras.questionFormat
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class QuizDetailViewModel(private val quizId: String) : ViewModel() {
 
@@ -26,23 +24,22 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     private var _passing = MutableLiveData<String>()
     private var _maxScore = MutableLiveData<String>()
     private var _noOfQuestion = MutableLiveData<String>()
-    private var _allQuestions=MutableLiveData<Questions?>()
+    private var _allQuestions = MutableLiveData<Questions?>()
 
-    val title :LiveData<String> get() = _title
-    val desc :LiveData<String> get() = _desc
-    val time :LiveData<String> get() = _time
-    val onCorrect :LiveData<String> get() = _onCorrect
-    val onWrong :LiveData<String> get() = _onWrong
-    val passing :LiveData<String> get() = _passing
-    val maxScore :LiveData<String> get() = _maxScore
-    val noOfQuestion :LiveData<String> get() = _noOfQuestion
-    val allQuestions:LiveData<Questions?> get() = _allQuestions
+    val title: LiveData<String> get() = _title
+    val desc: LiveData<String> get() = _desc
+    val time: LiveData<String> get() = _time
+    val onCorrect: LiveData<String> get() = _onCorrect
+    val onWrong: LiveData<String> get() = _onWrong
+    val passing: LiveData<String> get() = _passing
+    val maxScore: LiveData<String> get() = _maxScore
+    val noOfQuestion: LiveData<String> get() = _noOfQuestion
+    val allQuestions: LiveData<Questions?> get() = _allQuestions
 
     private var tagList: MutableLiveData<List<String>?> = MutableLiveData()
 
+    var isTimed = MutableLiveData<Boolean>()
 
-    private var _shouldStart=MutableLiveData<Boolean>()
-    val shouldStart:LiveData<Boolean> get() = _shouldStart
 
     fun getData() {
         val request = quizService.fetchQuizById(quizId = quizId)
@@ -51,7 +48,7 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
 
                 if (response.isSuccessful) {
 
-                    val quiz: Quiz? =response.body()
+                    val quiz: Quiz? = response.body()
                     if (quiz != null) {
                         setViews(quiz)
                     }
@@ -65,31 +62,33 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
         })
     }
 
-    fun setViews(quiz: Quiz){
-        _title.value=quiz.title
-        _desc.value=quiz.description
+    fun setViews(quiz: Quiz) {
+        _title.value = quiz.title
+        _desc.value = quiz.description
 
-        if (quiz.time!=0) _time.value=quiz.time.toString()+" min" else _time.value="No Time limit"
+        if (quiz.time != 0) {
+            _time.value = quiz.time.toString() + " min"
+            isTimed.value=true
+        } else {
+            _time.value = "No Time limit"
+            isTimed.value=false
+        }
 
         val tempScore = quiz.questions?.score
-        _onCorrect.value= tempScore?.onCorrect.toString()
-        _onWrong.value= tempScore?.onWrong.toString()
-        _passing.value= tempScore?.passingScore?.toString()
-        _maxScore.value= tempScore?.maxScore.toString()
-        _allQuestions.value=quiz.questions
+        _onCorrect.value = tempScore?.onCorrect.toString()
+        _onWrong.value = tempScore?.onWrong.toString()
+        _passing.value = tempScore?.passingScore?.toString()
+        _maxScore.value = tempScore?.maxScore.toString()
+        _allQuestions.value = quiz.questions
 
         val a: Int? = tempScore?.onCorrect
         val b: Int? = tempScore?.maxScore
-        var c=0
-        if (a!=null && a!=0 && b!=null){
-            c=b.div(a)
+        var c = 0
+        if (a != null && a != 0 && b != null) {
+            c = b.div(a)
         }
-        _noOfQuestion.value= c.toString()
-        tagList.value=quiz.tags
-    }
-
-    fun startQuiz(){
-        _shouldStart.value=true
+        _noOfQuestion.value = c.toString()
+        tagList.value = quiz.tags
     }
 
 

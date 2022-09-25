@@ -458,7 +458,6 @@
                                             android:layout_height="match_parent"
                                             android:layout_marginStart="4dp"
                                             android:fontFamily="@font/sen_bold"
-                                            android:onClick="@{()->quizDetailViewModel.startQuiz()}"
                                             android:text="START"
                                             android:textAllCaps="false"
                                             android:textColor="@color/white"
