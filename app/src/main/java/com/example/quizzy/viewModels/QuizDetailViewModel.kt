@@ -68,7 +68,8 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     fun setViews(quiz: Quiz){
         _title.value=quiz.title
         _desc.value=quiz.description
-        _time.value=quiz.time.toString()+" min"
+
+        if (quiz.time!=0) _time.value=quiz.time.toString()+" min" else _time.value="No Time limit"
 
         val tempScore = quiz.questions?.score
         _onCorrect.value= tempScore?.onCorrect.toString()
@@ -84,7 +85,6 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
             c=b.div(a)
         }
         _noOfQuestion.value= c.toString()
-
         tagList.value=quiz.tags
     }
 

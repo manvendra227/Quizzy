@@ -1,12 +1,17 @@
 package com.example.quizzy.viewModels
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
+import com.example.quizzy.dataModel.entity.Attempt
 import com.example.quizzy.dataModel.enums.BuzzType
 import com.example.quizzy.dataModel.enums.Progress
 import com.example.quizzy.dataModel.extras.Questions
@@ -16,10 +21,11 @@ import com.example.quizzy.dataModel.model.ProgressModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.math.RoundingMode
-import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
-class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
+@RequiresApi(Build.VERSION_CODES.O)
+class QuizViewModel(val userId:String, val quizId: String, val time: String) : ViewModel() {
 
 
     companion object {
@@ -36,56 +42,83 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     }
 
     //Countdown timer
-    private var timer: CountDownTimer
+    private var startTime: String
+    private val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSS")
+    private var quizService: QuizService
+    private var attemptService = RetrofitBuilder.buildService(AttemptService::class.java)
+
+    private var progressList: MutableLiveData<List<ProgressModel>?> = MutableLiveData()
+    private var questionList = listOf<questionFormat>()
+
+    private lateinit var timer: CountDownTimer
+    private lateinit var allQuestions: Questions
+    private lateinit var scores: Score
+    private lateinit var tempAnswer: MutableList<Int>
+    private lateinit var pins: MutableList<Int>
+
+    val isPinned = MutableLiveData(false)
+    val rating=MutableLiveData(0.0f)
+    val isRated=MutableLiveData(false)
+
 
     private var _currentTime = MutableLiveData<Long>()
     val currentTime: LiveData<Long> get() = _currentTime
 
+    //buzzer event
     private val _eventBuzz = MutableLiveData<BuzzType>()
     val eventBuzz: LiveData<BuzzType> get() = _eventBuzz
 
     //quiz finished
-    private var _eventQuizFinished = MutableLiveData<Boolean>()
+    private var _eventQuizFinished = MutableLiveData(false)
     val eventQuizFinished: LiveData<Boolean> get() = _eventQuizFinished
 
-    private var quizService:QuizService
+    //answer selection
+    private var _selection = MutableLiveData(-1)
+    val selection: LiveData<Int> get() = _selection
+
+    private var _counter = MutableLiveData(0)
+    val counter: LiveData<Int> get() = _counter
+
+    private var _isPassed = MutableLiveData(false)
+    val isPassed: LiveData<Boolean> get() = _isPassed
+
+    private var _percentage = MutableLiveData("")
+    val percentage: LiveData<String> get() = _percentage
+
 
     init {
         Log.i("Quiz", "QuizViewModel created!")
-
+        startTime =sdf.format( Calendar.getInstance().time)
         quizService = RetrofitBuilder.buildService(QuizService::class.java)
         fetchQuestions()
 
         //timer
-        _eventQuizFinished.value = false
-        val quizTimeInMins = time.filter { it.isDigit() }
-        val quizTimeInMilliSeconds = quizTimeInMins.toLong() * 1000L * 60L
+        if (!(time.isNullOrEmpty() || time.equals("No Time limit", true))) {
 
-        timer = object : CountDownTimer(quizTimeInMilliSeconds, ONE_SECOND) {
+            _eventQuizFinished.value = false
+            val quizTimeInMins = time.filter { it.isDigit() }
+            val quizTimeInMilliSeconds = quizTimeInMins.toLong() * 1000L * 60L
 
-            override fun onTick(millisUntilFinished: Long) {
-                if (millisUntilFinished / ONE_SECOND <= COUNTDOWN_PANIC_SECONDS) {
-                    _eventBuzz.value = BuzzType.COUNTDOWN_PANIC
+            timer = object : CountDownTimer(quizTimeInMilliSeconds, ONE_SECOND) {
+
+                override fun onTick(millisUntilFinished: Long) {
+                    if (millisUntilFinished / ONE_SECOND <= COUNTDOWN_PANIC_SECONDS) {
+                        _eventBuzz.value = BuzzType.COUNTDOWN_PANIC
+                    }
+                    _currentTime.value = millisUntilFinished / 1000
                 }
-                _currentTime.value = millisUntilFinished / 1000
-            }
 
-            override fun onFinish() {
-                _currentTime.value = DONE
-                _eventQuizFinished.value = true
-                _eventBuzz.value = BuzzType.QUIZ_OVER
+                override fun onFinish() {
+                    _currentTime.value = DONE
+                    calculateScore()
+                    _eventQuizFinished.value = true
+                    _eventBuzz.value = BuzzType.QUIZ_OVER
+                }
             }
+            timer.start()
         }
-        timer.start()
     }
 
-
-    private lateinit var tempAnswer: MutableList<Int>
-    private var progressList: MutableLiveData<List<ProgressModel>?> = MutableLiveData()
-
-    private lateinit var allQuestions: Questions
-    private lateinit var scores: Score
-    private var questionList = listOf<questionFormat>()
 
     private var _question = MutableLiveData<String>()
     private var _optionA = MutableLiveData<String>()
@@ -103,17 +136,6 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     val index: LiveData<Int> get() = _index
     val noOfQuestions: LiveData<Int> get() = _noOfQuestions
 
-    private var _selection=MutableLiveData(-1)
-    val selection:LiveData<Int> get() = _selection
-
-    private var _counter=MutableLiveData(0)
-    val counter:LiveData<Int> get() = _counter
-
-    private var _isPassed=MutableLiveData(false)
-    val isPassed:LiveData<Boolean> get() = _isPassed
-
-    private var _percentage=MutableLiveData("")
-    val percentage:LiveData<String> get() = _percentage
 
     fun getProgressList(): MutableLiveData<List<ProgressModel>?> {
         return progressList
@@ -125,12 +147,16 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
 
             override fun onResponse(call: Call<Questions>, response: Response<Questions>) {
                 if (response.isSuccessful && response.body() != null) {
+
                     allQuestions = response.body()!!
                     scores = response.body()!!.score!!
                     questionList = response.body()!!.question!!
                     _noOfQuestions.value = response.body()!!.noOfQuestions
+
                     tempAnswer = MutableList(noOfQuestions.value!!) { -1 }
+                    pins = MutableList(noOfQuestions.value!!) { -1 }
                     Log.i("message", tempAnswer.toString())
+
                     progressList.value =
                         List(questionList.size) { ProgressModel(Progress.UNMARKED) }
                     if (questionList.isNotEmpty()) {
@@ -157,7 +183,8 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
             _optionB.value = currentQuestion.options?.get(1)
             _optionC.value = currentQuestion.options?.get(2)
             _optionD.value = currentQuestion.options?.get(3)
-            _selection.value=tempAnswer[index]
+            _selection.value = tempAnswer[index]
+            isPinned.value = pins[index] == 1
         }
     }
 
@@ -167,23 +194,31 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     }
 
     private fun resetSelections() {
-        _selection.value=-1
+        _selection.value = -1
     }
 
-    private fun saveAnswer(answer:Int) {
-        index.value?.let { tempAnswer.set(it,answer) }
+    private fun saveAnswer(answer: Int) {
+        index.value?.let { tempAnswer.set(it, answer) }
+        if (pins[index.value!!] == 1) setProgress(Progress.PINNED) else setProgress(Progress.MARKED)
     }
 
-    fun onClick(marker: Int){
+    fun onClick(marker: Int) {
         resetSelections()
-        when(marker) {
-            0->{_selection.value=0}
-            1->{_selection.value=1}
-            2->{_selection.value=2}
-            3->{_selection.value=3}
+        when (marker) {
+            0 -> {
+                _selection.value = 0
+            }
+            1 -> {
+                _selection.value = 1
+            }
+            2 -> {
+                _selection.value = 2
+            }
+            3 -> {
+                _selection.value = 3
+            }
         }
         saveAnswer(marker)
-        Log.i("message",tempAnswer.toString())
     }
 
     fun prevClick() {
@@ -199,29 +234,84 @@ class QuizViewModel(val quizId: String, val time: String) : ViewModel() {
     fun submitClick() {
         _eventBuzz.value = BuzzType.NEXT
         _currentTime.value = DONE
-        timer.cancel()
         calculateScore()
-        _eventQuizFinished.value=true
+        _eventQuizFinished.value = true
+
+        //if no timer , no cancel required
+        if (!(time.isNullOrEmpty() || time.equals("No Time limit", true))) {
+            timer.cancel()
+        }
     }
 
-    private fun calculateScore(){
+    fun pinClick() {
+
+        if (isPinned.value == false) {
+            isPinned.value = true
+            index.value?.let { pins.set(it, 1) }
+            setProgress(Progress.PINNED)
+
+        } else {
+            isPinned.value = false
+            index.value?.let { pins.set(it, -1) }
+            if (tempAnswer[index.value!!] == -1) setProgress(Progress.UNMARKED) else setProgress(
+                Progress.MARKED
+            )
+        }
+    }
+
+    private fun setProgress(p: Progress) {
+        val tempList = progressList.value?.toMutableList()
+        if (p == Progress.MARKED) tempList?.set(index.value!!, ProgressModel(Progress.MARKED))
+        if (p == Progress.PINNED) tempList?.set(index.value!!, ProgressModel(Progress.PINNED))
+        if (p == Progress.UNMARKED) tempList?.set(index.value!!, ProgressModel(Progress.UNMARKED))
+        progressList.value = tempList?.toList()
+    }
+
+    private fun calculateScore() {
 
         for ((index, value) in questionList.withIndex()) {
-            if (value.answer.toInt()==tempAnswer[index]) _counter.value=_counter.value?.plus(1)
+            if (value.answer.toInt() == tempAnswer[index]) _counter.value = _counter.value?.plus(1)
         }
 
         val tempPer = counter.value?.toDouble()?.div(noOfQuestions.value!!.toDouble())?.times(100.0)
-        _percentage.value=String.format("%.2f",tempPer)
-        if (tempPer!! >= scores.passingScore) _isPassed.value=true
+        _percentage.value = String.format("%.2f", tempPer)
+        if (tempPer!! >= scores.passingScore) _isPassed.value = true
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun saveAttempt() {
+
+        val attempt = Attempt(
+            userId =userId,
+            quizId = quizId,
+            score = percentage.value?.toDouble() ?: 0.0,
+            startTime =startTime,
+            endTime =sdf.format( Calendar.getInstance().time),
+            feedback = rating.value?.toDouble() ?: 0.0
+        )
+        val request = attemptService.saveAttempt(attempt)
+        request.enqueue(object : Callback<Unit> {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if (response.isSuccessful) Log.i("attempt", "response saved")
+            }
+
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.i("attempt", "failed")
+            }
+        })
     }
 
     fun onBuzzComplete() {
         _eventBuzz.value = BuzzType.NO_BUZZ
     }
 
+    fun onRatingClick(){isRated.value=true}
+
     override fun onCleared() {
         super.onCleared()
-        timer.cancel()
+        if (!(time.isNullOrEmpty() || time.equals("No Time limit", true))) {
+            timer.cancel()
+        }
         Log.i("Quiz", "QuizViewModel destroyed!")
     }
 }

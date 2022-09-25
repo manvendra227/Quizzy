@@ -43,8 +43,19 @@
         <item name="cornerRadius">3dp</item>
     </style>
 
+    <style name="feedbackToast">
+        <item name="stColorBackground">#9DFF7A</item>
+        <item name="stTextColor">#000</item>
+        <item name="stIconEnd">@drawable/ic__smile</item>
+        <item name="stStrokeColor">#000</item>
+        <item name="stStrokeWidth">1.5dp</item>
+        <item name="stLength">LONG</item>
+        <item name="cornerRadius">3dp</item>
+    </style>
+
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/sen_bold</item>
     </style>
+
 
 </resources>

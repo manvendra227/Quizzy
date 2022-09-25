@@ -1,8 +1,9 @@
 package com.example.quizzy.Screens
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import android.app.Dialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.*
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
@@ -20,16 +22,20 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.quizzy.Adapter.ProgressAdapter
 import com.example.quizzy.R
 import com.example.quizzy.dataModel.enums.BuzzType
+import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.databinding.ActivityQuizBinding
+import com.example.quizzy.databinding.PopupRatingBinding
 import com.example.quizzy.utilities.GridColumnCalculator
 import com.example.quizzy.utilities.MyToast
+import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.QuizViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.QuizViewModelFactory
+import com.google.gson.Gson
 import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.activity_quiz.*
 import kotlinx.android.synthetic.main.popup_quiz_result.view.*
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 class QuizActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false
@@ -38,8 +44,11 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var viewModel: QuizViewModel
     private lateinit var viewModelFactory: QuizViewModelFactory
     private lateinit var progressAdapter: ProgressAdapter
+    private var userDetails = UserDetailsSharedPrefrence()
     private lateinit var quizId: String
     private lateinit var time: String
+    private lateinit var dialogBinding: PopupRatingBinding
+    private lateinit var dialogFeedback: Dialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,12 +60,16 @@ class QuizActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        //extracting user info here
+        val gson = Gson()
+        val savedUserResponse = userDetails.getUserDetails(this)
+        val savedUserModel = gson.fromJson(savedUserResponse, SavedUserModel::class.java)
+
         quizId = intent.getStringExtra("quizId").toString()
         time = intent.getStringExtra("time").toString()
         Log.i("mess", "$quizId  and  $time")
 
-
-        initViewModel(quizId)
+        initViewModel(savedUserModel.userId, quizId)
         initRecycler()
         loadPage()
         clickEvents()
@@ -71,9 +84,8 @@ class QuizActivity : AppCompatActivity() {
         progress_recycler.adapter = progressAdapter
     }
 
-    private fun initViewModel(quizId: String) {
-
-        viewModelFactory = QuizViewModelFactory(quizId, time)
+    private fun initViewModel(userId: String, quizId: String) {
+        viewModelFactory = QuizViewModelFactory(userId, quizId, time)
         viewModel = ViewModelProvider(this, viewModelFactory)[QuizViewModel::class.java]
         binding.quizViewModel = viewModel
         binding.lifecycleOwner = this
@@ -102,8 +114,8 @@ class QuizActivity : AppCompatActivity() {
                     button_prev.visibility = View.VISIBLE
                     button_next.visibility = View.VISIBLE
                 }, 250)
-
             }
+
             if (it <= 0) {
                 handler.postDelayed({ button_prev.visibility = View.GONE }, 250)
             }
@@ -137,31 +149,51 @@ class QuizActivity : AppCompatActivity() {
         viewModel.selection.observe(this) {
             resetColors()
             when (it) {
-                0 -> {
-                    setGreen(optA)
-                }
-                1 -> {
-                    setGreen(optB)
-                }
-                2 -> {
-                    setGreen(optC)
-                }
-                3 -> {
-                    setGreen(optD)
-                }
+                0 -> setGreen(optA)
+                1 -> setGreen(optB)
+                2 -> setGreen(optC)
+                3 -> setGreen(optD)
             }
         }
+
     }
 
     private fun dialogueFeedback() {
-        val feedback = LayoutInflater.from(this).inflate(R.layout.popup_rating, null)
-        AlertDialog.Builder(this, R.style.Theme_Transparent).setView(feedback).show()
+
+        dialogBinding = PopupRatingBinding.inflate(layoutInflater)
+        dialogFeedback = Dialog(this)
+        dialogFeedback.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogFeedback.setContentView(dialogBinding.root)
+        dialogFeedback.setCancelable(false)
+
+        // set listener on plus button
+        dialogBinding.feedbackButton.setOnClickListener {
+            if (viewModel.isRated.value == false) {
+                StyleableToast.makeText(
+                    this,
+                    "Please provide us with feedback",
+                    R.style.feedbackToast
+                ).show()
+            } else {
+                viewModel.saveAttempt()
+                dialogFeedback.dismiss()
+                finish()
+            }
+        }
+
+        dialogBinding.dialogModel = viewModel
+        dialogFeedback.show()
     }
 
+
+    @SuppressLint("SetTextI18n")
     private fun dialogueResult() {
 
-        val score= LayoutInflater.from(this).inflate(R.layout.popup_quiz_result, null)
-        AlertDialog.Builder(this, R.style.Theme_Transparent).setView(score).show().setCancelable(false)
+        val score = LayoutInflater.from(this).inflate(R.layout.popup_quiz_result, null)
+        val box =
+            AlertDialog.Builder(this, R.style.Theme_Transparent).setView(score).setCancelable(false)
+                .create()
+        box.show()
 
         score.text2.text = "You scored ${viewModel.percentage.value}%"
         score.text3.text = "${viewModel.counter.value}/${viewModel.noOfQuestions.value}"
@@ -176,12 +208,9 @@ class QuizActivity : AppCompatActivity() {
         }
 
         score.close_button.setOnClickListener {
-            val intent=Intent(this,QuizDetailActivity::class.java)
-            intent.putExtra("quizId",quizId)
-            startActivity(intent)
-            finish()
+            box.dismiss()
+            dialogueFeedback()
         }
-
     }
 
     private fun chooseQuestion(index: Int) {
@@ -214,7 +243,7 @@ class QuizActivity : AppCompatActivity() {
             val hours = ((newTime / 60).toInt()) / 60
             binding.toolbarTextView.text = " 0${hours}:${minutes}:${seconds}"
         } else {
-            binding.toolbarTextView.text = "Time Over"
+            binding.toolbarTextView.text = "Quiz Over"
         }
         if (newTime == 30L) {
             StyleableToast.makeText(this, "30 seconds left", R.style.errorToast).show()

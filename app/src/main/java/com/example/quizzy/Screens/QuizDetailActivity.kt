@@ -67,9 +67,7 @@ class QuizDetailActivity : AppCompatActivity() {
     private fun startQuiz(){
         viewModel.shouldStart.observe(this, Observer { check->
             if(check){
-                val i=
                 startActivity(Intent(this,QuizActivity::class.java).putExtra("quizId",quizId).putExtra("time",viewModel.time.value))
-                finish()
             }
         })
     }

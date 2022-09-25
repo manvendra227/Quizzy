@@ -25,23 +25,31 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/lime_green"
+                android:background="@color/black"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextColor="@color/light_grey">
+                app:titleTextColor="@color/white">
 
                 <TextView
                     android:id="@+id/toolbarTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="00:00:00"
-                    android:textColor="@color/title_black"
+                    android:text="No Time Limit"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:theme="@style/ToolbarTheme" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="test2.json"
+            app:lottie_loop="true" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -51,7 +59,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <com.skydoves.elasticviews.ElasticLayout
                     android:id="@+id/main_card"
                     android:layout_width="match_parent"
@@ -60,24 +67,38 @@
                     app:layout_duration="160"
                     app:layout_scale="0.98">
 
+                    <androidx.appcompat.widget.AppCompatToggleButton
+                        android:id="@+id/pin"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/switch_pin"
+                        android:checked="@={quizViewModel.isPinned()}"
+                        android:onCheckedChanged="@{()->quizViewModel.pinClick()}"
+                        android:textOff=""
+                        android:textOn="" />
+
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="16dp"
                         app:cardCornerRadius="20dp"
                         app:strokeColor="@color/black"
                         app:strokeWidth="2dp">
 
-                        <LinearLayout
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:orientation="vertical"
                             android:paddingBottom="24dp">
 
                             <RelativeLayout
+                                android:id="@+id/temp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
@@ -365,6 +386,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_below="@id/temp"
                                 android:gravity="center"
                                 android:padding="20dp"
                                 android:weightSum="10">
@@ -393,7 +415,7 @@
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
                                         android:textSize="13sp"
-                                        app:backgroundTint="@color/medium"
+                                        app:backgroundTint="@color/button_blue"
                                         app:cornerRadius="20dp" />
 
                                     <RelativeLayout
@@ -431,7 +453,7 @@
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
                                         android:textSize="13sp"
-                                        app:backgroundTint="@color/medium"
+                                        app:backgroundTint="@color/button_blue"
                                         app:cornerRadius="20dp" />
 
 
@@ -448,7 +470,7 @@
                                 </RelativeLayout>
 
                             </LinearLayout>
-                        </LinearLayout>
+                        </RelativeLayout>
 
                     </com.google.android.material.card.MaterialCardView>
                 </com.skydoves.elasticviews.ElasticLayout>
@@ -513,7 +535,7 @@
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="13sp"
-                        app:backgroundTint="@color/button_blue"
+                        app:backgroundTint="@color/medium"
                         app:cornerRadius="20dp" />
 
                     <RelativeLayout
@@ -529,6 +551,7 @@
                 </RelativeLayout>
 
             </RelativeLayout>
+
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
