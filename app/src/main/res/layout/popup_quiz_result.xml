@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,7 +38,7 @@
                 android:layout_marginTop="16dp"
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="won.json"
-                app:lottie_loop="false"/>
+                app:lottie_loop="false" />
 
             <TextView
                 android:id="@+id/text1"
@@ -49,8 +48,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/sen_regular"
-                android:textAlignment="center"
                 android:text="@string/failed"
+                android:textAlignment="center"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -64,9 +63,7 @@
                 android:fontFamily="@font/sen_regular"
                 android:text="@string/score"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="14sp"
-
-                />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/text3"
@@ -78,10 +75,7 @@
                 android:fontFamily="@font/sen_regular"
                 android:text="@string/marks"
                 android:textColor="@color/blue"
-                android:textSize="28sp"
-
-                />
-
+                android:textSize="28sp" />
 
             <TextView
                 android:id="@+id/review"
@@ -133,7 +127,6 @@
                     android:layout_marginTop="14dp"
                     android:background="@drawable/transparent_background" />
             </RelativeLayout>
-
 
         </RelativeLayout>
 

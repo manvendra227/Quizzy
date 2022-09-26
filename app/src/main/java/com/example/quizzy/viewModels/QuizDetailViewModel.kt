@@ -1,20 +1,30 @@
 package com.example.quizzy.viewModels
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.extras.Questions
+import com.example.quizzy.dataModel.model.AttemptModelQuiz
+import com.example.quizzy.dataModel.model.AttemptModelQuizUser
+import com.example.quizzy.dataModel.model.SavedUserModel
+import com.example.quizzy.utilities.UserDetailsSharedPrefrence
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class QuizDetailViewModel(private val quizId: String) : ViewModel() {
+class QuizDetailViewModel(private val quizId: String,private val userId:String) : ViewModel() {
 
     private val quizService = RetrofitBuilder.buildService(QuizService::class.java)
+    private val attemptService=RetrofitBuilder.buildService(AttemptService::class.java)
+
 
     private var _title = MutableLiveData<String>()
     private var _desc = MutableLiveData<String>()
@@ -37,6 +47,8 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     val allQuestions: LiveData<Questions?> get() = _allQuestions
 
     private var tagList: MutableLiveData<List<String>?> = MutableLiveData()
+    private var quizAttemptList: MutableLiveData<List<AttemptModelQuiz>?> = MutableLiveData()
+    private var userAttemptList: MutableLiveData<List<AttemptModelQuizUser>?> = MutableLiveData()
 
     var isTimed = MutableLiveData<Boolean>()
 
@@ -92,8 +104,52 @@ class QuizDetailViewModel(private val quizId: String) : ViewModel() {
     }
 
 
+
     fun getTagsList(): MutableLiveData<List<String>?> {
         return tagList
+    }
+
+    fun getQuizAttemptList():MutableLiveData<List<AttemptModelQuiz>?>{
+        return quizAttemptList
+    }
+
+    fun getUserAttemptList():MutableLiveData<List<AttemptModelQuizUser>?>{
+        return userAttemptList
+    }
+
+    init {
+        getQuizAttempt()
+        getUserAttempts()
+    }
+    private fun getQuizAttempt(){
+        val request=attemptService.fetchQuizAttempt(quizId)
+        request.enqueue(object :Callback<List<AttemptModelQuiz>?>{
+            override fun onResponse(call: Call<List<AttemptModelQuiz>?>, response: Response<List<AttemptModelQuiz>?>) {
+                if (response.isSuccessful){
+                    quizAttemptList.postValue(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<List<AttemptModelQuiz>?>, t: Throwable) {
+                Log.i("attempt","failed quiz attempts")
+            }
+        })
+    }
+
+    private fun getUserAttempts(){
+
+        val request=attemptService.fetchUserAttemptOnQuiz(quizId,userId)
+        request.enqueue(object :Callback<List<AttemptModelQuizUser>?>{
+            override fun onResponse(call: Call<List<AttemptModelQuizUser>?>, response: Response<List<AttemptModelQuizUser>?>) {
+                if (response.isSuccessful){
+                    userAttemptList.postValue(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<List<AttemptModelQuizUser>?>, t: Throwable) {
+                Log.i("attempt","failed user on quiz attempts")
+            }
+        })
     }
 
 }

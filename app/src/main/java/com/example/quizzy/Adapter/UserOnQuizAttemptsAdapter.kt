@@ -1,14 +1,21 @@
 package com.example.quizzy.Adapter
 
+import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
-import com.example.quizzy.dataModel.model.AttemptModelQuiz
 import com.example.quizzy.dataModel.model.AttemptModelQuizUser
+import kotlinx.android.synthetic.main.list_item_user_on_quiz_attempts.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.*
 
-class UserOnQuizAttemptsAdapter: RecyclerView.Adapter<UserOnQuizAttemptsAdapter.MyViewHolder>() {
+class UserOnQuizAttemptsAdapter(private val passingScore:Double): RecyclerView.Adapter<UserOnQuizAttemptsAdapter.MyViewHolder>() {
 
 
     private var list: List<AttemptModelQuizUser>? = null
@@ -24,7 +31,7 @@ class UserOnQuizAttemptsAdapter: RecyclerView.Adapter<UserOnQuizAttemptsAdapter.
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(list?.get(position)!!)
+        holder.bind(list?.get(position)!!,passingScore)
     }
 
     override fun getItemCount(): Int {
@@ -34,8 +41,29 @@ class UserOnQuizAttemptsAdapter: RecyclerView.Adapter<UserOnQuizAttemptsAdapter.
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        fun bind(data: AttemptModelQuizUser) {
+        private val score=view.score_1
+        private val time=view.time_1
+        private val date=view.date_1
 
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun bind(data: AttemptModelQuizUser, passingScore: Double) {
+
+            val myDate = Date(data.time)
+            val formatter = SimpleDateFormat("HH:mm:ss")
+            val myTime = formatter.format(myDate)
+
+            val x = data.timestamp
+            val localDate: LocalDate = x?.toInstant()?.atZone(ZoneId.systemDefault())!!.toLocalDate()
+            val year: Int = localDate.year
+            val month: Int = localDate.monthValue
+            val day: Int = localDate.dayOfMonth
+
+            score.text=data.score.toString()
+            date.text= "${day}/${month}/${year}"
+            time.text=myTime
+            if (data.score<passingScore){
+                score.setTextColor(Color.parseColor("#FF453A"))
+            }
         }
 
     }
