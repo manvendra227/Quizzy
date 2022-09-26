@@ -11,12 +11,12 @@ import androidx.lifecycle.ViewModel
 import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
-import com.example.quizzy.dataModel.entity.Attempt
 import com.example.quizzy.dataModel.enums.BuzzType
 import com.example.quizzy.dataModel.enums.Progress
 import com.example.quizzy.dataModel.extras.Questions
 import com.example.quizzy.dataModel.extras.Score
 import com.example.quizzy.dataModel.extras.questionFormat
+import com.example.quizzy.dataModel.model.AttemptSaveModel
 import com.example.quizzy.dataModel.model.ProgressModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
-class QuizViewModel(val userId:String, val quizId: String, val time: String) : ViewModel() {
+class QuizViewModel(val userId: String, val quizId: String, val time: String) : ViewModel() {
 
 
     companion object {
@@ -58,8 +58,8 @@ class QuizViewModel(val userId:String, val quizId: String, val time: String) : V
 
     val isPinned = MutableLiveData(false)
     val wantSubmit = MutableLiveData(false)
-    val rating=MutableLiveData(0.0f)
-    val isRated=MutableLiveData(false)
+    val rating = MutableLiveData(0.0f)
+    val isRated = MutableLiveData(false)
 
 
     private var _currentTime = MutableLiveData<Long>()
@@ -89,7 +89,7 @@ class QuizViewModel(val userId:String, val quizId: String, val time: String) : V
 
     init {
         Log.i("Quiz", "QuizViewModel created!")
-        startTime =sdf.format( Calendar.getInstance().time)
+        startTime = sdf.format(Calendar.getInstance().time)
         quizService = RetrofitBuilder.buildService(QuizService::class.java)
         fetchQuestions()
 
@@ -281,13 +281,15 @@ class QuizViewModel(val userId:String, val quizId: String, val time: String) : V
     @SuppressLint("SimpleDateFormat")
     fun saveAttempt() {
 
-        val attempt = Attempt(
-            userId =userId,
+        val attempt = AttemptSaveModel(
+            userId = userId,
             quizId = quizId,
             score = percentage.value?.toDouble() ?: 0.0,
-            startTime =startTime,
-            endTime =sdf.format( Calendar.getInstance().time),
-            feedback = rating.value?.toDouble() ?: 0.0
+            startTime = startTime,
+            endTime = sdf.format(Calendar.getInstance().time),
+            feedback = rating.value?.toDouble() ?: 0.0,
+            newQuestions = scores.maxScore.div(scores.onCorrect),
+            newCorrect = counter.value?.toInt()
         )
         val request = attemptService.saveAttempt(attempt)
         request.enqueue(object : Callback<Unit> {
@@ -305,7 +307,9 @@ class QuizViewModel(val userId:String, val quizId: String, val time: String) : V
         _eventBuzz.value = BuzzType.NO_BUZZ
     }
 
-    fun onRatingClick(){isRated.value=true}
+    fun onRatingClick() {
+        isRated.value = true
+    }
 
     override fun onCleared() {
         super.onCleared()

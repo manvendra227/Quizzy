@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -22,6 +24,8 @@ import com.example.quizzy.viewModels.ViewModelFactory.QuizDetailsViewModelFactor
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.activity_quiz_detail.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 @RequiresApi(Build.VERSION_CODES.O)
 class QuizDetailActivity : AppCompatActivity() {
@@ -95,11 +99,14 @@ class QuizDetailActivity : AppCompatActivity() {
     }
 
     private fun startQuiz() {
+        layoutDetails.visibility= View.GONE
+        countdown.visibility=View.VISIBLE
+        val handler = Handler()
+        handler.postDelayed({
+            startActivity(Intent(this, QuizActivity::class.java).putExtra("quizId", quizId).putExtra("time", viewModel.time.value))
+            finish()
+        }, 2200)
 
-        startActivity(
-            Intent(this, QuizActivity::class.java).putExtra("quizId", quizId)
-                .putExtra("time", viewModel.time.value)
-        )
     }
 
     @SuppressLint("NotifyDataSetChanged")

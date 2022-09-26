@@ -13,477 +13,493 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".Screens.SignUpActivity">
-
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="@dimen/dimen_16"
-            android:layout_height="@dimen/dimen_16"
-            android:layout_marginStart="@dimen/dimen_16"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:layout_marginBottom="@dimen/dimen_16"
-            android:src="@drawable/ic_arrow_left"
-            app:tint="?android:textColorPrimary" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_12"
-            android:layout_marginTop="@dimen/dimen_12"
-            android:layout_toEndOf="@id/back_button"
-            android:fontFamily="@font/sen_bold"
-            android:text="Quiz Details"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="@dimen/dimen_text_18" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/clock"
-            android:layout_marginRight="@dimen/dimen_4"
-            android:layout_toLeftOf="@+id/clock"
-            android:fontFamily="@font/sen_bold"
-            android:text="@{quizDetailViewModel.time}"
-            android:textColor="@color/button_red"
-            android:textSize="16dp" />
-
-        <ImageView
-            android:id="@+id/clock"
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/clock" />
+        android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/layoutDetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/back_button"
-            android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="@dimen/dimen_20">
+            android:layout_height="match_parent"
+            tools:context=".Screens.SignUpActivity">
 
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="@dimen/dimen_16"
+                android:layout_height="@dimen/dimen_16"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:src="@drawable/ic_arrow_left"
+                app:tint="?android:textColorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_12"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:layout_toEndOf="@id/back_button"
+                android:fontFamily="@font/sen_bold"
+                android:text="Quiz Details"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="@dimen/dimen_text_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/clock"
+                android:layout_marginRight="@dimen/dimen_4"
+                android:layout_toLeftOf="@+id/clock"
+                android:fontFamily="@font/sen_bold"
+                android:text="@{quizDetailViewModel.time}"
+                android:textColor="@color/button_red"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/clock"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/clock" />
 
             <RelativeLayout
-                android:id="@+id/master"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/back_button"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/dimen_20">
 
-                <com.google.android.material.card.MaterialCardView
+
+                <RelativeLayout
+                    android:id="@+id/master"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignBottom="@+id/card"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="6dp"
-                    app:cardBackgroundColor="@color/back2"
-                    app:cardCornerRadius="@dimen/dimen_12"
-                    app:strokeColor="@color/black"
-                    app:strokeWidth="1dp" />
+                    android:layout_height="match_parent">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="32dp"
-                    app:cardCornerRadius="@dimen/dimen_12"
-                    app:strokeColor="@color/black"
-                    app:strokeWidth="1dp">
-
-                    <androidx.core.widget.NestedScrollView
-                        android:id="@+id/scroll"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fillViewport="true">
+                        android:layout_alignBottom="@+id/card"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="6dp"
+                        app:cardBackgroundColor="@color/back2"
+                        app:cardCornerRadius="@dimen/dimen_12"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp" />
 
-                        <com.skydoves.elasticviews.ElasticLayout
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="32dp"
+                        app:cardCornerRadius="@dimen/dimen_12"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+                        <androidx.core.widget.NestedScrollView
+                            android:id="@+id/scroll"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_duration="200"
-                            app:layout_scale="0.99">
+                            android:layout_height="match_parent"
+                            android:fillViewport="true">
 
-                            <RelativeLayout
+                            <com.skydoves.elasticviews.ElasticLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:nestedScrollingEnabled="false">
-
-                                <TextView
-                                    android:id="@+id/quizName"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="12dp"
-                                    android:layout_marginTop="12dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="@{quizDetailViewModel.title}"
-                                    android:textColor="@color/title_black"
-                                    android:textSize="@dimen/dimen_text_18" />
-
-
-                                <TextView
-                                    android:id="@+id/dicreption"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/quizName"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="24dp"
-                                    android:layout_marginEnd="12dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@{quizDetailViewModel.desc}"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
-
-                                <TextView
-                                    android:id="@+id/rules"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/dicreption"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="20dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="Rules"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="16sp" />
-
-                                <LinearLayout
-                                    android:id="@+id/circles"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/rules"
-                                    android:layout_marginTop="16dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="5">
-
-                                    <LinearLayout
-                                        android:layout_width="@dimen/dimen_0"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
-                                            app:cardCornerRadius="100dp"
-                                            app:strokeColor="@color/easy"
-                                            app:strokeWidth="3dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:fontFamily="@font/sen_bold"
-                                                android:text="@{quizDetailViewModel.noOfQuestion}"
-                                                android:textColor="@color/easy"
-                                                android:textSize="18sp" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:fontFamily="@font/sen_regular"
-                                            android:text="MCQ's"
-                                            android:textColor="@color/black"
-                                            android:textSize="11sp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="@dimen/dimen_0"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
-                                            app:cardCornerRadius="100dp"
-                                            app:strokeColor="@color/dark_green"
-                                            app:strokeWidth="3dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:fontFamily="@font/sen_bold"
-                                                android:text="@{quizDetailViewModel.onCorrect}"
-                                                android:textColor="@color/dark_green"
-                                                android:textSize="18sp" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:fontFamily="@font/sen_regular"
-                                            android:text="Correct"
-                                            android:textColor="@color/black"
-                                            android:textSize="11sp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="@dimen/dimen_0"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
-                                            app:cardCornerRadius="100dp"
-                                            app:strokeColor="@color/poppy_red"
-                                            app:strokeWidth="3dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:fontFamily="@font/sen_bold"
-                                                android:text="@{quizDetailViewModel.onWrong}"
-                                                android:textColor="@color/poppy_red"
-                                                android:textSize="18sp" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:fontFamily="@font/sen_regular"
-                                            android:text="Incorrect"
-                                            android:textColor="@color/black"
-                                            android:textSize="11sp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="@dimen/dimen_0"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
-                                            app:cardCornerRadius="100dp"
-                                            app:strokeColor="@color/medium"
-                                            app:strokeWidth="3dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:fontFamily="@font/sen_bold"
-                                                android:text="@{quizDetailViewModel.passing}"
-                                                android:textColor="@color/medium"
-                                                android:textSize="18sp" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:fontFamily="@font/sen_regular"
-                                            android:gravity="center"
-                                            android:text="Passing"
-                                            android:textColor="@color/black"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="@dimen/dimen_0"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
-                                            app:cardCornerRadius="100dp"
-                                            app:strokeColor="@color/violet"
-                                            app:strokeWidth="3dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:fontFamily="@font/sen_bold"
-                                                android:text="@{quizDetailViewModel.maxScore}"
-                                                android:textColor="@color/violet"
-                                                android:textSize="18sp" />
-                                        </com.google.android.material.card.MaterialCardView>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:fontFamily="@font/sen_regular"
-                                            android:text="Max Score"
-                                            android:textColor="@color/black"
-                                            android:textSize="11sp" />
-                                    </LinearLayout>
-                                </LinearLayout>
-
-                                <TextView
-                                    android:id="@+id/details"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/circles"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="20dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="Details"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="16sp" />
-
-                                <TextView
-                                    android:id="@+id/bullet1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/details"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="16dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/details1"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
-
-                                <TextView
-                                    android:id="@+id/bullet2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/bullet1"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/details2"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
-
-                                <TextView
-                                    android:id="@+id/bullet3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/bullet2"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/details3"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
-
-                                <TextView
-                                    android:id="@+id/bullet4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/bullet3"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/details4"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
-
-                                <TextView
-                                    android:id="@+id/bullet5"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/bullet4"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/details5"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
-
-                                <TextView
-                                    android:id="@+id/tags"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/bullet5"
-                                    android:layout_alignStart="@+id/details"
-                                    android:layout_marginTop="20dp"
-                                    android:fontFamily="@font/sen_bold"
-                                    android:text="Tags-"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="16sp" />
-
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/tag_recycler"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignTop="@+id/tags"
-                                    android:layout_marginEnd="16dp"
-                                    android:layout_toRightOf="@id/tags"
-                                    android:orientation="horizontal"
-                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                    tools:listitem="@layout/tag" />
-
-                                <TextView
-                                    android:id="@+id/response"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/tag_recycler"
-                                    android:layout_alignStart="@+id/quizName"
-                                    android:layout_marginTop="32dp"
-                                    android:fontFamily="@font/sen_regular"
-                                    android:text="@string/response"
-                                    android:textColor="?android:textColorPrimary"
-                                    android:textSize="14sp" />
+                                app:layout_duration="200"
+                                app:layout_scale="0.99">
 
                                 <RelativeLayout
-                                    android:id="@+id/button"
-                                    android:layout_width="170dp"
-                                    android:layout_height="54dp"
-                                    android:layout_below="@+id/response"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="30dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:background="@android:color/transparent">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:nestedScrollingEnabled="false">
+
+                                    <TextView
+                                        android:id="@+id/quizName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="12dp"
+                                        android:layout_marginTop="12dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="@{quizDetailViewModel.title}"
+                                        android:textColor="@color/title_black"
+                                        android:textSize="@dimen/dimen_text_18" />
+
+
+                                    <TextView
+                                        android:id="@+id/dicreption"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/quizName"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="24dp"
+                                        android:layout_marginEnd="12dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@{quizDetailViewModel.desc}"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/rules"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/dicreption"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="20dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="Rules"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="16sp" />
+
+                                    <LinearLayout
+                                        android:id="@+id/circles"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/rules"
+                                        android:layout_marginTop="16dp"
+                                        android:orientation="horizontal"
+                                        android:weightSum="5">
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/dimen_0"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:layout_width="45dp"
+                                                android:layout_height="45dp"
+                                                app:cardCornerRadius="100dp"
+                                                app:strokeColor="@color/easy"
+                                                app:strokeWidth="3dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_bold"
+                                                    android:text="@{quizDetailViewModel.noOfQuestion}"
+                                                    android:textColor="@color/easy"
+                                                    android:textSize="18sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="2dp"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:text="MCQ's"
+                                                android:textColor="@color/black"
+                                                android:textSize="11sp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/dimen_0"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:layout_width="45dp"
+                                                android:layout_height="45dp"
+                                                app:cardCornerRadius="100dp"
+                                                app:strokeColor="@color/dark_green"
+                                                app:strokeWidth="3dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_bold"
+                                                    android:text="@{quizDetailViewModel.onCorrect}"
+                                                    android:textColor="@color/dark_green"
+                                                    android:textSize="18sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="2dp"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:text="Correct"
+                                                android:textColor="@color/black"
+                                                android:textSize="11sp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/dimen_0"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:layout_width="45dp"
+                                                android:layout_height="45dp"
+                                                app:cardCornerRadius="100dp"
+                                                app:strokeColor="@color/poppy_red"
+                                                app:strokeWidth="3dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_bold"
+                                                    android:text="@{quizDetailViewModel.onWrong}"
+                                                    android:textColor="@color/poppy_red"
+                                                    android:textSize="18sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="2dp"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:text="Incorrect"
+                                                android:textColor="@color/black"
+                                                android:textSize="11sp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/dimen_0"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:layout_width="45dp"
+                                                android:layout_height="45dp"
+                                                app:cardCornerRadius="100dp"
+                                                app:strokeColor="@color/medium"
+                                                app:strokeWidth="3dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_bold"
+                                                    android:text="@{quizDetailViewModel.passing}"
+                                                    android:textColor="@color/medium"
+                                                    android:textSize="18sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="2dp"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:gravity="center"
+                                                android:text="Passing"
+                                                android:textColor="@color/black"
+                                                android:textSize="12sp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/dimen_0"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <com.google.android.material.card.MaterialCardView
+                                                android:layout_width="45dp"
+                                                android:layout_height="45dp"
+                                                app:cardCornerRadius="100dp"
+                                                app:strokeColor="@color/violet"
+                                                app:strokeWidth="3dp">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:fontFamily="@font/sen_bold"
+                                                    android:text="@{quizDetailViewModel.maxScore}"
+                                                    android:textColor="@color/violet"
+                                                    android:textSize="18sp" />
+                                            </com.google.android.material.card.MaterialCardView>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="2dp"
+                                                android:fontFamily="@font/sen_regular"
+                                                android:text="Max Score"
+                                                android:textColor="@color/black"
+                                                android:textSize="11sp" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/details"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/circles"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="20dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="Details"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/bullet1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/details"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="16dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/details1"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/bullet2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/bullet1"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/details2"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/bullet3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/bullet2"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/details3"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/bullet4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/bullet3"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/details4"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/bullet5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/bullet4"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="3dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/details5"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tags"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/bullet5"
+                                        android:layout_alignStart="@+id/details"
+                                        android:layout_marginTop="20dp"
+                                        android:fontFamily="@font/sen_bold"
+                                        android:text="Tags-"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="16sp" />
+
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/tag_recycler"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/tags"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_toRightOf="@id/tags"
+                                        android:orientation="horizontal"
+                                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                        tools:listitem="@layout/tag" />
+
+                                    <TextView
+                                        android:id="@+id/response"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/tag_recycler"
+                                        android:layout_alignStart="@+id/quizName"
+                                        android:layout_marginTop="32dp"
+                                        android:fontFamily="@font/sen_regular"
+                                        android:text="@string/response"
+                                        android:textColor="?android:textColorPrimary"
+                                        android:textSize="14sp" />
 
                                     <RelativeLayout
-                                        android:id="@+id/button1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:id="@+id/button"
+                                        android:layout_width="170dp"
+                                        android:layout_height="54dp"
+                                        android:layout_below="@+id/response"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="30dp"
+                                        android:layout_marginBottom="20dp"
+                                        android:background="@android:color/transparent">
 
-                                        <com.google.android.material.button.MaterialButton
-                                            android:id="@+id/button_start"
+                                        <RelativeLayout
+                                            android:id="@+id/button1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <com.google.android.material.button.MaterialButton
+                                                android:id="@+id/button_start"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_marginStart="4dp"
+                                                android:fontFamily="@font/sen_bold"
+                                                android:text="START"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/white"
+                                                android:textSize="13sp"
+                                                app:backgroundTint="@color/button_blue"
+                                                app:cornerRadius="9dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:layout_marginStart="4dp"
-                                            android:fontFamily="@font/sen_bold"
-                                            android:text="START"
-                                            android:textAllCaps="false"
-                                            android:textColor="@color/white"
-                                            android:textSize="13sp"
-                                            app:backgroundTint="@color/button_blue"
-                                            app:cornerRadius="9dp" />
-
+                                            android:layout_alignBottom="@+id/button1"
+                                            android:layout_marginEnd="4dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/transparent_background" />
                                     </RelativeLayout>
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_alignBottom="@+id/button1"
-                                        android:layout_marginEnd="4dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/transparent_background" />
                                 </RelativeLayout>
+                            </com.skydoves.elasticviews.ElasticLayout>
+                        </androidx.core.widget.NestedScrollView>
 
-                            </RelativeLayout>
-                        </com.skydoves.elasticviews.ElasticLayout>
-                    </androidx.core.widget.NestedScrollView>
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
 
-                </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>
-
         </RelativeLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/countdown"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="countdown.json"
+        app:lottie_loop="false" />
+
     </RelativeLayout>
 
 </layout>

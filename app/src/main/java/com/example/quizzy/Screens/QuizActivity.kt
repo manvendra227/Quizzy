@@ -2,6 +2,7 @@ package com.example.quizzy.Screens
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.*
@@ -190,6 +191,8 @@ class QuizActivity : AppCompatActivity() {
             } else {
                 viewModel.saveAttempt()
                 dialogFeedback.dismiss()
+                val intent = Intent(this, QuizDetailActivity::class.java).putExtra("quizId", viewModel.quizId)
+                startActivity(intent)
                 finish()
             }
         }
