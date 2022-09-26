@@ -7,7 +7,7 @@
     <string name="score">You scored 20%</string>
     <string name="marks">4/20</string>
     <string name="correct_answers">correct answers</string>
-    <string name="review">Review Quiz</string>
+    <string name="review"><u>Review Quiz</u></string>
     <string name="close">Close</string>
     <!--Import Rules Strings-->
     <string name="quiz_question_text">Are you sure you want \nto submit the Quiz?</string>

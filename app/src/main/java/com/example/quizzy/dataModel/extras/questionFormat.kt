@@ -1,6 +1,9 @@
 package com.example.quizzy.dataModel.extras
 
-data class questionFormat(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+ data class questionFormat(
     val question: String,
     val options: List<String>? = null,
     val answer: String,

@@ -428,7 +428,7 @@
                                         android:layout_toRightOf="@id/tags"
                                         android:orientation="horizontal"
                                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                        tools:listitem="@layout/tag" />
+                                        tools:listitem="@layout/list_item_tag" />
 
                                     <TextView
                                         android:id="@+id/response"

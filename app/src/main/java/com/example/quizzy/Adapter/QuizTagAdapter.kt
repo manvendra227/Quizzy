@@ -1,13 +1,12 @@
 package com.example.quizzy.Adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.QuizDetailActivity
-import kotlinx.android.synthetic.main.tag.view.*
+import kotlinx.android.synthetic.main.list_item_tag.view.*
 
 class QuizTagAdapter(private val activity: QuizDetailActivity) : RecyclerView.Adapter<QuizTagAdapter.MyViewHolder>() {
 
@@ -18,7 +17,7 @@ class QuizTagAdapter(private val activity: QuizDetailActivity) : RecyclerView.Ad
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.tag, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_tag, parent, false)
         return MyViewHolder(view)
     }
 

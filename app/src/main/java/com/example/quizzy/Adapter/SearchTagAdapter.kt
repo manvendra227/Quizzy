@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.HomeActivity
-import kotlinx.android.synthetic.main.tag.view.*
+import kotlinx.android.synthetic.main.list_item_tag.view.*
 
 class SearchTagAdapter(val activity: HomeActivity) : RecyclerView.Adapter<SearchTagAdapter.MyViewHolder>() {
 
@@ -18,7 +18,7 @@ class SearchTagAdapter(val activity: HomeActivity) : RecyclerView.Adapter<Search
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.tag, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_tag, parent, false)
         return MyViewHolder(view)
     }
 

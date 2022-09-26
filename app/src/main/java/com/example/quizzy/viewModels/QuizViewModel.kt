@@ -142,6 +142,14 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
         return progressList
     }
 
+    fun getQuestionList(): List<questionFormat> {
+        return questionList
+    }
+
+    fun getAnswerList():List<Int>{
+        return tempAnswer
+    }
+
     private fun fetchQuestions() {
         val request = quizService.fetchQuestionsById(quizId = quizId)
         request.enqueue(object : Callback<Questions> {

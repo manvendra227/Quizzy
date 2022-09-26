@@ -232,6 +232,15 @@ class QuizActivity : AppCompatActivity() {
             box.dismiss()
             dialogFeedback()
         }
+
+        score.review.setOnClickListener {
+            val i=Intent(this,ReviewActivity::class.java)
+            val questionList=Gson().toJson(viewModel.getQuestionList())
+            val answerList=Gson().toJson(viewModel.getAnswerList())
+            i.putExtra("QUESTION_LIST",questionList)
+            i.putExtra("ANSWER_LIST",answerList)
+            startActivity(i)
+        }
     }
 
     private fun dialogSubmitWarning() {

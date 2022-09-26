@@ -38,8 +38,8 @@ class PreviewRecyclerAdapter(val context: FragmentActivity, val onClickDelete: (
     }
 
     override fun getItemCount(): Int {
-        if (questionList == null) return 0
-        else return questionList?.size!!
+        return if (questionList == null) 0
+        else questionList?.size!!
     }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
