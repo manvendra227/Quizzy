@@ -24,8 +24,6 @@ import com.example.quizzy.viewModels.ViewModelFactory.QuizDetailsViewModelFactor
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.activity_quiz_detail.*
-import java.util.*
-import kotlin.concurrent.schedule
 
 @RequiresApi(Build.VERSION_CODES.O)
 class QuizDetailActivity : AppCompatActivity() {
@@ -87,6 +85,7 @@ class QuizDetailActivity : AppCompatActivity() {
             dialogWarning = Dialog(this)
             dialogWarning.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialogWarning.setContentView(dialogBinding.root)
+            dialogWarning.window?.attributes!!.windowAnimations = R.style.DialogAnimation
 
             dialogBinding.startButton.setOnClickListener {
                 startQuiz()
@@ -99,11 +98,14 @@ class QuizDetailActivity : AppCompatActivity() {
     }
 
     private fun startQuiz() {
-        layoutDetails.visibility= View.GONE
-        countdown.visibility=View.VISIBLE
+        layoutDetails.visibility = View.GONE
+        countdown.visibility = View.VISIBLE
         val handler = Handler()
         handler.postDelayed({
-            startActivity(Intent(this, QuizActivity::class.java).putExtra("quizId", quizId).putExtra("time", viewModel.time.value))
+            startActivity(
+                Intent(this, QuizActivity::class.java).putExtra("quizId", quizId)
+                    .putExtra("time", viewModel.time.value)
+            )
             finish()
         }, 2200)
 

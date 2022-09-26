@@ -58,6 +58,7 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz)
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -164,7 +165,7 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.wantSubmit.observe(this){
+        viewModel.wantSubmit.observe(this) {
             if (it) {
                 dialogResult()
             }
@@ -179,6 +180,7 @@ class QuizActivity : AppCompatActivity() {
         dialogFeedback.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogFeedback.setContentView(dialogBinding.root)
         dialogFeedback.setCancelable(false)
+        dialogFeedback.window?.attributes!!.windowAnimations = R.style.DialogAnimation
 
         // set listener on plus button
         dialogBinding.feedbackButton.setOnClickListener {
@@ -191,7 +193,10 @@ class QuizActivity : AppCompatActivity() {
             } else {
                 viewModel.saveAttempt()
                 dialogFeedback.dismiss()
-                val intent = Intent(this, QuizDetailActivity::class.java).putExtra("quizId", viewModel.quizId)
+                val intent = Intent(this, QuizDetailActivity::class.java).putExtra(
+                    "quizId",
+                    viewModel.quizId
+                )
                 startActivity(intent)
                 finish()
             }
@@ -208,6 +213,7 @@ class QuizActivity : AppCompatActivity() {
         val box =
             AlertDialog.Builder(this, R.style.Theme_Transparent).setView(score).setCancelable(false)
                 .create()
+        box.window?.attributes!!.windowAnimations = R.style.DialogAnimation
         box.show()
 
         score.text2.text = "You scored ${viewModel.percentage.value}%"
@@ -234,10 +240,11 @@ class QuizActivity : AppCompatActivity() {
         dialogWarningSubmit = Dialog(this)
         dialogWarningSubmit.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogWarningSubmit.setContentView(dialogWarningSubmitBinding.root)
+        dialogWarningSubmit.window?.attributes!!.windowAnimations = R.style.DialogAnimation
 
         dialogWarningSubmitBinding.yesButton.setOnClickListener {
             viewModel.submitClick()
-            viewModel.wantSubmit.value=true
+            viewModel.wantSubmit.value = true
             dialogWarningSubmit.dismiss()
         }
         dialogWarningSubmit.show()
