@@ -18,4 +18,7 @@ interface userService {
     @GET("user/userpersonal/searchlist")
     fun fetchSearchTags(@Query("emailId")emailId:String):Call<List<String>>
 
+    @GET("user")
+    fun getUserById(@Query("userId")userId:String):Call<User>
+
 }

@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.HomeActivity
+import com.example.quizzy.Screens.ProfileActivity
 import com.example.quizzy.Screens.QuizDetailActivity
 import com.example.quizzy.dataModel.enums.Difficulty
 import com.example.quizzy.dataModel.model.QuizShortModel
 import kotlinx.android.synthetic.main.list_item_quiz.view.*
+import java.text.DecimalFormat
 
 class HomePageAdapter(val activity: HomeActivity) :
     RecyclerView.Adapter<HomePageAdapter.MyViewHolder>() {
@@ -39,6 +41,7 @@ class HomePageAdapter(val activity: HomeActivity) :
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        private val df: DecimalFormat = DecimalFormat("0.00")
         val authorName = view.username
         val title = view.quiz_title
         val desc = view.quiz_desc
@@ -46,12 +49,13 @@ class HomePageAdapter(val activity: HomeActivity) :
         val timesPlayed = view.no_of_rating
         val difficulty = view.difficulty
         val button = view.attempt_button
+        val profile=view.profile
 
         fun bind(data: QuizShortModel, activity: HomeActivity) {
             authorName.text = data.authorName
             title.text = data.title
             desc.text = data.description
-            rating.text = data.avgRating.toString()
+            rating.text = df.format(data.avgRating)
             timesPlayed.text = data.timesPlayed.toString()
 
             when (data.difficulty) {
@@ -63,6 +67,12 @@ class HomePageAdapter(val activity: HomeActivity) :
             button.setOnClickListener {
                 val intent = Intent(activity, QuizDetailActivity::class.java)
                 intent.putExtra("quizId", data.quizId)
+                activity.startActivity(intent)
+            }
+
+            profile.setOnClickListener {
+                val intent=Intent(activity,ProfileActivity::class.java)
+                intent.putExtra("userId",data.authorID)
                 activity.startActivity(intent)
             }
 

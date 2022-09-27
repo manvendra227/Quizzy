@@ -1,9 +1,12 @@
 package com.example.quizzy.dataModel.model
 
-data class AttemptModelUser (
-    private val quizID: String,
-    private val title: String,
-    private val score: Double,
-    private val time: Long,
-    private val feedback: Double
+import java.util.*
+
+data class AttemptModelUser(
+    val quizID: String,
+    val title: String,
+    val score: Double,
+    val passingScore: Double,
+    val time: Long,
+    val startTime: Date
 )

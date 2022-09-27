@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.google.android.material.card.MaterialCardView
+    android:layout_height="wrap_content">
+
+    <com.skydoves.elasticviews.ElasticCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:strokeWidth="1.5dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:strokeColor="@color/black">
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        app:cardView_duration="200"
+        app:cardView_scale="1.02"
+        android:foreground="@drawable/transparent_background4">
+
         <RelativeLayout
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_width="match_parent"
-            android:layout_height="36dp">
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_height="38dp">
+
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/quizname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:ellipsize="end"
-                android:scaleY="1.1"
-                android:maxLines="1"
-                android:fontFamily="@font/sen_regular"
-                android:text="Quiz on CyberSecurity"
-                android:layout_toStartOf="@id/score"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="4dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/score"
+                android:ellipsize="end"
+                android:fontFamily="@font/sen_regular"
+                android:maxLines="1"
+                android:text="Android Basics"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/score"
@@ -40,36 +42,38 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="16dp"
-                android:scaleY="1.2"
                 android:layout_toLeftOf="@id/time"
                 android:ellipsize="end"
                 android:fontFamily="@font/sen_bold"
                 android:text="78.02%"
                 android:textColor="@color/primary_green"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
-                android:layout_marginEnd="12dp"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="6dp"
                 android:fontFamily="@font/sen_bold"
+                android:padding="2dp"
                 android:text="8:12:087"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/date"
-                android:layout_below="@+id/time"
                 android:layout_width="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="-2dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/time"
                 android:layout_alignStart="@id/time"
+                android:layout_marginTop="-2dp"
+                android:layout_marginEnd="6dp"
                 android:fontFamily="@font/sen_regular"
                 android:text="22/08/2020"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
         </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </com.skydoves.elasticviews.ElasticCardView>
+
 </RelativeLayout>

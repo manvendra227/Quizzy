@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
+import com.example.quizzy.Screens.QuizDetailActivity
 import com.example.quizzy.dataModel.model.AttemptModelQuiz
 import kotlinx.android.synthetic.main.list_item_quiz_attempts.view.*
 import java.text.SimpleDateFormat
@@ -15,7 +16,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 
-class QuizAttemptsAdapter(private val passingScore:Double): RecyclerView.Adapter<QuizAttemptsAdapter.MyViewHolder>() {
+class QuizAttemptsAdapter(private val passingScore:Double,private val activity: QuizDetailActivity): RecyclerView.Adapter<QuizAttemptsAdapter.MyViewHolder>() {
 
 
     private var list: List<AttemptModelQuiz>? = null
@@ -32,7 +33,7 @@ class QuizAttemptsAdapter(private val passingScore:Double): RecyclerView.Adapter
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(list?.get(position)!!,passingScore)
+        holder.bind(list?.get(position)!!,passingScore,activity)
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +49,7 @@ class QuizAttemptsAdapter(private val passingScore:Double): RecyclerView.Adapter
         private val date=view.date
 
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(data: AttemptModelQuiz, passingScore: Double) {
+        fun bind(data: AttemptModelQuiz, passingScore: Double, activity: QuizDetailActivity) {
 
             val myDate = Date(data.time)
             val formatter = SimpleDateFormat("HH:mm:ss")

@@ -62,7 +62,6 @@ class QuizDetailActivity : AppCompatActivity() {
 
         quizId = intent.getStringExtra("quizId").toString()
         initViewModel(quizId)
-        viewModel.getData()
 
         initRecyclerViewTags()
         initRecyclerQuizAttempts()
@@ -101,7 +100,7 @@ class QuizDetailActivity : AppCompatActivity() {
     private fun initRecyclerQuizAttempts(){
 
         binding.quizAttemptRecycler.layoutManager=LinearLayoutManager(this)
-        quizAttemptsAdapter= QuizAttemptsAdapter(viewModel.passing.value?.toDouble() ?: 30.0)
+        quizAttemptsAdapter= QuizAttemptsAdapter(viewModel.passing.value?.toDouble() ?: 30.0,this)
         binding.quizAttemptRecycler.adapter=quizAttemptsAdapter
     }
 
@@ -110,45 +109,6 @@ class QuizDetailActivity : AppCompatActivity() {
         binding.userAttemptRecycler.layoutManager=LinearLayoutManager(this)
         userAttemptsAdapter= UserOnQuizAttemptsAdapter(viewModel.passing.value?.toDouble() ?: 30.0)
         binding.userAttemptRecycler.adapter=userAttemptsAdapter
-
-    }
-
-    private fun clickEvents() {
-        binding.buttonStart.setOnClickListener {
-            dialogWarning()
-        }
-    }
-
-    private fun dialogWarning() {
-        if (viewModel.isTimed.value == true) {
-
-            dialogBinding = PopupTimerWarningBinding.inflate(layoutInflater)
-            dialogWarning = Dialog(this)
-            dialogWarning.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialogWarning.setContentView(dialogBinding.root)
-            dialogWarning.window?.attributes!!.windowAnimations = R.style.DialogAnimation
-
-            dialogBinding.startButton.setOnClickListener {
-                startQuiz()
-                dialogWarning.dismiss()
-            }
-            dialogWarning.show()
-        } else {
-            startQuiz()
-        }
-    }
-
-    private fun startQuiz() {
-        layoutDetails.visibility = View.GONE
-        countdown.visibility = View.VISIBLE
-        val handler = Handler()
-        handler.postDelayed({
-            startActivity(
-                Intent(this, QuizActivity::class.java).putExtra("quizId", quizId)
-                    .putExtra("time", viewModel.time.value)
-            )
-            finish()
-        }, 2200)
 
     }
 
@@ -187,6 +147,46 @@ class QuizDetailActivity : AppCompatActivity() {
                 toast.showLong("Error in userAttempts")
             }
         }
+    }
+
+    private fun clickEvents() {
+        binding.buttonStart.setOnClickListener {
+            dialogWarning()
+        }
+    }
+
+    private fun dialogWarning() {
+        if (viewModel.isTimed.value == true) {
+
+            dialogBinding = PopupTimerWarningBinding.inflate(layoutInflater)
+            dialogWarning = Dialog(this)
+            dialogWarning.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogWarning.setContentView(dialogBinding.root)
+            dialogWarning.window?.attributes!!.windowAnimations = R.style.DialogAnimation
+
+            dialogBinding.startButton.setOnClickListener {
+                startQuiz()
+                dialogWarning.dismiss()
+            }
+            dialogWarning.show()
+        } else {
+            startQuiz()
+        }
+    }
+
+    private fun startQuiz() {
+        layoutDetails.visibility = View.GONE
+        appbar.visibility=View.GONE
+        countdown.visibility = View.VISIBLE
+        val handler = Handler()
+        handler.postDelayed({
+            startActivity(
+                Intent(this, QuizActivity::class.java).putExtra("quizId", quizId)
+                    .putExtra("time", viewModel.time.value)
+            )
+            finish()
+        }, 2200)
+
     }
 
     private fun expandableLayout() {

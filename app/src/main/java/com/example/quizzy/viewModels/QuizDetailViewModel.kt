@@ -1,8 +1,6 @@
 package com.example.quizzy.viewModels
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,17 +11,14 @@ import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.extras.Questions
 import com.example.quizzy.dataModel.model.AttemptModelQuiz
 import com.example.quizzy.dataModel.model.AttemptModelQuizUser
-import com.example.quizzy.dataModel.model.SavedUserModel
-import com.example.quizzy.utilities.UserDetailsSharedPrefrence
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class QuizDetailViewModel(private val quizId: String,private val userId:String) : ViewModel() {
+class QuizDetailViewModel(private val quizId: String, private val userId: String) : ViewModel() {
 
     private val quizService = RetrofitBuilder.buildService(QuizService::class.java)
-    private val attemptService=RetrofitBuilder.buildService(AttemptService::class.java)
+    private val attemptService = RetrofitBuilder.buildService(AttemptService::class.java)
 
 
     private var _title = MutableLiveData<String>()
@@ -52,14 +47,18 @@ class QuizDetailViewModel(private val quizId: String,private val userId:String) 
 
     var isTimed = MutableLiveData<Boolean>()
 
+    init {
+        getData()
+        getQuizAttempt()
+        getUserAttempts()
+    }
 
-    fun getData() {
+    private fun getData() {
         val request = quizService.fetchQuizById(quizId = quizId)
         request.enqueue(object : Callback<Quiz> {
             override fun onResponse(call: Call<Quiz>, response: Response<Quiz>) {
 
                 if (response.isSuccessful) {
-
                     val quiz: Quiz? = response.body()
                     if (quiz != null) {
                         setViews(quiz)
@@ -80,10 +79,10 @@ class QuizDetailViewModel(private val quizId: String,private val userId:String) 
 
         if (quiz.time != 0) {
             _time.value = quiz.time.toString() + " min"
-            isTimed.value=true
+            isTimed.value = true
         } else {
             _time.value = "No Time limit"
-            isTimed.value=false
+            isTimed.value = false
         }
 
         val tempScore = quiz.questions?.score
@@ -104,50 +103,51 @@ class QuizDetailViewModel(private val quizId: String,private val userId:String) 
     }
 
 
-
     fun getTagsList(): MutableLiveData<List<String>?> {
         return tagList
     }
 
-    fun getQuizAttemptList():MutableLiveData<List<AttemptModelQuiz>?>{
+    fun getQuizAttemptList(): MutableLiveData<List<AttemptModelQuiz>?> {
         return quizAttemptList
     }
 
-    fun getUserAttemptList():MutableLiveData<List<AttemptModelQuizUser>?>{
+    fun getUserAttemptList(): MutableLiveData<List<AttemptModelQuizUser>?> {
         return userAttemptList
     }
 
-    init {
-        getQuizAttempt()
-        getUserAttempts()
-    }
-    private fun getQuizAttempt(){
-        val request=attemptService.fetchQuizAttempt(quizId)
-        request.enqueue(object :Callback<List<AttemptModelQuiz>?>{
-            override fun onResponse(call: Call<List<AttemptModelQuiz>?>, response: Response<List<AttemptModelQuiz>?>) {
-                if (response.isSuccessful){
+    private fun getQuizAttempt() {
+        val request = attemptService.fetchQuizAttempt(quizId)
+        request.enqueue(object : Callback<List<AttemptModelQuiz>?> {
+            override fun onResponse(
+                call: Call<List<AttemptModelQuiz>?>,
+                response: Response<List<AttemptModelQuiz>?>
+            ) {
+                if (response.isSuccessful) {
                     quizAttemptList.postValue(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<List<AttemptModelQuiz>?>, t: Throwable) {
-                Log.i("attempt","failed quiz attempts")
+                Log.i("attempt", "failed quiz attempts")
             }
         })
     }
 
-    private fun getUserAttempts(){
+    private fun getUserAttempts() {
 
-        val request=attemptService.fetchUserAttemptOnQuiz(quizId,userId)
-        request.enqueue(object :Callback<List<AttemptModelQuizUser>?>{
-            override fun onResponse(call: Call<List<AttemptModelQuizUser>?>, response: Response<List<AttemptModelQuizUser>?>) {
-                if (response.isSuccessful){
+        val request = attemptService.fetchUserAttemptOnQuiz(quizId, userId)
+        request.enqueue(object : Callback<List<AttemptModelQuizUser>?> {
+            override fun onResponse(
+                call: Call<List<AttemptModelQuizUser>?>,
+                response: Response<List<AttemptModelQuizUser>?>
+            ) {
+                if (response.isSuccessful) {
                     userAttemptList.postValue(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<List<AttemptModelQuizUser>?>, t: Throwable) {
-                Log.i("attempt","failed user on quiz attempts")
+                Log.i("attempt", "failed user on quiz attempts")
             }
         })
     }

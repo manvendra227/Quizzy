@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/button_bg_orange.xml" value="0.1225" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dash_lines.xml" value="0.133" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dash_rectangle.xml" value="0.133" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dashed_dotted_lines.xml" value="0.133" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/diff_easy.xml" value="0.133" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dotted_line.xml" value="0.133" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_star.xml" value="0.1405" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/star_rating.xml" value="0.1405" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_checkbox.xml" value="0.1335" />
@@ -29,7 +34,7 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_login.xml" value="0.1835032437442076" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_post_quiz.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_profile.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_profile.xml" value="0.2" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz.xml" value="0.2" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_quiz_detail.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/activity_review.xml" value="0.20863616930312098" />
