@@ -37,6 +37,7 @@ class ProfileActivity : AppCompatActivity() {
         viewModelFactory = ProfileViewModelFactory(userId.toString())
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         binding.profileViewModel = viewModel
+        binding.lifecycleOwner=this
     }
 
     private fun initRecycler(){

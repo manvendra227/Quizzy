@@ -14,7 +14,7 @@ data class User(
     var enabled:Boolean,
     var gender: Gender,
     var date_of_birth:Gender,
-    var staus:Status,
+    var status:Status,
     var isVerfied:Boolean,
     var timestamp: java.util.Date,
     var userPersonal: UserPersonal)

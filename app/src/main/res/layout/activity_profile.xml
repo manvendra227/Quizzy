@@ -91,7 +91,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:fontFamily="@font/sen_regular"
-                                android:text="460"
+                                android:text="@{profileViewModel.solvedQuestions.toString()}"
                                 android:textColor="@color/blue"
                                 android:textSize="24sp" />
 
@@ -118,7 +118,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:fontFamily="@font/sen_regular"
-                                android:text="58.12%"
+                                android:text="@{profileViewModel.accuracy}"
                                 android:textColor="@color/blue"
                                 android:textSize="24sp" />
 
@@ -145,7 +145,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:fontFamily="@font/sen_regular"
-                                android:text="112"
+                                android:text="@{profileViewModel.activeDays.toString()}"
                                 android:textColor="@color/blue"
                                 android:textSize="24sp" />
 
@@ -218,7 +218,7 @@
                                 android:ellipsize="end"
                                 android:fontFamily="@font/sen_bold"
                                 android:maxLines="1"
-                                android:text="Manvendra Pratap singh "
+                                android:text="@{profileViewModel.username}"
                                 android:textAlignment="center"
                                 android:textSize="16dp" />
 
@@ -229,7 +229,7 @@
                                 android:layout_marginTop="16dp"
                                 android:layout_toRightOf="@+id/pic_profile"
                                 android:fontFamily="@font/sen_regular"
-                                android:text="Male | 20 years | Student"
+                                android:text="@{profileViewModel.info}"
                                 android:textAlignment="center"
                                 android:textSize="13sp" />
                         </RelativeLayout>
