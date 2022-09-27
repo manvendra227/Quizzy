@@ -28,12 +28,14 @@ class ProfileViewModel(val userId: String) : ViewModel() {
     private var _solvedQuestions = MutableLiveData<Int>()
     private var _accuracy = MutableLiveData<String>()
     private var _activeDays = MutableLiveData<Int>()
+    private var _emailID=MutableLiveData<String>()
 
     val username: LiveData<String> get() = _username
     val info: LiveData<String> get() = _info
     val solvedQuestions: LiveData<Int> get() = _solvedQuestions
     val accuracy: LiveData<String> get() = _accuracy
     val activeDays: LiveData<Int> get() = _activeDays
+    val emailID:LiveData<String> get() =_emailID
 
     init {
         fetchUser()
@@ -69,7 +71,6 @@ class ProfileViewModel(val userId: String) : ViewModel() {
                     _username.value = user.name
                     _info.value = "${user.gender} | 20 years | ${user.status} "
                     _solvedQuestions.value = user.userPersonal.questionsSolved
-                    Log.i("message", solvedQuestions.value.toString())
                     if (solvedQuestions.value == 0) {
                         _accuracy.value = "0.00%"
                     } else {
@@ -78,7 +79,7 @@ class ProfileViewModel(val userId: String) : ViewModel() {
                         _accuracy.value = df.format(temp) + "%"
                     }
                     _activeDays.value = difference_In_Days.toInt()
-                    Log.i("message", accuracy.value.toString())
+                    _emailID.value=user.emailID
                 }
             }
 

@@ -1,5 +1,8 @@
 package com.example.quizzy.Screens
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -29,6 +32,7 @@ class ProfileActivity : AppCompatActivity() {
         initViewModel()
         initRecycler()
         observers()
+        events()
         expandableLayout()
     }
 
@@ -56,6 +60,18 @@ class ProfileActivity : AppCompatActivity() {
             else{
                 Log.i("profileActivity","Error")
             }
+        }
+    }
+
+    private fun events(){
+        binding.emailButton.setOnClickListener {
+
+            val email = Intent(Intent.ACTION_SEND)
+            email.putExtra(Intent.EXTRA_EMAIL, arrayOf(viewModel.emailID.value.toString()))
+            email.putExtra(Intent.EXTRA_SUBJECT, "Subject Text Here..")
+            email.putExtra(Intent.EXTRA_TEXT, "")
+            email.type = "message/rfc822"
+            startActivity(Intent.createChooser(email, "Send Mail Using :"))
         }
     }
 
