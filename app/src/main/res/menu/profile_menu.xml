@@ -10,6 +10,10 @@
         <item android:id="@+id/deleteAccount" android:title="Delete Account"/>
     </group>
     <group>
+        <item android:id="@+id/wishlist" android:title="Wishlist"/>
+    </group>
+    <group>
         <item android:id="@+id/SignOut" android:title="Sign Out"/>
     </group>
+
 </menu>
