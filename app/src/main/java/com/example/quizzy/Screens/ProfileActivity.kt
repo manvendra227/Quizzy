@@ -26,30 +26,30 @@ import com.example.quizzy.viewModels.ViewModelFactory.ProfileViewModelFactory
 import com.google.gson.Gson
 
 
-class ProfileActivity : AppCompatActivity(),PopupMenu.OnMenuItemClickListener {
+class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
-    private lateinit var binding:ActivityProfileBinding
+    private lateinit var binding: ActivityProfileBinding
     private lateinit var viewModel: ProfileViewModel
     private lateinit var viewModelFactory: ProfileViewModelFactory
     private lateinit var adapter: UserAttemptsAdapter
-    private lateinit var userId:String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_profile)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
 
-          userId = intent.getStringExtra("userId").toString()
+        val userId = intent.getStringExtra("userId").toString()
 
         val savedUserResponse = UserDetailsSharedPrefrence().getUserDetails(this)
         val savedUserModel = Gson().fromJson(savedUserResponse, SavedUserModel::class.java)
 
-        if (userId == savedUserModel.userId){
-            binding.popMenu.visibility=View.VISIBLE
+        if (userId == savedUserModel.userId) {
+            binding.popMenu.visibility = View.VISIBLE
         }
         initViewModel(userId)
         initRecycler()
         observers()
-        clicks()
+        clicks(userId)
         expandableLayout()
     }
 
@@ -57,29 +57,28 @@ class ProfileActivity : AppCompatActivity(),PopupMenu.OnMenuItemClickListener {
         viewModelFactory = ProfileViewModelFactory(userId.toString())
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         binding.profileViewModel = viewModel
-        binding.lifecycleOwner=this
+        binding.lifecycleOwner = this
     }
 
-    private fun initRecycler(){
-        binding.userAttemptRecycler.layoutManager=LinearLayoutManager(this)
-        adapter= UserAttemptsAdapter(this)
-        binding.userAttemptRecycler.adapter=adapter
+    private fun initRecycler() {
+        binding.userAttemptRecycler.layoutManager = LinearLayoutManager(this)
+        adapter = UserAttemptsAdapter(this)
+        binding.userAttemptRecycler.adapter = adapter
     }
 
-    private fun observers(){
+    private fun observers() {
 
-        viewModel.getUserAttemptList().observe(this){
-            if (it!=null){
+        viewModel.getUserAttemptList().observe(this) {
+            if (it != null) {
                 adapter.setAttemptList(it)
                 adapter.notifyDataSetChanged()
-            }
-            else{
-                Log.i("profileActivity","Error")
+            } else {
+                Log.i("profileActivity", "Error")
             }
         }
     }
 
-    private fun clicks(){
+    private fun clicks(userId: String) {
         binding.emailButton.setOnClickListener {
 
             val email = Intent(Intent.ACTION_SEND)
@@ -91,13 +90,13 @@ class ProfileActivity : AppCompatActivity(),PopupMenu.OnMenuItemClickListener {
         }
 
         binding.uploadButton.setOnClickListener {
-            val intent=Intent(this,ListActivity::class.java)
-            intent.putExtra("key",userId)
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("key", userId)
             startActivity(intent)
         }
 
-        binding.popMenu.setOnClickListener{
-            val view:ImageButton=findViewById(R.id.popMenu)
+        binding.popMenu.setOnClickListener {
+            val view: ImageButton = findViewById(R.id.popMenu)
             popupMenu(view)
         }
     }
@@ -120,10 +119,10 @@ class ProfileActivity : AppCompatActivity(),PopupMenu.OnMenuItemClickListener {
 
     }
 
-    private fun popupMenu(view:View){
+    private fun popupMenu(view: View) {
 
-        val wrapper: Context = ContextThemeWrapper(this,R.style.popupMenuStyle)
-        val menu = PopupMenu(wrapper,view)
+        val wrapper: Context = ContextThemeWrapper(this, R.style.popupMenuStyle)
+        val menu = PopupMenu(wrapper, view)
         menu.setOnMenuItemClickListener(this)
         menu.inflate(R.menu.profile_menu)
         menu.show()
@@ -131,20 +130,20 @@ class ProfileActivity : AppCompatActivity(),PopupMenu.OnMenuItemClickListener {
 
     override fun onMenuItemClick(p0: MenuItem?): Boolean {
 
-        return when(p0?.itemId){
-            R.id.editProfile->{
+        return when (p0?.itemId) {
+            R.id.editProfile -> {
                 true
             }
-            R.id.changePassword->{
+            R.id.changePassword -> {
                 true
             }
-            R.id.deleteAccount->{
+            R.id.deleteAccount -> {
                 true
             }
-            R.id.SignOut->{
+            R.id.SignOut -> {
                 LoginStateSharedPrefrence().clearState(this)
                 UserDetailsSharedPrefrence().clearUserDetails(this)
-                startActivity(Intent(this,LoginActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finishAffinity()
                 true
             }

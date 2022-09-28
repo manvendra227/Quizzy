@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.Screens.HomeActivity
+import com.example.quizzy.Screens.ListActivity
 import com.example.quizzy.Screens.ProfileActivity
 import com.example.quizzy.Screens.QuizDetailActivity
 import com.example.quizzy.dataModel.enums.Difficulty
@@ -77,6 +78,10 @@ class HomePageAdapter(val activity: Activity) :
                 val intent=Intent(activity,ProfileActivity::class.java)
                 intent.putExtra("userId",data.authorID)
                 activity.startActivity(intent)
+            }
+
+            if (activity is ListActivity){
+                delete.visibility=View.VISIBLE
             }
 
         }

@@ -49,6 +49,7 @@ class UserAttemptsAdapter(private val activity: ProfileActivity): RecyclerView.A
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data: AttemptModelUser, activity: ProfileActivity) {
 
+            resetViews()
             val myDate = Date(data.time)
             val formatter = SimpleDateFormat("HH:mm:ss")
             val myTime = formatter.format(myDate)
@@ -63,9 +64,14 @@ class UserAttemptsAdapter(private val activity: ProfileActivity): RecyclerView.A
             score.text=data.score.toString()
             date.text="${day}/${month}/${year}"
             time.text=myTime
+
             if (data.score<data.passingScore){
                 score.setTextColor(Color.parseColor("#FF453A"))
             }
+        }
+
+        fun resetViews(){
+            score.setTextColor(Color.parseColor("#30D158"))
         }
 
     }
