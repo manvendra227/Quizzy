@@ -48,7 +48,7 @@ class ListActivity : AppCompatActivity() {
 
     private fun initRecycler(){
         binding.recyclerQuiz.layoutManager=LinearLayoutManager(this)
-        adapter= HomePageAdapter(this)
+        adapter= HomePageAdapter(this,key)
         binding.recyclerQuiz.adapter=adapter
     }
 

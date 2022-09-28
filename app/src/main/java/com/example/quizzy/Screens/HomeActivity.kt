@@ -72,7 +72,7 @@ class HomeActivity : AppCompatActivity() {
         } else {
             recycler_quiz.layoutManager = LinearLayoutManager(this)
         }
-        homePageAdapter = HomePageAdapter(this)
+        homePageAdapter = HomePageAdapter(this,"fakeKey")
         recycler_quiz.adapter = homePageAdapter
     }
 

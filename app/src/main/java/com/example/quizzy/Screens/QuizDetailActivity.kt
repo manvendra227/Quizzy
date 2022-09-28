@@ -24,7 +24,7 @@ import com.example.quizzy.Adapter.UserOnQuizAttemptsAdapter
 import com.example.quizzy.R
 import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.databinding.ActivityQuizDetailBinding
-import com.example.quizzy.databinding.PopupTimerWarningBinding
+import com.example.quizzy.databinding.PopupWarningBinding
 import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.QuizDetailViewModel
@@ -47,7 +47,7 @@ class QuizDetailActivity : AppCompatActivity() {
     private lateinit var quizId: String
     private var userDetails = UserDetailsSharedPrefrence()
 
-    private lateinit var dialogBinding: PopupTimerWarningBinding
+    private lateinit var dialogBinding: PopupWarningBinding
     private lateinit var dialogWarning: Dialog
 
 
@@ -158,7 +158,7 @@ class QuizDetailActivity : AppCompatActivity() {
     private fun dialogWarning() {
         if (viewModel.isTimed.value == true) {
 
-            dialogBinding = PopupTimerWarningBinding.inflate(layoutInflater)
+            dialogBinding = PopupWarningBinding.inflate(layoutInflater)
             dialogWarning = Dialog(this)
             dialogWarning.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialogWarning.setContentView(dialogBinding.root)

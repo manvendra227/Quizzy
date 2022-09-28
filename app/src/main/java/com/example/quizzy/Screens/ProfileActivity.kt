@@ -32,13 +32,14 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var viewModelFactory: ProfileViewModelFactory
     private lateinit var adapter: UserAttemptsAdapter
+    private lateinit var userId:String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
 
-        val userId = intent.getStringExtra("userId").toString()
+        userId = intent.getStringExtra("userId").toString()
 
         val savedUserResponse = UserDetailsSharedPrefrence().getUserDetails(this)
         val savedUserModel = Gson().fromJson(savedUserResponse, SavedUserModel::class.java)
@@ -49,7 +50,7 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         initViewModel(userId)
         initRecycler()
         observers()
-        clicks(userId)
+        clicks()
         expandableLayout()
     }
 
@@ -78,7 +79,7 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
     }
 
-    private fun clicks(userId: String) {
+    private fun clicks() {
         binding.emailButton.setOnClickListener {
 
             val email = Intent(Intent.ACTION_SEND)
