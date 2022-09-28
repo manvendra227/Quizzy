@@ -53,4 +53,11 @@
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
+
+    <style name="popupMenuStyle" >
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:itemBackground">#000000</item>
+        <item name="android:divider">#eaeaea</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
 </resources>

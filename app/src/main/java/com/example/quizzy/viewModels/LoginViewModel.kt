@@ -41,7 +41,7 @@ class LoginViewModel : ViewModel() {
 
     fun onLoginClick() {
         if (!emailID.value.isNullOrEmpty() && !password.value.isNullOrEmpty()) {
-            val request = service.loginUser(emailID.value.toString(), password.value.toString());
+            val request = service.loginUser(emailID.value.toString(), password.value.toString())
             request.enqueue(object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
 

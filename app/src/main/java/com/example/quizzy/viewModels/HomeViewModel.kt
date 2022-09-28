@@ -56,7 +56,7 @@ class HomeViewModel(email: String) : ViewModel() {
     }
 
     fun getTagsData() {
-        val request = userService.fetchSearchTags(emailId);
+        val request = userService.fetchSearchTags(emailId)
         Log.i("email", emailId)
         request.enqueue(object : Callback<List<String>> {
 

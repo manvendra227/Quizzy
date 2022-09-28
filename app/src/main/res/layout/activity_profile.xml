@@ -36,11 +36,14 @@
             android:textSize="@dimen/dimen_text_18" />
 
         <ImageButton
+            android:id="@+id/popMenu"
             android:layout_width="40dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="@dimen/dimen_12"
+            android:visibility="gone"
+            android:background="?selectableItemBackgroundBorderless"
             android:backgroundTint="@android:color/transparent"
             android:src="@drawable/ic_more_vert" />
 
@@ -72,18 +75,18 @@
                         android:src="@drawable/dashed_dotted_lines" />
 
                     <LinearLayout
-                        android:layout_marginBottom="12dp"
-                        android:layout_gravity="bottom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="12dp"
                         android:weightSum="3">
 
                         <LinearLayout
                             android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:layout_height="wrap_content">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/noOfQuestions"
@@ -107,10 +110,10 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:layout_height="wrap_content">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/accuracy"
@@ -134,10 +137,10 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:layout_height="wrap_content">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/activedays"
@@ -265,7 +268,7 @@
                                     android:layout_weight="5">
 
                                     <com.google.android.material.button.MaterialButton
-                                        android:id="@+id/button_blue1"
+                                        android:id="@+id/upload_button"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_marginStart="3dp"

@@ -1,5 +1,6 @@
 package com.example.quizzy.Adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,7 @@ import com.example.quizzy.dataModel.model.QuizShortModel
 import kotlinx.android.synthetic.main.list_item_quiz.view.*
 import java.text.DecimalFormat
 
-class HomePageAdapter(val activity: HomeActivity) :
+class HomePageAdapter(val activity: Activity) :
     RecyclerView.Adapter<HomePageAdapter.MyViewHolder>() {
 
     private var quizList: List<QuizShortModel>? = null
@@ -42,7 +43,7 @@ class HomePageAdapter(val activity: HomeActivity) :
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val df: DecimalFormat = DecimalFormat("0.00")
-        val authorName = view.username
+        private val authorName = view.username
         val title = view.quiz_title
         val desc = view.quiz_desc
         val rating = view.rating
@@ -50,13 +51,15 @@ class HomePageAdapter(val activity: HomeActivity) :
         val difficulty = view.difficulty
         val button = view.attempt_button
         val profile=view.profile
+        val delete=view.delete
 
-        fun bind(data: QuizShortModel, activity: HomeActivity) {
+        fun bind(data: QuizShortModel, activity: Activity) {
             authorName.text = data.authorName
             title.text = data.title
             desc.text = data.description
             rating.text = df.format(data.avgRating)
             timesPlayed.text = data.timesPlayed.toString()
+            delete.visibility=View.GONE
 
             when (data.difficulty) {
                 Difficulty.EASY -> difficulty.setImageResource(R.drawable.diff_easy)

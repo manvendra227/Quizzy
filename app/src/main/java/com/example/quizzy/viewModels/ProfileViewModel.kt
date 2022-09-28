@@ -56,7 +56,6 @@ class ProfileViewModel(val userId: String) : ViewModel() {
 
                 if (response.isSuccessful) {
                     user = response.body()!!
-                    Log.i("user", user.toString())
                     val regTime = user.timestamp
                     val difference_In_Time: Long =
                         (Calendar.getInstance().time.time) - (regTime.time)

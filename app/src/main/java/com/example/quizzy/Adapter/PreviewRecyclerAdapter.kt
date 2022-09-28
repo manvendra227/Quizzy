@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.R
 import com.example.quizzy.dataModel.extras.questionFormat
 import kotlinx.android.synthetic.main.list_item_question.view.*
+import org.w3c.dom.Text
 
 
 class PreviewRecyclerAdapter(val context: FragmentActivity, val onClickDelete: (Int) -> Unit) :
@@ -47,6 +48,7 @@ class PreviewRecyclerAdapter(val context: FragmentActivity, val onClickDelete: (
         private val delete: ImageView = view.delete
         private val sNo: TextView = view.questionNum
         private val question: TextView = view.question
+        private val explanation:TextView=view.explanationText
 
         private val optionA: TextView = view.textA
         private val optionB: TextView = view.textB
@@ -74,6 +76,8 @@ class PreviewRecyclerAdapter(val context: FragmentActivity, val onClickDelete: (
             optionB.text = data.options?.get(1)
             optionC.text = data.options?.get(2)
             optionD.text = data.options?.get(3)
+
+            explanation.text=data.explanation
 
             sNo.text = "${(position + 1)} . "
 

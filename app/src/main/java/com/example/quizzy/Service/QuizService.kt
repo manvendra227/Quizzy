@@ -26,4 +26,8 @@ interface QuizService {
 
     @POST("quiz")
     fun saveQuiz(@Body quiz:Quiz):Call<String>
+
+    @GET("quiz/uploads")
+    fun fetchUserUploads(@Query("authorID") authorID:String):Call<List<QuizShortModel>>
+
 }

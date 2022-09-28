@@ -49,6 +49,8 @@ class ReviewQuizAdapter(val activity: ReviewActivity) :
         private val delete: ImageView = view.delete
         private val sNo: TextView = view.questionNum
         private val question: TextView = view.question
+        private val explanation:TextView=view.explanationText
+
 
         private val optionA: TextView = view.textA
         private val optionB: TextView = view.textB
@@ -79,6 +81,8 @@ class ReviewQuizAdapter(val activity: ReviewActivity) :
             optionB.text = data.options?.get(1)
             optionC.text = data.options?.get(2)
             optionD.text = data.options?.get(3)
+
+            explanation.text=data.explanation
 
             sNo.text = "${(position + 1)} . "
 
