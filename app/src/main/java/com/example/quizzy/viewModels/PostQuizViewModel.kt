@@ -28,7 +28,7 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
     val title = MutableLiveData<String>()
     val desc = MutableLiveData("")
     val tags = MutableLiveData<String>()
-    val time = MutableLiveData<String>()
+    val time = MutableLiveData("60")
 
     var onCorrect = MutableLiveData("10")
     val onWrong = MutableLiveData("-2")
@@ -112,7 +112,7 @@ class PostQuizViewModel(application: Application) : AndroidViewModel(application
     fun onTimerClick() {
         Log.i("timer", timer.value.toString())
         if (isTimed.value == true && !time.value.isNullOrEmpty()) timer.value = time.value?.toInt()
-        else if (isTimed.value == true && time.value == null) timer.value = 60
+        else if (isTimed.value == true && time.value == "60") timer.value = 60
         else timer.value = 0
         Log.i("timer", timer.value.toString())
     }

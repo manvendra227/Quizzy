@@ -31,7 +31,7 @@
             android:layout_marginTop="@dimen/dimen_12"
             android:layout_toEndOf="@id/back_button"
             android:fontFamily="@font/sen_bold"
-            android:text="@string/create_profile"
+            android:text="Profile"
             android:textColor="@color/black"
             android:textSize="@dimen/dimen_text_18" />
 

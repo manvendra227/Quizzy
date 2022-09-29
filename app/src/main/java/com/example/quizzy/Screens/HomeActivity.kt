@@ -6,8 +6,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
@@ -40,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewModelFactory: HomeViewModelFactory
     private lateinit var homePageAdapter: HomePageAdapter
     private lateinit var searchTagAdapter: SearchTagAdapter
-    private val savedUser = UserDetailsSharedPrefrence()
+    private lateinit var savedUserModel: SavedUserModel
     private var toast = MyToast(this)
     private var doubleBackToExitPressedOnce = false
 
@@ -60,7 +59,17 @@ class HomeActivity : AppCompatActivity() {
         refreshQuiz()
         filterData()
         createButton()
+        clickEvents()
 
+    }
+
+    private fun clickEvents() {
+
+        profile.setOnClickListener {
+            val intent=Intent(this,ProfileActivity::class.java)
+            intent.putExtra("userId",savedUserModel.userId)
+            startActivity(intent)
+        }
     }
 
 
@@ -72,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
         } else {
             recycler_quiz.layoutManager = LinearLayoutManager(this)
         }
-        homePageAdapter = HomePageAdapter(this,"fakeKey")
+        homePageAdapter = HomePageAdapter(this, "fakeKey")
         recycler_quiz.adapter = homePageAdapter
     }
 
@@ -87,9 +96,8 @@ class HomeActivity : AppCompatActivity() {
     private fun initViewModel() {
 
         //Getting data from sharedPreferences and converting to object
-        val gson = Gson()
-        val savedUserResponse=savedUser.getUserDetails(this)
-        val savedUserModel=gson.fromJson(savedUserResponse,SavedUserModel::class.java)
+        val savedUserResponse = UserDetailsSharedPrefrence().getUserDetails(this)
+        savedUserModel = Gson().fromJson(savedUserResponse, SavedUserModel::class.java)
 
         viewModelFactory = HomeViewModelFactory(savedUserModel.emailId)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
@@ -192,16 +200,18 @@ class HomeActivity : AppCompatActivity() {
         initLoads()
         this.doubleBackToExitPressedOnce = true
         toast.showShort("Please click again to exit")
-        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
     }
 
-    private fun createButton(){
+    private fun createButton() {
         scroller.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if (scrollY > oldScrollY + 35 && extendedFab.isExtended) {     // Scroll Down
                 extendedFab.shrink()
             }
 
-            if(scrollY < oldScrollY - 35 && !extendedFab.isExtended) {      // Scroll Up
+            if (scrollY < oldScrollY - 35 && !extendedFab.isExtended) {      // Scroll Up
                 extendedFab.extend()
             }
 
@@ -211,7 +221,7 @@ class HomeActivity : AppCompatActivity() {
         })
 
         extendedFab.setOnClickListener {
-            startActivity(Intent(this,PostQuizActivity::class.java))
+            startActivity(Intent(this, PostQuizActivity::class.java))
         }
     }
 }
