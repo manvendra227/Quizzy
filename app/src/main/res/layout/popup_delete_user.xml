@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="dialogViewModel"
+            type="com.example.quizzy.viewModels.ProfileViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="24dp"
+        app:strokeColor="?android:textColorHighlight"
+        app:strokeWidth="3dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:fontFamily="@font/sen_bold"
+                    android:text="Deleting account will delete all your attempts from database but not your uploaded quiz. Enter password if you still want to delete account."
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="@dimen/dimen_text_14" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/password_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text"
+                    android:layout_marginTop="12dp"
+                    android:minHeight="@dimen/dimen_40"
+                    app:cardCornerRadius="@dimen/dimen_8"
+                    app:cardElevation="@null"
+                    app:strokeColor="?android:textColorHighlight"
+                    app:strokeWidth="1dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:fontFamily="@font/sen_reg"
+                        android:hint="Enter your password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:minHeight="@dimen/dimen_44"
+                        android:padding="@dimen/dimen_12"
+                        android:textSize="@dimen/dimen_text_14" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/password_box"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/dimen_8">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/dimen_8"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="4dp"
+                            android:fontFamily="@font/sen_bold"
+                            android:text="Delete"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            app:backgroundTint="@color/button_red"
+                            app:cornerRadius="9dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="139dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/transparent_background" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,7 +1,10 @@
 package com.example.quizzy.Screens
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -19,7 +22,10 @@ import com.example.quizzy.Adapter.UserAttemptsAdapter
 import com.example.quizzy.R
 import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.databinding.ActivityProfileBinding
+import com.example.quizzy.databinding.PopupChangePasswordBinding
+import com.example.quizzy.databinding.PopupDeleteUserBinding
 import com.example.quizzy.utilities.LoginStateSharedPrefrence
+import com.example.quizzy.utilities.MyToast
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.ProfileViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.ProfileViewModelFactory
@@ -32,7 +38,14 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var viewModelFactory: ProfileViewModelFactory
     private lateinit var adapter: UserAttemptsAdapter
-    private lateinit var userId:String
+    private lateinit var userId: String
+
+    private lateinit var dialogBinding1: PopupChangePasswordBinding
+    private lateinit var dialog1: Dialog
+
+    private lateinit var dialogBinding2: PopupDeleteUserBinding
+    private lateinit var dialog2: Dialog
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,12 +146,15 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
         return when (p0?.itemId) {
             R.id.editProfile -> {
+                MyToast(this).showShort("Feature not implemented yet")
                 true
             }
             R.id.changePassword -> {
+                dialogChangePassword()
                 true
             }
             R.id.deleteAccount -> {
+                dialogDeleteUser()
                 true
             }
             R.id.SignOut -> {
@@ -148,7 +164,42 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
                 finishAffinity()
                 true
             }
+            R.id.wishlist -> {
+                true
+            }
             else -> false
         }
+    }
+
+    private fun dialogChangePassword() {
+
+        dialogBinding1 = PopupChangePasswordBinding.inflate(layoutInflater)
+        dialog1 = Dialog(this)
+        dialog1.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog1.setContentView(dialogBinding1.root)
+        dialog1.window?.attributes!!.windowAnimations = R.style.DialogAnimation
+
+        dialogBinding1.button.setOnClickListener {
+            dialog1.dismiss()
+        }
+
+        dialogBinding1.dialogViewModel = viewModel
+        dialog1.show()
+    }
+
+    private fun dialogDeleteUser() {
+
+        dialogBinding2 = PopupDeleteUserBinding.inflate(layoutInflater)
+        dialog2 = Dialog(this)
+        dialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog2.setContentView(dialogBinding2.root)
+        dialog2.window?.attributes!!.windowAnimations = R.style.DialogAnimation
+
+        dialogBinding2.button.setOnClickListener {
+            dialog2.dismiss()
+        }
+
+        dialogBinding2.dialogViewModel = viewModel
+        dialog2.show()
     }
 }
