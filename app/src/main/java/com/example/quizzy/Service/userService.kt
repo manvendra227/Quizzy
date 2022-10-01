@@ -1,8 +1,7 @@
 package com.example.quizzy.Service
 
 import com.example.quizzy.dataModel.entity.User
-import com.example.quizzy.dataModel.model.LoginModel
-import com.example.quizzy.dataModel.model.QuizShortModel
+import com.example.quizzy.dataModel.model.PasswordModel
 import com.example.quizzy.dataModel.model.UserModel
 import retrofit2.Call
 import retrofit2.http.*
@@ -20,5 +19,11 @@ interface userService {
 
     @GET("user")
     fun getUserById(@Query("userId")userId:String):Call<User>
+
+    @DELETE("user/{id}")
+    fun deleteUser(@Path("id")userId: String, @Query("password") password: String):Call<String>
+
+    @POST("user/changePassword")
+    fun changePassword(@Body passwordModel: PasswordModel):Call<String>
 
 }

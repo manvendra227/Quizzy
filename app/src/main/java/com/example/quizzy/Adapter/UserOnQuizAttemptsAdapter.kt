@@ -30,6 +30,7 @@ class UserOnQuizAttemptsAdapter(private val passingScore:Double): RecyclerView.A
         return MyViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(list?.get(position)!!,passingScore)
     }
@@ -48,9 +49,12 @@ class UserOnQuizAttemptsAdapter(private val passingScore:Double): RecyclerView.A
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data: AttemptModelQuizUser, passingScore: Double) {
 
-            val myDate = Date(data.time)
-            val formatter = SimpleDateFormat("HH:mm:ss")
-            val myTime = formatter.format(myDate)
+            val ms=data.time%1000
+            val s=((data.time/1000)%60)-2
+            val m=((data.time/1000)/60)%60
+            val milliseconds=if (ms<10) "00$ms" else if (ms in 10..99) "0$ms" else "$ms"
+            val seconds=if (s<10) "0$s" else "$s"
+            val minutes=if (m<10) "0$m" else "$m"
 
             val x = data.timestamp
             val localDate: LocalDate = x?.toInstant()?.atZone(ZoneId.systemDefault())!!.toLocalDate()
@@ -60,7 +64,7 @@ class UserOnQuizAttemptsAdapter(private val passingScore:Double): RecyclerView.A
 
             score.text=data.score.toString()
             date.text= "${day}/${month}/${year}"
-            time.text=myTime
+            time.text = "$minutes:$seconds:$milliseconds"
             if (data.score<passingScore){
                 score.setTextColor(Color.parseColor("#FF453A"))
             }

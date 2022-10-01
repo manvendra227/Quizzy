@@ -34,6 +34,10 @@ android {
         jvmTarget = '1.8'
         freeCompilerArgs = ['-Xjvm-default=compatibility']
     }
+    packagingOptions{
+        exclude 'com/itextpdf/io/font/cmap_info.txt'
+        exclude 'com/itextpdf/io/font/cmap/*'
+    }
     dataBinding {
         enabled = true
     }
@@ -79,5 +83,9 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation "com.airbnb.android:lottie:3.4.0"
+//    implementation 'com.itextpdf.android:itext7-core-android:7.2.3'
 
+    implementation 'com.itextpdf:kernel:7.1.8'
+    implementation 'com.itextpdf:layout:7.1.8'
+    implementation 'com.itextpdf:io:7.1.8'
 }

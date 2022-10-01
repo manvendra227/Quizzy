@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
+import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.enums.BuzzType
 import com.example.quizzy.dataModel.enums.Progress
 import com.example.quizzy.dataModel.extras.Questions
@@ -85,7 +86,6 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
 
     private var _percentage = MutableLiveData("")
     val percentage: LiveData<String> get() = _percentage
-
 
     init {
         Log.i("Quiz", "QuizViewModel created!")

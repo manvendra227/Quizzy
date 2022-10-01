@@ -29,6 +29,7 @@ import com.example.quizzy.databinding.PopupRatingBinding
 import com.example.quizzy.databinding.PopupSubmitQuizBinding
 import com.example.quizzy.utilities.GridColumnCalculator
 import com.example.quizzy.utilities.MyToast
+import com.example.quizzy.utilities.PDF
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.QuizViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.QuizViewModelFactory
@@ -231,6 +232,10 @@ class QuizActivity : AppCompatActivity() {
         score.close_button.setOnClickListener {
             box.dismiss()
             dialogFeedback()
+        }
+
+        score.answerPdf.setOnClickListener {
+            PDF(this).createAnswerPDF(viewModel.getQuestionList())
         }
 
         score.review.setOnClickListener {

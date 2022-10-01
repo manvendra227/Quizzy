@@ -412,35 +412,12 @@
                                                 android:textColor="?android:textColorPrimary"
                                                 android:textSize="14sp" />
 
-                                            <TextView
-                                                android:id="@+id/bullet4"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_below="@id/bullet3"
-                                                android:layout_alignStart="@+id/quizName"
-                                                android:layout_marginTop="3dp"
-                                                android:fontFamily="@font/sen_regular"
-                                                android:text="@string/details4"
-                                                android:textColor="?android:textColorPrimary"
-                                                android:textSize="14sp" />
-
-                                            <TextView
-                                                android:id="@+id/bullet5"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_below="@id/bullet4"
-                                                android:layout_alignStart="@+id/quizName"
-                                                android:layout_marginTop="3dp"
-                                                android:fontFamily="@font/sen_regular"
-                                                android:text="@string/details5"
-                                                android:textColor="?android:textColorPrimary"
-                                                android:textSize="14sp" />
 
                                             <TextView
                                                 android:id="@+id/tags"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:layout_below="@id/bullet5"
+                                                android:layout_below="@id/bullet3"
                                                 android:layout_alignStart="@+id/details"
                                                 android:layout_marginTop="20dp"
                                                 android:fontFamily="@font/sen_bold"
@@ -472,44 +449,96 @@
                                                 android:textColor="?android:textColorPrimary"
                                                 android:textSize="14sp" />
 
-                                            <RelativeLayout
-                                                android:id="@+id/button"
-                                                android:layout_width="170dp"
-                                                android:layout_height="54dp"
+
+                                            <LinearLayout
                                                 android:layout_below="@+id/response"
-                                                android:layout_centerHorizontal="true"
                                                 android:layout_marginTop="30dp"
                                                 android:layout_marginBottom="20dp"
-                                                android:background="@android:color/transparent">
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:paddingLeft="12dp"
+                                                android:paddingRight="12dp"
+                                                android:weightSum="10">
+
 
                                                 <RelativeLayout
-                                                    android:id="@+id/button1"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content">
+                                                    android:id="@+id/button_prev"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_marginLeft="12dp"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginRight="12dp"
+                                                    android:layout_weight="3">
+
+                                                    <com.google.android.material.button.MaterialButton
+                                                        android:id="@+id/button_pdf"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginStart="3dp"
+                                                        android:clickable="true"
+                                                        android:elevation="5dp"
+                                                        android:focusable="true"
+                                                        android:fontFamily="@font/sen_bold"
+                                                        android:text="Pdf"
+                                                        android:textAllCaps="false"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="13sp"
+                                                        app:backgroundTint="@color/button_red"
+                                                        app:cornerRadius="10dp" />
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="2dp"
+                                                        android:layout_marginEnd="4dp"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:background="@drawable/transparent_background"
+                                                        android:elevation="10dp"
+                                                        app:strokeColor="@color/black"
+                                                        app:strokeWidth="1dp" />
+                                                </RelativeLayout>
+
+
+                                                <RelativeLayout
+                                                    android:id="@+id/button_next"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_marginLeft="12dp"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginRight="12dp"
+                                                    android:layout_weight="7">
 
                                                     <com.google.android.material.button.MaterialButton
                                                         android:id="@+id/button_start"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
-                                                        android:layout_marginStart="4dp"
+                                                        android:layout_marginStart="3dp"
+                                                        android:clickable="true"
+                                                        android:elevation="5dp"
                                                         android:fontFamily="@font/sen_bold"
-                                                        android:text="START"
+                                                        android:text="Start"
                                                         android:textAllCaps="false"
                                                         android:textColor="@color/white"
                                                         android:textSize="13sp"
                                                         app:backgroundTint="@color/button_blue"
-                                                        app:cornerRadius="9dp" />
+                                                        app:cornerRadius="10dp" />
 
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="2dp"
+                                                        android:layout_marginEnd="4dp"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:background="@drawable/transparent_background"
+                                                        android:elevation="10dp"
+                                                        app:strokeColor="@color/black"
+                                                        app:strokeWidth="1dp" />
                                                 </RelativeLayout>
 
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:layout_alignBottom="@+id/button1"
-                                                    android:layout_marginEnd="4dp"
-                                                    android:layout_marginBottom="10dp"
-                                                    android:background="@drawable/transparent_background" />
-                                            </RelativeLayout>
+                                            </LinearLayout>
+
 
                                         </RelativeLayout>
                                     </com.skydoves.elasticviews.ElasticLayout>

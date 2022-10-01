@@ -47,7 +47,6 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private lateinit var dialog2: Dialog
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)

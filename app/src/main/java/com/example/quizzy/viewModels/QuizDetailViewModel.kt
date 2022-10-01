@@ -53,13 +53,20 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
         getUserAttempts()
     }
 
+    private var _quiz=MutableLiveData<Quiz?>()
+    val quiz:LiveData<Quiz?> get() = _quiz
+
+    fun getQuizData():LiveData<Quiz?>{
+        return quiz
+    }
     private fun getData() {
         val request = quizService.fetchQuizById(quizId = quizId)
         request.enqueue(object : Callback<Quiz> {
             override fun onResponse(call: Call<Quiz>, response: Response<Quiz>) {
 
                 if (response.isSuccessful) {
-                    val quiz: Quiz? = response.body()
+                     val quiz: Quiz? = response.body()
+                    _quiz.value=quiz
                     if (quiz != null) {
                         setViews(quiz)
                     }

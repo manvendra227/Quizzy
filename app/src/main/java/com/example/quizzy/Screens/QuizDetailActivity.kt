@@ -26,6 +26,7 @@ import com.example.quizzy.dataModel.model.SavedUserModel
 import com.example.quizzy.databinding.ActivityQuizDetailBinding
 import com.example.quizzy.databinding.PopupWarningBinding
 import com.example.quizzy.utilities.MyToast
+import com.example.quizzy.utilities.PDF
 import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.QuizDetailViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.QuizDetailsViewModelFactory
@@ -152,6 +153,9 @@ class QuizDetailActivity : AppCompatActivity() {
     private fun clickEvents() {
         binding.buttonStart.setOnClickListener {
             dialogWarning()
+        }
+        binding.buttonPdf.setOnClickListener {
+            PDF(this).createQuestionPDF(viewModel.getQuizData().value)
         }
     }
 

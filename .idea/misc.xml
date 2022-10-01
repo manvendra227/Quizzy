@@ -10,6 +10,7 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/diff_easy.xml" value="0.133" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/dotted_line.xml" value="0.133" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/ic_star.xml" value="0.1405" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/imagebutton_bg.xml" value="0.133" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/star_rating.xml" value="0.1405" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_checkbox.xml" value="0.1335" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/drawable/switch_gender.xml" value="0.122" />
@@ -63,6 +64,7 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_delete.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_delete_user.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_edittext.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_forgot_password.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_import_rules.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_lost.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_quiz_result.xml" value="0.264" />
@@ -72,7 +74,7 @@
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_submit_quiz.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/popup_timer_warning.xml" value="0.20778110303548525" />
         <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/layout/tag.xml" value="0.72" />
-        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/menu/profile_menu.xml" value="0.264" />
+        <entry key="..\:/Users/manu2/AndroidStudioProjects/Quizzy/app/src/main/res/menu/profile_menu.xml" value="0.2" />
       </map>
     </option>
   </component>
