@@ -4,6 +4,7 @@ import com.example.quizzy.dataModel.entity.User
 import com.example.quizzy.dataModel.model.PasswordModel
 import com.example.quizzy.dataModel.model.UserModel
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface userService {
@@ -15,7 +16,7 @@ interface userService {
     fun loginUser(@Query("emailId")emailId:String,@Query("password") password:String):Call<String>
 
     @GET("user/userpersonal/searchlist")
-    fun fetchSearchTags(@Query("emailId")emailId:String):Call<List<String>>
+    suspend fun fetchSearchTags(@Query("emailId")emailId:String):Response<List<String>>
 
     @GET("user")
     fun getUserById(@Query("userId")userId:String):Call<User>
