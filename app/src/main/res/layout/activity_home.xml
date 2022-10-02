@@ -121,6 +121,17 @@
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
                         tools:listitem="@layout/list_item_quiz" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/error"
+                        android:visibility="gone"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="350dp"
+                        android:layout_height="500dp"
+                        android:scaleType="fitCenter"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="serverError.json"
+                        app:lottie_loop="true"/>
                 </RelativeLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
@@ -30,7 +31,6 @@ import com.example.quizzy.viewModels.HomeViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.HomeViewModelFactory
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.list_item_user_attempts.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -68,8 +68,8 @@ class HomeActivity : AppCompatActivity() {
     private fun clickEvents() {
 
         profile.setOnClickListener {
-            val intent=Intent(this,ProfileActivity::class.java)
-            intent.putExtra("userId",savedUserModel.userId)
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra("userId", savedUserModel.userId)
             startActivity(intent)
         }
     }
@@ -109,11 +109,13 @@ class HomeActivity : AppCompatActivity() {
     private fun initLoads() {
 
         viewModel.getMainList().observe(this, Observer {
-            if (it != null) {
+            if (!it.isNullOrEmpty()) {
                 homePageAdapter.setQuizList(it)
                 homePageAdapter.notifyDataSetChanged()
+                binding.error.visibility = View.GONE
+
             } else {
-                toast.showLong("Error")
+                binding.error.visibility = View.VISIBLE
             }
         })
 
@@ -141,11 +143,16 @@ class HomeActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     private fun searchFunction() {
         viewModel.getSearchList().observe(this, Observer {
-            if (it != null) {
+            if (!it.isNullOrEmpty()) {
                 homePageAdapter.setQuizList(it)
                 homePageAdapter.notifyDataSetChanged()
+                binding.error.visibility = View.GONE
             } else {
-                toast.showLong("Error")
+                homePageAdapter.setQuizList(null)
+                homePageAdapter.notifyDataSetChanged()
+                binding.error.visibility = View.VISIBLE
+                binding.error.setAnimation("noResult.json")
+                binding.error.playAnimation()
             }
         })
         viewModel.getSearchData()
@@ -156,11 +163,16 @@ class HomeActivity : AppCompatActivity() {
     private fun searchByTag() {
         searchTag.observe(this, Observer {
             viewModel.getSearchList().observe(this, Observer {
-                if (it != null) {
+                if (!it.isNullOrEmpty()) {
                     homePageAdapter.setQuizList(it)
                     homePageAdapter.notifyDataSetChanged()
+                    binding.error.visibility = View.GONE
                 } else {
-                    toast.showLong("Error hugeeee")
+                    homePageAdapter.setQuizList(null)
+                    homePageAdapter.notifyDataSetChanged()
+                    binding.error.visibility = View.VISIBLE
+                    binding.error.setAnimation("noResult.json")
+                    binding.error.playAnimation()
                 }
             })
             viewModel.getSearchDataByTag(searchTag.value.toString())
