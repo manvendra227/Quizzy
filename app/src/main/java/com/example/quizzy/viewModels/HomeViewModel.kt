@@ -12,17 +12,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class HomeViewModel(email: String) : ViewModel() {
+class HomeViewModel(val userId: String) : ViewModel() {
 
     private var quizList: MutableLiveData<List<QuizShortModel>?> = MutableLiveData()
-    private var tagList: MutableLiveData<List<String>> = MutableLiveData()
-    private val emailId = email
+    private var tagList: MutableLiveData<List<String>?> = MutableLiveData()
 
     private val quizService = RetrofitBuilder.buildService(QuizService::class.java)
     private val userService = RetrofitBuilder.buildService(userService::class.java)
 
     val searchKey = MutableLiveData<String>()
 
+    init {
+        getQuizData()
+        getTagsData()
+    }
 
     fun getMainList(): MutableLiveData<List<QuizShortModel>?> {
         return quizList
@@ -32,10 +35,9 @@ class HomeViewModel(email: String) : ViewModel() {
         return quizList
     }
 
-    fun getTagsList(): MutableLiveData<List<String>> {
+    fun getTagsList(): MutableLiveData<List<String>?> {
         return tagList
     }
-
 
     fun getQuizData() {
 
@@ -53,7 +55,7 @@ class HomeViewModel(email: String) : ViewModel() {
 
     fun getTagsData() {
        viewModelScope.launch(Dispatchers.IO) {
-            val response = userService.fetchSearchTags(emailId)
+            val response = userService.fetchSearchTags(userId)
             if (response.isSuccessful) {
                 tagList.postValue(response.body())
                 Log.i("message", "Success in tag list")
@@ -69,6 +71,11 @@ class HomeViewModel(email: String) : ViewModel() {
             val response = quizService.loadSearch(searchKey.value ?: "")
             if (response.isSuccessful) quizList.postValue(response.body())
             else quizList.postValue(null)
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            val response=userService.updateSearchTags(userId,searchKey.value?:"")
+            if (response.isSuccessful) tagList.postValue(response.body())
+            else tagList.postValue(null)
         }
     }
 

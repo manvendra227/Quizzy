@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.quizzy.viewModels.HomeViewModel
 import com.example.quizzy.viewModels.QuizDetailViewModel
 
-class HomeViewModelFactory(private val emailId: String) : ViewModelProvider.Factory {
+class HomeViewModelFactory(private val userId: String) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(emailId) as T
+            return HomeViewModel(userId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

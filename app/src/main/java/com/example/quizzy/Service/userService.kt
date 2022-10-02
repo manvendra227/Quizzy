@@ -16,7 +16,10 @@ interface userService {
     fun loginUser(@Query("emailId")emailId:String,@Query("password") password:String):Call<String>
 
     @GET("user/userpersonal/searchlist")
-    suspend fun fetchSearchTags(@Query("emailId")emailId:String):Response<List<String>>
+    suspend fun fetchSearchTags(@Query("id")userId:String):Response<List<String>>
+
+    @PUT("user/userpersonal/searchlist")
+    suspend fun updateSearchTags(@Query("id")userId:String,@Query("searchTag")searchTag:String):Response<List<String>>
 
     @GET("user")
     fun getUserById(@Query("userId")userId:String):Call<User>
@@ -26,5 +29,7 @@ interface userService {
 
     @POST("user/changePassword")
     fun changePassword(@Body passwordModel: PasswordModel):Call<String>
+
+
 
 }

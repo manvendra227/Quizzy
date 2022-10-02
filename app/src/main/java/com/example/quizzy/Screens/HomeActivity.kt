@@ -30,6 +30,7 @@ import com.example.quizzy.viewModels.HomeViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.HomeViewModelFactory
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.list_item_user_attempts.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -50,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+
         initViewModel()
         initLoads()
         initRecyclerViewMain()
@@ -72,7 +74,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-
     private fun initRecyclerViewMain() {
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -92,14 +93,13 @@ class HomeActivity : AppCompatActivity() {
         recycler_tags.adapter = searchTagAdapter
     }
 
-
     private fun initViewModel() {
 
         //Getting data from sharedPreferences and converting to object
         val savedUserResponse = UserDetailsSharedPrefrence().getUserDetails(this)
         savedUserModel = Gson().fromJson(savedUserResponse, SavedUserModel::class.java)
 
-        viewModelFactory = HomeViewModelFactory(savedUserModel.emailId)
+        viewModelFactory = HomeViewModelFactory(savedUserModel.userId)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         binding.homeViewModel = viewModel
 
@@ -116,7 +116,6 @@ class HomeActivity : AppCompatActivity() {
                 toast.showLong("Error")
             }
         })
-        viewModel.getQuizData()
 
 
         viewModel.getTagsList().observe(this, Observer {
@@ -127,7 +126,6 @@ class HomeActivity : AppCompatActivity() {
                 toast.showLong("No tags found error")
             }
         })
-        viewModel.getTagsData()
     }
 
     private fun searchPressed() {
@@ -174,7 +172,8 @@ class HomeActivity : AppCompatActivity() {
             Handler().postDelayed(Runnable {
                 container.isRefreshing = false
             }, 2000)
-            initLoads()
+            viewModel.getQuizData()
+            viewModel.getTagsData()
         }
     }
 
@@ -197,7 +196,8 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
-        initLoads()
+        viewModel.getQuizData()
+        viewModel.getTagsData()
         this.doubleBackToExitPressedOnce = true
         toast.showShort("Please click again to exit")
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
@@ -210,11 +210,9 @@ class HomeActivity : AppCompatActivity() {
             if (scrollY > oldScrollY + 35 && extendedFab.isExtended) {     // Scroll Down
                 extendedFab.shrink()
             }
-
             if (scrollY < oldScrollY - 35 && !extendedFab.isExtended) {      // Scroll Up
                 extendedFab.extend()
             }
-
             if (scrollY == 0) {     // At the top
                 extendedFab.extend()
             }
