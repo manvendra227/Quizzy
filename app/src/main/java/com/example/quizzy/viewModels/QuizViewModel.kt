@@ -112,6 +112,7 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
                 override fun onFinish() {
                     _currentTime.value = DONE
                     calculateScore()
+                    saveAttempt()
                     _eventQuizFinished.value = true
                     _eventBuzz.value = BuzzType.QUIZ_OVER
                 }

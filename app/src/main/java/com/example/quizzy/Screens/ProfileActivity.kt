@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,8 @@ import com.example.quizzy.utilities.UserDetailsSharedPrefrence
 import com.example.quizzy.viewModels.ProfileViewModel
 import com.example.quizzy.viewModels.ViewModelFactory.ProfileViewModelFactory
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.list_item_user_attempts.*
 
 
 class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
@@ -88,6 +91,34 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             } else {
                 Log.i("profileActivity", "Error")
             }
+        }
+
+        viewModel.deleteStatus.observe(this){
+            if (it){
+                UserDetailsSharedPrefrence().clearUserDetails(this)
+                LoginStateSharedPrefrence().clearState(this)
+                startActivity(Intent(this,LoginActivity::class.java))
+                finishAffinity()
+            }else{
+                MyToast(this).showShort("Oops! Something wet wrong")
+            }
+        }
+        viewModel.errorMessageDeleteUser.observe(this){
+            dialogBinding2.password.error=viewModel.errorMessageDeleteUser.value
+        }
+        viewModel.errorMessageChangePasswordOld.observe(this){
+            dialogBinding1.oldPassword.error=viewModel.errorMessageChangePasswordOld.value
+        }
+        viewModel.errorMessageChangePasswordNew.observe(this){
+            dialogBinding1.newPassword.error=viewModel.errorMessageChangePasswordNew.value
+        }
+        viewModel.changePasswordStatus.observe(this){
+            if (it) {
+                MyToast(this).styleToast(this,"Password changed successfully")
+                hideKeyboard()
+                dialog1.dismiss()
+            }
+            else MyToast(this).showShort("Something went wrong")
         }
     }
 
@@ -200,5 +231,13 @@ class ProfileActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
         dialogBinding2.dialogViewModel = viewModel
         dialog2.show()
+    }
+
+    private fun hideKeyboard() {
+        dialogBinding1.oldPassword.clearFocus()
+        dialogBinding1.newPassword.clearFocus()
+        val `in` = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        `in`.hideSoftInputFromWindow(dialogBinding1.oldPassword.windowToken, 0)
+        `in`.hideSoftInputFromWindow(dialogBinding1.newPassword.windowToken, 0)
     }
 }

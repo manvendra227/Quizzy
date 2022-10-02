@@ -25,10 +25,10 @@ interface userService {
     fun getUserById(@Query("userId")userId:String):Call<User>
 
     @DELETE("user/{id}")
-    fun deleteUser(@Path("id")userId: String, @Query("password") password: String):Call<String>
+    suspend fun deleteUser(@Path("id")userId: String, @Query("password") password: String):Response<String>
 
     @POST("user/changePassword")
-    fun changePassword(@Body passwordModel: PasswordModel):Call<String>
+    suspend fun changePassword(@Body passwordModel: PasswordModel):Response<String>
 
 
 

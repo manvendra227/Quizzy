@@ -78,7 +78,6 @@ class HomeActivity : AppCompatActivity() {
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             recycler_quiz.layoutManager = GridLayoutManager(this, 2)
-
         } else {
             recycler_quiz.layoutManager = LinearLayoutManager(this)
         }
@@ -94,7 +93,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-
         //Getting data from sharedPreferences and converting to object
         val savedUserResponse = UserDetailsSharedPrefrence().getUserDetails(this)
         savedUserModel = Gson().fromJson(savedUserResponse, SavedUserModel::class.java)
@@ -102,7 +100,6 @@ class HomeActivity : AppCompatActivity() {
         viewModelFactory = HomeViewModelFactory(savedUserModel.userId)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         binding.homeViewModel = viewModel
-
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -4,11 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.RetrofitBuilder
 import com.example.quizzy.Service.userService
 import com.example.quizzy.dataModel.entity.User
 import com.example.quizzy.dataModel.model.AttemptModelUser
+import com.example.quizzy.dataModel.model.PasswordModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,20 +93,57 @@ class ProfileViewModel(val userId: String) : ViewModel() {
     }
 
     private fun fetchUserAttempts() {
-        val request = attemptService.fetchUserAttempt(userId)
-        request.enqueue(object : Callback<List<AttemptModelUser>> {
-            override fun onResponse(
-                call: Call<List<AttemptModelUser>>, response: Response<List<AttemptModelUser>>
-            ) {
-                if (response.isSuccessful) {
-                    list.postValue(response.body())
-                }
-            }
+        viewModelScope.launch(Dispatchers.IO){
+            val response=attemptService.fetchUserAttempt(userId)
+            if (response.isSuccessful) list.postValue(response.body())
+            else   Log.i("error", "error user attempts")
+        }
+    }
 
-            override fun onFailure(call: Call<List<AttemptModelUser>>, t: Throwable) {
-                Log.i("error", "error user attempts")
+    val deletePassword = MutableLiveData<String>()
+    val deleteStatus=MutableLiveData<Boolean>()
+    private val _errorMessageDeleteUser = MutableLiveData<String>()
+    val errorMessageDeleteUser: LiveData<String> get() = _errorMessageDeleteUser
+
+    fun deleteUser(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response=userService.deleteUser(userId, deletePassword.value.toString())
+            if (response.isSuccessful){
+                if (response.body().equals("Delete Success",true)){
+                    deleteStatus.postValue(true)
+                }else{
+                    _errorMessageDeleteUser.postValue("Password is wrong")
+                }
+            }else{
+                deleteStatus.postValue(false)
             }
-        })
+        }
+    }
+
+    val changePasswordOld=MutableLiveData<String>()
+    val changePasswordNew=MutableLiveData<String>()
+    val changePasswordStatus=MutableLiveData<Boolean>()
+    private val _errorMessageChangePasswordNew = MutableLiveData<String>()
+    val errorMessageChangePasswordNew: LiveData<String> get() = _errorMessageChangePasswordNew
+    private val _errorMessageChangePasswordOld = MutableLiveData<String>()
+    val errorMessageChangePasswordOld: LiveData<String> get() = _errorMessageChangePasswordOld
+
+    fun changePassword(){
+        val passwordModel=PasswordModel(emailID.value.toString(), changePasswordNew.value.toString(), changePasswordOld.value.toString())
+        viewModelScope.launch(Dispatchers.IO) {
+            val response=userService.changePassword(passwordModel)
+            if (response.isSuccessful){
+                if (response.body().equals("Invalid Old Password")){
+                    changePasswordStatus.postValue(false)
+                    _errorMessageChangePasswordOld.postValue(response.body())
+                }
+                if (response.body().equals("New password saved successfully")){
+                    changePasswordStatus.postValue(true)
+                }
+            }else{
+                changePasswordStatus.postValue(false)
+            }
+        }
     }
 
 

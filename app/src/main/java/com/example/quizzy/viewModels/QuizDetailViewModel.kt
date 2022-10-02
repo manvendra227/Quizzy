@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
@@ -11,6 +12,8 @@ import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.extras.Questions
 import com.example.quizzy.dataModel.model.AttemptModelQuiz
 import com.example.quizzy.dataModel.model.AttemptModelQuizUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,10 +63,10 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
         return quiz
     }
     private fun getData() {
+
         val request = quizService.fetchQuizById(quizId = quizId)
         request.enqueue(object : Callback<Quiz> {
             override fun onResponse(call: Call<Quiz>, response: Response<Quiz>) {
-
                 if (response.isSuccessful) {
                      val quiz: Quiz? = response.body()
                     _quiz.value=quiz
@@ -72,7 +75,6 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
                     }
                 }
             }
-
             override fun onFailure(call: Call<Quiz>, t: Throwable) {
                 Log.i("message", "Details not fetched")
 
@@ -109,7 +111,6 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
         tagList.value = quiz.tags
     }
 
-
     fun getTagsList(): MutableLiveData<List<String>?> {
         return tagList
     }
@@ -123,40 +124,19 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
     }
 
     private fun getQuizAttempt() {
-        val request = attemptService.fetchQuizAttempt(quizId)
-        request.enqueue(object : Callback<List<AttemptModelQuiz>?> {
-            override fun onResponse(
-                call: Call<List<AttemptModelQuiz>?>,
-                response: Response<List<AttemptModelQuiz>?>
-            ) {
-                if (response.isSuccessful) {
-                    quizAttemptList.postValue(response.body()!!)
-                }
-            }
-
-            override fun onFailure(call: Call<List<AttemptModelQuiz>?>, t: Throwable) {
-                Log.i("attempt", "failed quiz attempts")
-            }
-        })
+        viewModelScope.launch(Dispatchers.IO){
+            val response=attemptService.fetchQuizAttempt(quizId)
+            if (response.isSuccessful) quizAttemptList.postValue(response.body()!!)
+            else Log.i("attempt", "failed quiz attempts")
+        }
     }
 
     private fun getUserAttempts() {
-
-        val request = attemptService.fetchUserAttemptOnQuiz(quizId, userId)
-        request.enqueue(object : Callback<List<AttemptModelQuizUser>?> {
-            override fun onResponse(
-                call: Call<List<AttemptModelQuizUser>?>,
-                response: Response<List<AttemptModelQuizUser>?>
-            ) {
-                if (response.isSuccessful) {
-                    userAttemptList.postValue(response.body()!!)
-                }
-            }
-
-            override fun onFailure(call: Call<List<AttemptModelQuizUser>?>, t: Throwable) {
-                Log.i("attempt", "failed user on quiz attempts")
-            }
-        })
+        viewModelScope.launch(Dispatchers.IO) {
+            val response=attemptService.fetchUserAttemptOnQuiz(quizId,userId)
+            if (response.isSuccessful) userAttemptList.postValue(response.body()!!)
+            else Log.i("attempt", "failed user on quiz attempts")
+        }
     }
 
 }
