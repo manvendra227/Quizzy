@@ -384,7 +384,7 @@
                                                 android:layout_alignStart="@+id/quizName"
                                                 android:layout_marginTop="16dp"
                                                 android:fontFamily="@font/sen_regular"
-                                                android:text="@string/details1"
+                                                android:text="@{quizDetailViewModel.bullet1}"
                                                 android:textColor="?android:textColorPrimary"
                                                 android:textSize="14sp" />
 
@@ -396,7 +396,7 @@
                                                 android:layout_alignStart="@+id/quizName"
                                                 android:layout_marginTop="3dp"
                                                 android:fontFamily="@font/sen_regular"
-                                                android:text="@string/details2"
+                                                android:text="@{quizDetailViewModel.bullet2}"
                                                 android:textColor="?android:textColorPrimary"
                                                 android:textSize="14sp" />
 
@@ -408,7 +408,7 @@
                                                 android:layout_alignStart="@+id/quizName"
                                                 android:layout_marginTop="3dp"
                                                 android:fontFamily="@font/sen_regular"
-                                                android:text="@string/details3"
+                                                android:text="@{quizDetailViewModel.bullet3}"
                                                 android:textColor="?android:textColorPrimary"
                                                 android:textSize="14sp" />
 
@@ -437,21 +437,9 @@
                                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                                 tools:listitem="@layout/list_item_tag" />
 
-                                            <TextView
-                                                android:id="@+id/response"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_below="@id/tag_recycler"
-                                                android:layout_alignStart="@+id/quizName"
-                                                android:layout_marginTop="32dp"
-                                                android:fontFamily="@font/sen_regular"
-                                                android:text="@string/response"
-                                                android:textColor="?android:textColorPrimary"
-                                                android:textSize="14sp" />
-
 
                                             <LinearLayout
-                                                android:layout_below="@+id/response"
+                                                android:layout_below="@+id/tag_recycler"
                                                 android:layout_marginTop="30dp"
                                                 android:layout_marginBottom="20dp"
                                                 android:layout_width="match_parent"

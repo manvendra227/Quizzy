@@ -1,6 +1,8 @@
 package com.example.quizzy.viewModels
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +19,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.ZoneId
 
 class QuizDetailViewModel(private val quizId: String, private val userId: String) : ViewModel() {
 
@@ -43,6 +47,10 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
     val maxScore: LiveData<String> get() = _maxScore
     val noOfQuestion: LiveData<String> get() = _noOfQuestion
     val allQuestions: LiveData<Questions?> get() = _allQuestions
+
+    val bullet1 = MutableLiveData("\u29ED Uploaded by username on date")
+    val bullet2 = MutableLiveData("\u29ED Played XXXX times till date")
+    val bullet3 = MutableLiveData("\u29ED Best score 78% by Manu")
 
     private var tagList: MutableLiveData<List<String>?> = MutableLiveData()
     private var quizAttemptList: MutableLiveData<List<AttemptModelQuiz>?> = MutableLiveData()
@@ -82,6 +90,7 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
         })
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun setViews(quiz: Quiz) {
         _title.value = quiz.title
         _desc.value = quiz.description
@@ -101,6 +110,15 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
         _maxScore.value = tempScore?.maxScore.toString()
         _allQuestions.value = quiz.questions
 
+        val x =quiz.timestamp
+        val localDate: LocalDate = x?.toInstant()?.atZone(ZoneId.systemDefault())!!.toLocalDate()
+        val year: Int = localDate.year
+        val month: Int = localDate.monthValue
+        val day: Int = localDate.dayOfMonth
+
+        bullet1.value="\u29ED Uploaded by ${quiz.authorName} on ${day}/${month}/${year}"
+        bullet2.value="\u29ED Played ${quiz.timesPlayed} times till date"
+
         val a: Int? = tempScore?.onCorrect
         val b: Int? = tempScore?.maxScore
         var c = 0
@@ -115,6 +133,7 @@ class QuizDetailViewModel(private val quizId: String, private val userId: String
         return tagList
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun getQuizAttemptList(): MutableLiveData<List<AttemptModelQuiz>?> {
         return quizAttemptList
     }

@@ -44,6 +44,7 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
 
     //Countdown timer
     private var startTime: String
+    private lateinit var endTime: String
     private val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSS")
     private var quizService: QuizService
     private var attemptService = RetrofitBuilder.buildService(AttemptService::class.java)
@@ -278,6 +279,7 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
 
     private fun calculateScore() {
 
+        endTime=sdf.format(Calendar.getInstance().time)
         for ((index, value) in questionList.withIndex()) {
             if (value.answer.toInt() == tempAnswer[index]) _counter.value = _counter.value?.plus(1)
         }
@@ -295,7 +297,7 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
             quizId = quizId,
             score = percentage.value?.toDouble() ?: 0.0,
             startTime = startTime,
-            endTime = sdf.format(Calendar.getInstance().time),
+            endTime = endTime,
             feedback = rating.value?.toDouble() ?: 0.0,
             newQuestions = scores.maxScore.div(scores.onCorrect),
             newCorrect = counter.value?.toInt()
