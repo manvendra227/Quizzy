@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModel
 import com.example.quizzy.Service.AttemptService
 import com.example.quizzy.Service.QuizService
 import com.example.quizzy.Service.RetrofitBuilder
-import com.example.quizzy.dataModel.entity.Quiz
 import com.example.quizzy.dataModel.enums.BuzzType
 import com.example.quizzy.dataModel.enums.Progress
 import com.example.quizzy.dataModel.extras.Questions
@@ -148,7 +147,7 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
         return questionList
     }
 
-    fun getAnswerList():List<Int>{
+    fun getAnswerList(): List<Int> {
         return tempAnswer
     }
 
@@ -279,7 +278,7 @@ class QuizViewModel(val userId: String, val quizId: String, val time: String) : 
 
     private fun calculateScore() {
 
-        endTime=sdf.format(Calendar.getInstance().time)
+        endTime = sdf.format(Calendar.getInstance().time)
         for ((index, value) in questionList.withIndex()) {
             if (value.answer.toInt() == tempAnswer[index]) _counter.value = _counter.value?.plus(1)
         }

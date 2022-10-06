@@ -9,7 +9,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitBuilder {
 
-    private const val baseURL = "https://1fed-122-161-53-244.in.ngrok.io/"
+    private const val baseURL = "https://3259-122-161-53-244.in.ngrok.io/"
 
     private val okHttp = OkHttpClient.Builder()
 
